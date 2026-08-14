@@ -1,0 +1,76 @@
+@startuml
+package laboratorio_usuarios {
+  class Conexion {
+    - DATABASE: String
+    - USERNAME: String
+    - PASSWORD: String
+    - DB_PORT: String
+    - HOST: String
+    - MIN_CON: int
+    - MAX_CON: int
+    - _pool: SimpleConnectionPool
+    + obtener_pool(): SimpleConnectionPool
+    + obtener_conexion(): Connection
+    + liberar_conexion(conexion): void
+    + cerrar_conexiones(): void
+  }
+
+  class CursorDelPool {
+    - _conexion: Connection
+    - _cursor: Cursor
+    + __init__()
+    + __enter__(): Cursor
+    + __exit__(tipo, valor, traceback): bool
+  }
+
+  class Usuario {
+    - id_usuario: int
+    - username: String
+    - password: String
+    + __str__(): String
+  }
+
+  class UsuarioDao {
+    - SELECCIONAR: String
+    - INSERTAR: String
+    - ACTUALIZAR: String
+    - ELIMINAR: String
+    + seleccionar(): List<Usuario>
+    + insertar(usuario: Usuario): int
+    + actualizar(usuario: Usuario): int
+    + eliminar(usuario: Usuario): int
+  }
+
+  class MenuAppUsuario {
+    + ejecutar(): void
+    - _leer_texto(mensaje: String): String
+    - _leer_id(): int
+  }
+
+  class logger_base {
+    + logger: Logger
+  }
+
+  class AplicacionError <<exception>>
+  class ConexionError <<exception>>
+  class UsuarioDaoError <<exception>>
+  class ValidacionError <<exception>>
+
+  Exception <|-- AplicacionError
+  AplicacionError <|-- ConexionError
+  AplicacionError <|-- UsuarioDaoError
+  AplicacionError <|-- ValidacionError
+
+  Conexion o-- CursorDelPool
+  CursorDelPool o-- UsuarioDao
+  UsuarioDao ..> Usuario
+  MenuAppUsuario o-- UsuarioDao
+  MenuAppUsuario ..> AplicacionError : captura
+  Conexion ..> ConexionError : lanza
+  UsuarioDao ..> UsuarioDaoError : lanza
+  MenuAppUsuario ..> ValidacionError : lanza
+  Conexion ..> logger_base
+  UsuarioDao ..> logger_base
+  MenuAppUsuario ..> logger_base
+}
+@enduml
