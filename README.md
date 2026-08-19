@@ -1,4 +1,4 @@
-# Los_Idos_TercerSemestre
+# Los_Idos_CuartoSemestre
 
 
 ## Comandos útiles de Git:
@@ -23,11 +23,11 @@
 
 1- Clonar el repositorio de Los Idos en una carpeta llamada (Solo la primera vez)
 
-    git clone https://github.com/HotCode2025/Los_Idos_TercerSemestre.git 
+    git clone https://github.com/HotCode2025/Los_Idos_CuartoSemestre.git 
     
-    Los_Idos_TercerSemestre 
+    Los_Idos_CuartoSemestre 
     
-    cd Los_Idos_TercerSemestre
+    cd Los_Idos_CuartoSemestre
 
 
 2- Crear una rama nueva con el nombre de quien la está trabajando 
@@ -216,11 +216,11 @@
 
 1. Clonar el repositorio
 
-       git clone https://github.com/HotCode2025/los_Idos_TercerSemestre.git los_Idos_TercerSemestre
+       git clone https://github.com/HotCode2025/los_Idos_CuartoSemestre.git los_Idos_CuartoSemestre
 
 2. Entrar a la carpeta
 
-       cd Los_Idos_TercerSemestre
+       cd Los_Idos_CuartoSemestre
 
 3. Crear tu rama personal
 
