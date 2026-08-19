@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LA LEYENDA DE AANG: AVATAR</title>
+        <link rel="stylesheet" href="./css/styles.css">
+    </head>
+    <body>
+        <h1>AVATAR 🔥💧🌱🌪️</h1>
+      
+        <button id="boton-reglas">📜 Mostrar reglas</button>
+            <section id="reglas">
+                <h2>Reglas del Juego</h2>
+                <p><strong>1.</strong> Selecciona un personaje y presiona "Seleccionar".</p>
+                <p><strong>2.</strong> Tanto el jugador como el enemigo comienzan con 3 vidas.</p>
+                <p><strong>3.</strong> Relación entre ataques:</p>
+                <ul>
+                    <li>🦶🏼 Patada vence a ✊🏼 Puño</li>
+                    <li>✊🏼 Puño vence a 🦵🏼 Barrida</li>
+                    <li>🦵🏼 Barrida vence a 🦶🏼 Patada</li>
+                    <li>Si ambos ataques son iguales, hay empate.</li>
+                </ul>
+            </section>
+
+        <section id="seleccionar-personaje">
+            <h2>Elige tu Personaje</h2>
+                <input type="radio" name="personaje" id="zuko"> <!--name es para agrupar todos los inputs y poder seleccionar-->
+                <label for="zuko">Zuko</label> <!--Esta etiqueta es para darle un indicador a los usuarios qué están seleccionando-->                
+                <input type="radio" name="personaje" id="katara">
+                <label for="katara">Katara</label> <!--El atributo for ayuda a vincular un label con un input a través del mismo id-->
+                <input type="radio" name="personaje" id="aang">
+                <label for="aang">Aang</label>
+                <input type="radio" name="personaje" id="toph">
+                <label for="toph">Toph</label>  
+            <button id="boton-personaje">Seleccionar</button>
+        </section>
+        <section id="seleccionar-ataque">
+            <h2>Elige tu ataque</h2>
+            <p>Tu personaje <span id="personaje-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
+            <p>El personaje <span id="personaje-enemigo"></span> del enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
+            <p>
+                <button id="boton-punio">Punio ✊🏼</button>
+                <button id="boton-patada">Patada 🦶🏼</button>
+                <button id="boton-barrida">Barrida 🦵🏼</button>
+            </p>
+        </section>
+        <section id="mensajes"> 
+            <!--Será un párrafo dinámico-->           
+        </section>
+        <section id="reiniciar">
+            <button id="boton-reiniciar">Reiniciar</button>
+        </section>
+        <script src="./js/avatar.js"></script>    
+    </body>

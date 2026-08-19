@@ -1,0 +1,343 @@
+/* =========================================================
+   AVATAR: LA LEYENDA DE AANG — Hoja de estilos del juego
+   Paleta base: 01264A / 01014A / 26014A (+ colores de nación)
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  /* Paleta base del sitio: SOLO estos 3 colores para fondo,
+     tarjetas, bordes y botones genéricos */
+  --color-fondo:   #01014A; /* el más oscuro de los 3 -> fondo general */
+  --color-tarjeta: #01264A; /* superficie de las secciones */
+  --color-acento:  #26014A; /* bordes, títulos, botones genéricos */
+
+  /* Colores de cada nación (se conservan, solo para
+     insignias de personaje y botones de ataque) */
+  --color-fuego:  #e1592c; /* Zuko */
+  --color-agua:   #2c6e91; /* Katara */
+  --color-tierra: #6b8e4e; /* Toph */
+  --color-aire:   #e8a93b; /* Aang */
+
+  /* Texto: claro, para contrastar con el fondo oscuro */
+  --color-texto:       #edeaf5;
+  --color-texto-suave: #c7c2d9;
+
+  /* Tipografías */
+  --fuente-titulo: 'Cinzel', serif;   /* antes: Merienda */
+  --fuente-cuerpo: 'Roboto', sans-serif;
+}
+
+/* ---------- Reset básico ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-fondo);
+  font-family: var(--fuente-cuerpo);
+  color: var(--color-texto);
+  line-height: 1.5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0 1rem 3rem;
+}
+
+/* ---------- Título principal ---------- */
+h1 {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--color-texto);
+  background: linear-gradient(135deg, var(--color-acento), var(--color-tarjeta));
+  width: 100%;
+  margin: 0 0 2.5rem;
+  padding: 1.75rem 1rem 2.25rem;
+  text-shadow: 0 2px 6px rgba(1, 1, 74, 0.6);
+  box-shadow: 0 6px 18px rgba(1, 1, 74, 0.5);
+  position: relative;
+}
+
+/* Barra de las 4 naciones como firma visual del diseño */
+h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--color-fuego) 0% 25%,
+    var(--color-agua) 25% 50%,
+    var(--color-tierra) 50% 75%,
+    var(--color-aire) 75% 100%
+  );
+}
+
+/* ---------- Tarjetas / secciones ---------- */
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: min(560px, 92vw);
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-acento);
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(1, 1, 74, 0.4);
+  padding: 1.5rem 1.75rem;
+  margin: 0 0 1.5rem;
+}
+
+h2 {
+  font-family: var(--fuente-cuerpo);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.05rem;
+  color: var(--color-texto);
+  margin: 0 0 0.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px dashed var(--color-acento);
+}
+
+/* ---------- Botón y sección de reglas ---------- */
+#boton-reglas {
+  align-self: flex-start;
+  background: var(--color-acento);
+}
+
+#reglas p {
+  margin: 0.25rem 0;
+  color: var(--color-texto);
+}
+
+#reglas ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#reglas li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-texto-suave);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.92rem;
+}
+
+/* ---------- Selección de personaje ---------- */
+#seleccionar-personaje {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#seleccionar-personaje h2 {
+  flex: 1 1 100%;
+}
+
+/* Ocultamos el radio y convertimos el label en una insignia elegible */
+#seleccionar-personaje input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#seleccionar-personaje label {
+  font-family: var(--fuente-titulo);
+  font-size: 1.1rem;
+  text-align: center;
+  min-width: 100px;
+  flex: 1 1 auto;
+  cursor: pointer;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid var(--color-acento);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+#seleccionar-personaje label:hover {
+  transform: translateY(-2px);
+}
+
+/* Color de cada insignia según su nación (se conservan) */
+label[for="zuko"]   { border-color: var(--color-fuego); }
+label[for="katara"] { border-color: var(--color-agua); }
+label[for="aang"]   { border-color: var(--color-aire); }
+label[for="toph"]   { border-color: var(--color-tierra); }
+
+#zuko:checked + label   { background: var(--color-fuego);  color: #fff; }
+#katara:checked + label { background: var(--color-agua);   color: #fff; }
+#aang:checked + label   { background: var(--color-aire);   color: #1f1400; }
+#toph:checked + label   { background: var(--color-tierra); color: #fff; }
+
+/* Los radios ocultos + tabulación siguen mostrando foco visible */
+#seleccionar-personaje input[type="radio"]:focus-visible + label {
+  outline: 3px solid var(--color-texto);
+  outline-offset: 2px;
+}
+
+#seleccionar-personaje button {
+  flex: 1 1 100%;
+  margin-top: 0.5rem;
+  background: var(--color-acento);
+}
+
+/* ---------- Selección de ataque ---------- */
+#personaje-jugador,
+#personaje-enemigo {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+#vidas-jugador,
+#vidas-enemigo {
+  display: inline-block;
+  min-width: 1.4em;
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+#seleccionar-ataque p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 0.5rem 0 0;
+}
+
+/* Los botones de ataque conservan los colores de nación */
+#boton-punio   { background: var(--color-fuego); }
+#boton-patada  { background: var(--color-aire); color: #1f1400; }
+#boton-barrida { background: var(--color-tierra); }
+
+/* ---------- Botones (estilo general) ---------- */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-family: var(--fuente-cuerpo);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  background: var(--color-acento);
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(1, 1, 74, 0.6);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(1, 1, 74, 0.5);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(1, 1, 74, 0.5);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--color-texto);
+  outline-offset: 2px;
+}
+
+/* ---------- Mensajes del combate ---------- */
+#mensajes {
+  width: min(560px, 92vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+
+#mensajes p {
+  background: var(--color-tarjeta);
+  border-left: 4px solid var(--color-acento);
+  color: var(--color-texto);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin: 0;
+  font-size: 0.92rem;
+  box-shadow: 0 2px 8px rgba(1, 1, 74, 0.35);
+}
+
+/* ---------- Reiniciar ---------- */
+#reiniciar {
+  width: min(560px, 92vw);
+  display: flex;
+  justify-content: center;
+  margin: 0 0 1.5rem;
+}
+
+#boton-reiniciar {
+  background: var(--color-fondo);
+  border: 1px solid var(--color-acento);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 600px) {
+  h1 {
+    padding: 1.25rem 0.75rem 1.75rem;
+  }
+
+  section {
+    padding: 1.1rem 1.25rem;
+  }
+
+  #seleccionar-personaje label {
+    min-width: 80px;
+    font-size: 1rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.55rem 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  #seleccionar-ataque p {
+    flex-direction: column;
+  }
+
+  #seleccionar-ataque button {
+    width: 100%;
+  }
+}
