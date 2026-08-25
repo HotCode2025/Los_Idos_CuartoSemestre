@@ -1,148 +1,123 @@
+const PERSONAJES = ["Zuko", "Katara", "Aang", "Toph"];
+const ATAQUES = ["Punio", "Patada", "Barrida"];
+const ATAQUE_VENCEDOR = {
+  Punio: "Barrida",
+  Patada: "Punio",
+  Barrida: "Patada",
+};
+
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
+// Referencias globales: se buscan una sola vez y se reutilizan en las funciones.
+const seccionSeleccionarPersonaje = document.getElementById("seleccionar-personaje");
+const seccionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
+const seccionReiniciar = document.getElementById("reiniciar");
+const seccionReglas = document.getElementById("reglas");
+const seccionMensajes = document.getElementById("mensajes");
+
+const botonReglas = document.getElementById("boton-reglas");
+const botonPersonaje = document.getElementById("boton-personaje");
+const botonReiniciar = document.getElementById("boton-reiniciar");
+const botonesAtaque = document.querySelectorAll("[data-ataque]");
+
+const spanPersonajeJugador = document.getElementById("personaje-jugador");
+const spanPersonajeEnemigo = document.getElementById("personaje-enemigo");
+const spanVidasJugador = document.getElementById("vidas-jugador");
+const spanVidasEnemigo = document.getElementById("vidas-enemigo");
+
 function iniciarJuego() {
-  // Ocultar secciones que no deben verse al inicio
-  document.getElementById("seleccionar-ataque").style.display = "none";
-  document.getElementById("reiniciar").style.display = "none";
-  document.getElementById("reglas").style.display = "none";
+  ocultarElemento(seccionSeleccionarAtaque);
+  ocultarElemento(seccionReiniciar);
+  ocultarElemento(seccionReglas);
 
-  // Botón para mostrar/ocultar reglas
-  document.getElementById("boton-reglas").addEventListener("click", alternarReglas);
+  botonReglas.addEventListener("click", alternarReglas);
+  botonPersonaje.addEventListener("click", seleccionarPersonajeJugador);
+  botonReiniciar.addEventListener("click", reiniciarJuego);
 
-  document.getElementById("boton-personaje").addEventListener("click", seleccionarPersonajeJugador);
-
-  document.getElementById("boton-punio").addEventListener("click", ataquePunio);
-  document.getElementById("boton-patada").addEventListener("click", ataquePatada);
-  document.getElementById("boton-barrida").addEventListener("click", ataqueBarrida);
-
-  document.getElementById("boton-reiniciar").addEventListener("click", reiniciarJuego);
+  botonesAtaque.forEach((boton) => {
+    boton.addEventListener("click", seleccionarAtaqueJugador);
+  });
 
   seleccionarPersonajeEnemigo();
 }
 
-function alternarReglas() {
-  let reglas = document.getElementById("reglas");
-  let boton = document.getElementById("boton-reglas");
-
-  if (reglas.style.display === "none") {
-    reglas.style.display = "block";
-    boton.innerHTML = "📜 Ocultar reglas";
-  } else {
-    reglas.style.display = "none";
-    boton.innerHTML = "📜 Mostrar reglas";
-  }
+//Se pueden utilizar para cualquier elemento, por eso se pasan como parámetro.
+function mostrarElemento(elemento) {
+  elemento.style.display = "block";
 }
 
+function ocultarElemento(elemento) {
+  elemento.style.display = "none";
+}
+
+function alternarReglas() {
+  const reglasOcultas = seccionReglas.style.display === "none";
+  seccionReglas.style.display = reglasOcultas ? "block" : "none";
+  botonReglas.textContent = reglasOcultas
+    ? "📜 Ocultar reglas"
+    : "📜 Mostrar reglas";
+}
+
+// Obtenemos el nombre del jugador con el querySelector, solo se hace 1 vez y con eso se reutiliza en las funciones, por eso tenemos el convertirPrimeraLetraEnMayuscula para que se vea en mayúsculas.
 function seleccionarPersonajeJugador() {
-  let inputZuko   = document.getElementById("zuko");
-  let inputKatara = document.getElementById("katara");
-  let inputAang   = document.getElementById("aang");
-  let inputToph   = document.getElementById("toph");
+  const personajeSeleccionado = document.querySelector('input[name="personaje"]:checked');
 
-  if (!inputZuko.checked && !inputKatara.checked && !inputAang.checked && !inputToph.checked) {
-    let mensajeError = document.createElement("p");
-    mensajeError.innerHTML = "Selecciona un personaje";
-    mensajeError.style.color = "red";
-
-    let seccionSeleccionarPersonaje = document.getElementById("seleccionar-personaje");
-    seccionSeleccionarPersonaje.appendChild(mensajeError);
-
-    setTimeout(() => {
-      seccionSeleccionarPersonaje.removeChild(mensajeError);
-    }, 2000);
-
-    return; 
+  if (!personajeSeleccionado) {
+    mostrarErrorSeleccionPersonaje();
+    return;
   }
 
-  // Mostrar el nombre del personaje elegido
-  let spanPersonajeJugador = document.getElementById("personaje-jugador");
+  spanPersonajeJugador.textContent = convertirPrimeraLetraEnMayuscula(personajeSeleccionado.id);
+  ocultarElemento(seccionSeleccionarPersonaje);
+  mostrarElemento(seccionSeleccionarAtaque);
+}
 
-  if (inputZuko.checked) {
-    spanPersonajeJugador.innerHTML = "Zuko";
-  } else if (inputKatara.checked) {
-    spanPersonajeJugador.innerHTML = "Katara";
-  } else if (inputAang.checked) {
-    spanPersonajeJugador.innerHTML = "Aang";
-  } else if (inputToph.checked) {
-    spanPersonajeJugador.innerHTML = "Toph";
-  }
+function mostrarErrorSeleccionPersonaje() {
+  const mensajeError = document.createElement("p");
+  mensajeError.textContent = "Selecciona un personaje";
+  mensajeError.style.color = "red";
+  seccionSeleccionarPersonaje.appendChild(mensajeError);
 
-  // Ocultar selección de personaje y mostrar selección de ataque
-  document.getElementById("seleccionar-personaje").style.display = "none";
-  document.getElementById("seleccionar-ataque").style.display = "block";
+  setTimeout(() => mensajeError.remove(), 2000);
+}
+
+function convertirPrimeraLetraEnMayuscula(texto) {
+  return texto.charAt(0).toUpperCase() + texto.slice(1);
 }
 
 function seleccionarPersonajeEnemigo() {
-  let personajeAleatorio = aleatoria(1, 4);
-  let spanPersonajeEnemigo = document.getElementById("personaje-enemigo");
-
-  if (personajeAleatorio === 1) {
-    spanPersonajeEnemigo.innerHTML = "Zuko";
-  } else if (personajeAleatorio === 2) {
-    spanPersonajeEnemigo.innerHTML = "Katara";
-  } else if (personajeAleatorio === 3) {
-    spanPersonajeEnemigo.innerHTML = "Aang";
-  } else {
-    spanPersonajeEnemigo.innerHTML = "Toph";
-  }
+  spanPersonajeEnemigo.textContent = obtenerElementoAleatorio(PERSONAJES);
 }
 
-function ataquePunio() {
-  ataqueJugador = "Punio";
-  ataqueAleatorioEnemigo();
-}
-
-function ataquePatada() {
-  ataqueJugador = "Patada";
-  ataqueAleatorioEnemigo();
-}
-
-function ataqueBarrida() {
-  ataqueJugador = "Barrida";
+function seleccionarAtaqueJugador(evento) {
+  ataqueJugador = evento.currentTarget.dataset.ataque;
   ataqueAleatorioEnemigo();
 }
 
 function ataqueAleatorioEnemigo() {
-  let ataqueAleatorio = aleatoria(1, 3);
-
-  if (ataqueAleatorio === 1) {
-    ataqueEnemigo = "Punio";
-  } else if (ataqueAleatorio === 2) {
-    ataqueEnemigo = "Patada";
-  } else {
-    ataqueEnemigo = "Barrida";
-  }
-
+  ataqueEnemigo = obtenerElementoAleatorio(ATAQUES);
   combate();
 }
 
 function combate() {
-  let spanVidasJugador = document.getElementById("vidas-jugador");
-  let spanVidasEnemigo = document.getElementById("vidas-enemigo");
+  let resultado;
 
   if (ataqueJugador === ataqueEnemigo) {
-    crearMensaje("EMPATE");
-  } else if (ataqueJugador === "Punio"   && ataqueEnemigo === "Barrida") {
-    crearMensaje("GANASTE ✊🏼 > 🦵🏼");
+    resultado = "EMPATE";
+  } else if (ATAQUE_VENCEDOR[ataqueJugador] === ataqueEnemigo) {
+    resultado = "GANASTE";
     vidasEnemigo--;
-    spanVidasEnemigo.innerHTML = vidasEnemigo;
-  } else if (ataqueJugador === "Patada"  && ataqueEnemigo === "Punio") {
-    crearMensaje("GANASTE 🦶🏼 > ✊🏼");
-    vidasEnemigo--;
-    spanVidasEnemigo.innerHTML = vidasEnemigo;
-  } else if (ataqueJugador === "Barrida" && ataqueEnemigo === "Patada") {
-    crearMensaje("GANASTE 🦵🏼 > 🦶🏼");
-    vidasEnemigo--;
-    spanVidasEnemigo.innerHTML = vidasEnemigo;
+    spanVidasEnemigo.textContent = vidasEnemigo;
   } else {
-    crearMensaje("PERDISTE");
+    resultado = "PERDISTE";
     vidasJugador--;
-    spanVidasJugador.innerHTML = vidasJugador;
+    spanVidasJugador.textContent = vidasJugador;
   }
 
+  crearMensaje(resultado);
   revisarVidas();
 }
 
@@ -155,38 +130,33 @@ function revisarVidas() {
 }
 
 function crearMensajeFinal(resultado) {
-  // Mostrar botón de reinicio
-  document.getElementById("reiniciar").style.display = "block";
+  mostrarElemento(seccionReiniciar);
+  agregarMensaje(resultado);
 
-  // Agregar mensaje final
-  let parrafo = document.createElement("p");
-  parrafo.innerHTML = resultado;
-  document.getElementById("mensajes").appendChild(parrafo);
-
-  // Deshabilitar botones de ataque
-  document.getElementById("boton-punio").disabled   = true;
-  document.getElementById("boton-patada").disabled  = true;
-  document.getElementById("boton-barrida").disabled = true;
+  botonesAtaque.forEach((boton) => {
+    boton.disabled = true;
+  });
 }
 
 function crearMensaje(resultado) {
-  let sectionMensaje = document.getElementById("mensajes");
-  let parrafo = document.createElement("p");
+  agregarMensaje(`Tu ataque: ${ataqueJugador} | Ataque enemigo: ${ataqueEnemigo} → ${resultado}`);
+}
 
-  parrafo.innerHTML =
-    "Tu ataque: " + ataqueJugador +
-    " | Ataque enemigo: " + ataqueEnemigo +
-    " → " + resultado;
-
-  sectionMensaje.appendChild(parrafo);
+function agregarMensaje(texto) {
+  const parrafo = document.createElement("p");
+  parrafo.textContent = texto;
+  seccionMensajes.appendChild(parrafo);
 }
 
 function reiniciarJuego() {
   location.reload();
 }
 
-function aleatoria(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+
+// Función para obtener un elemento aleatorio de un array antes se usaba Math.random() directamente en dos funciones, pero se creó esta para reutilizarla para personajes y ataques aleatorios.
+function obtenerElementoAleatorio(elementos) {
+  const indiceAleatorio = Math.floor(Math.random() * elementos.length);
+  return elementos[indiceAleatorio];
 }
 
-window.addEventListener("load", iniciarJuego);
+iniciarJuego();
