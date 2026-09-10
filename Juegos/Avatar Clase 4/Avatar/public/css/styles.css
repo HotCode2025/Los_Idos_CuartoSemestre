@@ -4,27 +4,26 @@
    Todo el layout escalado un 20% respecto a la version anterior.
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@400;500;700&display=swap");
 
 :root {
   /* Paleta base del sitio */
-  --color-fondo:   #000024; /* fondo general: azul mucho mas oscuro */
-  --color-tarjeta: #01264A; /* superficie de las secciones */
-  --color-acento:  #26014A; /* bordes, titulos, botones genericos */
+  --color-fondo: #000024; /* fondo general: azul mucho mas oscuro */
+  --color-tarjeta: #01264a; /* superficie de las secciones */
+  --color-acento: #26014a; /* bordes, titulos, botones genericos */
 
   /* Colores de cada nacion  */
-  --color-fuego:  #e1592c; /* Zuko */
-  --color-agua:   #2c6e91; /* Katara */
+  --color-fuego: #e1592c; /* Zuko */
+  --color-agua: #2c6e91; /* Katara */
   --color-tierra: #6b8e4e; /* Toph */
-  --color-aire:   #e8a93b; /* Aang */
+  --color-aire: #e8a93b; /* Aang */
 
-  
-  --color-texto:       #edeaf5;
+  --color-texto: #edeaf5;
   --color-texto-suave: #c7c2d9;
 
   /* Tipografias */
-  --fuente-titulo: 'Cinzel', serif;   
-  --fuente-cuerpo: 'Roboto', sans-serif;
+  --fuente-titulo: "Cinzel", serif;
+  --fuente-cuerpo: "Roboto", sans-serif;
 }
 
 /* ---------- Reset basico ---------- */
@@ -56,9 +55,9 @@ h1 {
   align-items: center;
   text-align: center;
   color: var(--color-texto);
-  background: var(--color-fondo); 
+  background: var(--color-fondo);
   width: 100%;
-  margin: 0 0 2rem;              /* antes: 3rem  */
+  margin: 0 0 2rem; /* antes: 3rem  */
   padding: 1.5rem 1rem 2rem; /* antes: 2.1rem 1.2rem 2.7rem */
   box-shadow: 0 7.2px 21.6px rgba(1, 1, 74, 0.5);
   position: relative;
@@ -179,15 +178,13 @@ h2 {
   margin-bottom: 1.2rem;
 }
 
-
-#seleccionar-personaje input[type="radio"] {
+#seleccionar-personaje .opciones-personaje input[type="radio"] {
   position: absolute;
   width: 1px;
   height: 1px;
   opacity: 0;
   pointer-events: none;
 }
-
 
 #seleccionar-personaje label {
   display: flex;
@@ -205,7 +202,10 @@ h2 {
   border: 2.4px solid var(--color-acento);
   background: var(--color-fondo);
   color: var(--color-texto);
-  transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 /* Retrato circular del personaje dentro del label */
@@ -215,7 +215,9 @@ h2 {
   object-fit: cover;
   border-radius: 50%;
   border: 3.6px solid var(--color-acento);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 #seleccionar-personaje label:hover {
@@ -223,22 +225,44 @@ h2 {
 }
 
 /* Color de cada insignia segun su nacion */
-label[for="zuko"] img   { border-color: var(--color-fuego); }
-label[for="katara"] img { border-color: var(--color-agua); }
-label[for="aang"] img   { border-color: var(--color-aire); }
-label[for="toph"] img   { border-color: var(--color-tierra); }
+label[for="zuko"] img {
+  border-color: var(--color-fuego);
+}
+label[for="katara"] img {
+  border-color: var(--color-agua);
+}
+label[for="aang"] img {
+  border-color: var(--color-aire);
+}
+label[for="toph"] img {
+  border-color: var(--color-tierra);
+}
 
+#zuko:checked + label {
+  border-color: var(--color-fuego);
+}
+#katara:checked + label {
+  border-color: var(--color-agua);
+}
+#aang:checked + label {
+  border-color: var(--color-aire);
+}
+#toph:checked + label {
+  border-color: var(--color-tierra);
+}
 
-#zuko:checked + label   { border-color: var(--color-fuego); }
-#katara:checked + label { border-color: var(--color-agua); }
-#aang:checked + label   { border-color: var(--color-aire); }
-#toph:checked + label   { border-color: var(--color-tierra); }
-
-#zuko:checked + label img   { box-shadow: 0 0 0 4.8px var(--color-fuego); }
-#katara:checked + label img { box-shadow: 0 0 0 4.8px var(--color-agua); }
-#aang:checked + label img   { box-shadow: 0 0 0 4.8px var(--color-aire); }
-#toph:checked + label img   { box-shadow: 0 0 0 4.8px var(--color-tierra); }
-
+#zuko:checked + label img {
+  box-shadow: 0 0 0 4.8px var(--color-fuego);
+}
+#katara:checked + label img {
+  box-shadow: 0 0 0 4.8px var(--color-agua);
+}
+#aang:checked + label img {
+  box-shadow: 0 0 0 4.8px var(--color-aire);
+}
+#toph:checked + label img {
+  box-shadow: 0 0 0 4.8px var(--color-tierra);
+}
 
 #seleccionar-personaje input[type="radio"]:focus-visible + label {
   outline: 3.6px solid var(--color-texto);
@@ -249,6 +273,140 @@ label[for="toph"] img   { border-color: var(--color-tierra); }
   background: var(--color-acento);
   align-self: center;
   margin-top: 1.5rem auto 0;
+}
+
+.texto-continuar {
+  margin: 0;
+  color: var(--color-texto-suave);
+  text-align: center;
+}
+
+.herramientas-personajes {
+  width: 100%;
+  display: grid;
+  gap: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--color-acento);
+  text-align: left;
+}
+
+.botones-herramientas-personajes {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+.botones-herramientas-personajes button {
+  margin-top: 0;
+  min-height: 3.2rem;
+}
+
+.herramientas-personajes[hidden] {
+  display: none;
+}
+
+.boton-continuar-herramienta {
+  width: 100%;
+  margin-top: 0.8rem !important;
+  background: var(--color-aire) !important;
+  color: #1f1400 !important;
+}
+
+.herramientas-personajes h3 {
+  margin: 0;
+  color: var(--color-texto);
+}
+
+.herramientas-personajes input[type="text"],
+.herramientas-personajes input[type="number"],
+.herramientas-personajes select {
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid var(--color-acento);
+  border-radius: 8px;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font: inherit;
+}
+
+.herramientas-personajes fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  border: 1px solid var(--color-acento);
+  border-radius: 8px;
+}
+
+.herramientas-personajes fieldset input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.herramientas-personajes fieldset label,
+#personajes-creados label {
+  min-width: 5.5rem;
+  padding: 0.55rem 0.8rem;
+  border: 2px solid var(--color-acento);
+  border-radius: 8px;
+  background: var(--color-fondo);
+  font-family: var(--fuente-cuerpo);
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.herramientas-personajes fieldset label:hover,
+#personajes-creados label:hover {
+  transform: translateY(-2px);
+}
+
+#elemento-fuego:checked + label {
+  border-color: var(--color-fuego);
+  box-shadow: 0 0 0 3px var(--color-fuego);
+}
+
+#elemento-agua:checked + label {
+  border-color: var(--color-agua);
+  box-shadow: 0 0 0 3px var(--color-agua);
+}
+
+#elemento-tierra:checked + label {
+  border-color: var(--color-tierra);
+  box-shadow: 0 0 0 3px var(--color-tierra);
+}
+
+#elemento-aire:checked + label {
+  border-color: var(--color-aire);
+  box-shadow: 0 0 0 3px var(--color-aire);
+}
+
+#personajes-creados input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#personajes-creados input[type="radio"]:checked + label {
+  border-color: var(--color-aire);
+  box-shadow: 0 0 0 3px var(--color-aire);
+}
+
+#personajes-creados {
+  display: grid;
+  gap: 0.4rem;
+}
+
+@media (max-width: 520px) {
+  .botones-herramientas-personajes {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------- Seleccion de ataque ---------- */
@@ -280,10 +438,16 @@ label[for="toph"] img   { border-color: var(--color-tierra); }
   margin: 0.6rem 0 0;
 }
 
-
-#boton-punio   { background: var(--color-fuego); }
-#boton-patada  { background: var(--color-aire); color: #1f1400; }
-#boton-barrida { background: var(--color-tierra); }
+#boton-punio {
+  background: var(--color-fuego);
+}
+#boton-patada {
+  background: var(--color-aire);
+  color: #1f1400;
+}
+#boton-barrida {
+  background: var(--color-tierra);
+}
 
 /* ---------- Botones (estilo general) ---------- */
 button {
@@ -301,7 +465,10 @@ button {
   padding: 0.78rem 1.5rem;
   cursor: pointer;
   box-shadow: 0 3.6px 0 rgba(1, 1, 74, 0.6);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.2s ease;
 }
 
 button:hover:not(:disabled) {
