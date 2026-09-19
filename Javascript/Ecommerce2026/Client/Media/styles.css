@@ -1,73 +1,206 @@
-/*Products styles*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: #191919;
+    background: #f5f7f5;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+button {
+    font: inherit;
+}
+
+.site-header {
+    color: #ffffff;
+    background: #191919;
+    border-bottom: 4px solid #1bcb7f;
+}
+
+.header-content,
+.catalog,
+.site-footer {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.header-content {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    color: #ffffff;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: .02em;
+    text-decoration: none;
+}
+
+.brand span {
+    color: #1bcb7f;
+}
+
+.header-tagline {
+    color: #c8d0cb;
+    font-size: .85rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+main {
+    min-height: calc(100vh - 142px);
+}
+
+.catalog {
+    padding: 58px 0 76px;
+}
+
+.catalog-heading {
+    max-width: 650px;
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    color: #15965d;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.catalog-heading h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+}
+
+.catalog-intro {
+    margin: 16px 0 0;
+    color: #68716b;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* Products */
 .card-products-container {
-    margin: 5vh auto;
+    margin: 0 auto;
 }
 
 .card-products {
-    text-align:  center;
+    align-items: stretch;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    gap: 22px;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
+.card {
+    display: flex;
+    flex: 1 1 220px;
+    flex-direction: column;
+    max-width: 280px;
+    min-width: 210px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e1e8e2;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(25, 25, 25, .06);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(25, 25, 25, .12);
+}
+
 .card-products img {
-    margin-top: 40px;
-    width: 250px;
-    height: 250px;
+    display: block;
+    width: 100%;
+    height: 245px;
+    padding: 18px;
+    object-fit: contain;
+    background: #eef3ef;
+}
+
+.card-products h3 {
+    margin: 18px 18px 8px;
+    font-size: 1.05rem;
+}
+
+.card-products p {
+    margin: 0 18px 18px;
+    color: #15965d;
+    font-size: 1.15rem;
+    font-weight: 800;
 }
 
 .card-products button {
-    border: none;
-    outline: 0;
-    padding: 10px;
-    color: white;
-    background-color:#1bcb7f ;
-    text-align: center;
+    margin: auto 18px 18px;
+    padding: 12px;
+    color: #ffffff;
+    background-color: #1bcb7f;
+    border: 0;
+    border-radius: 5px;
     cursor: pointer;
-    width: 100%;
-    font-size: 15px;
-
+    font-size: .95rem;
+    font-weight: 800;
+    transition: background-color .2s ease, transform .2s ease;
 }
+
 .card-products button:hover {
-    opacity: 0.7;
+    background-color: #15965d;
+    transform: translateY(-1px);
 }
 
-/*Cart Btn*/
+/* Cart button */
 .cart-btn{
     position: fixed;
-    top: 90vh;
-    right: 40px;
-    background-color: rgb(25, 25, 25);
-    padding: 10px;
+    right: 24px;
+    bottom: 24px;
+    z-index: 2;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    color: #ffffff;
+    background-color: #191919;
+    border: 3px solid #1bcb7f;
     border-radius: 50%;
-    height: 24px;
-    width: 24px;
-    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    font-size: 1.4rem;
+    box-shadow: 0 8px 18px rgba(25, 25, 25, .22);
+    transition: transform .2s ease-in-out;
 }
 
 .cart-btn:hover{
-    cursor: pointer;
-    opacity: 0.9;
+    transform: scale(1.08);
 }
 
-/*Cart Counter*/
+/* Cart counter */
 .cart-counter{
     display: none;
     position: fixed;
-    top: 89vh;
-    right: 27px;
+    right: 20px;
+    bottom: 66px;
+    z-index: 3;
     color: #fff;
     text-align: center;
     background-color: #ed3434;
-    padding: 4px;
+    border: 2px solid #f5f7f5;
     border-radius: 50%;
-    height: 17px;
-    width: 17px;
-    font-size: 15px;
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
+    line-height: 18px;
 }
-    
-/*Modal*/
+
+/* Modal */
 .modal-overlay {
     display: none;
     background-color: rgba(0, 0, 0, 0.5);
@@ -83,15 +216,15 @@
     display: none;
     background-color: #ffffff;
     box-shadow: 0px 3px 6px #00000029;
-    padding: 40px;
-    position: absolute;
+    padding: 28px;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 500px;
-    width: 100%;
+    max-width: 520px;
+    width: calc(100% - 30px);
     z-index: 1;
-    max-height: 80vh;
+    max-height: calc(100vh - 30px);
     overflow-y: auto;
 }
 
@@ -109,6 +242,18 @@
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
+}
+
+.modal-footer {
+    display: grid;
+    gap: 16px;
+    padding-top: 22px;
+    text-align: right;
+}
+
+.total-price {
+    font-size: 1.15rem;
+    font-weight: 800;
 }
 
 /*modal body - product display*/
@@ -202,6 +347,7 @@
     text-transform: uppercase;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .btn-primary:hover{
@@ -211,5 +357,64 @@
 
 #button-checkout{
     z-index: 10;
+}
+
+.site-footer {
+    padding: 22px 0 30px;
+    color: #68716b;
+    border-top: 1px solid #dce5de;
+    font-size: .85rem;
+    letter-spacing: .08em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+    .header-content,
+    .catalog,
+    .site-footer {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .header-content {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+        justify-content: center;
+        min-height: 92px;
+    }
+
+    .header-tagline {
+        font-size: .7rem;
+    }
+
+    .catalog {
+        padding-top: 42px;
+    }
+
+    .card {
+        max-width: none;
+        min-width: 0;
+        flex-basis: calc(50% - 11px);
+    }
+
+    .card-products img {
+        height: 170px;
+    }
+
+    .card-products h3,
+    .card-products p {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .card-products button {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .modal-container {
+        padding: 20px 16px;
+    }
 }
 

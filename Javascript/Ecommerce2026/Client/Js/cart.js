@@ -97,7 +97,7 @@ const displayCart = () => {
                 price: total,
             };
 
-            fetch("http://localhost:8080/create_preference",{
+            fetch("/create_preference",{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

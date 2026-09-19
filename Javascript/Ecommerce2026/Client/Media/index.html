@@ -1,24 +1,44 @@
 <!DOCTYPE html5>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/media/styles.css">
         <script src="https://sdk.mercadopago.com/js/v2"></script>
-        <title>Document</title>
+        <title>Ecommerce Los Idos</title>
     </head>
     <body>
-        <!--Shop Content-->
-        <div class="card-product-container">
-            <div class="card-products" id="shopContent"></div>
-        </div>
+        <header class="site-header">
+            <div class="header-content">
+                <a class="brand" href="/media/">Ecommerce <span>Los Idos</span></a>
+                <div class="header-tagline">Moda para todos los días</div>
+            </div>
+        </header>
+
+        <main>
+            <section class="catalog" aria-labelledby="catalog-title">
+                <div class="catalog-heading">
+                    <p class="eyebrow">Colección actual</p>
+                    <h1 id="catalog-title">Encuentra tu próximo favorito</h1>
+                    <p class="catalog-intro">Prendas y accesorios seleccionados para darle personalidad a tu estilo.</p>
+                </div>
+                <!--Shop Content-->
+                <div class="card-product-container">
+                    <div class="card-products" id="shopContent"></div>
+                </div>
+            </section>
+        </main>
+
         <!--Cart-Btn-->
-        <div class="cart-btn" id="cart-btn">🛒</div>
+        <button class="cart-btn" id="cart-btn" type="button" aria-label="Abrir carrito">🛒</button>
         <!--Cart Counter-->
         <span class="cart-counter" id="cart-counter">0</span>
         <!--Modal-->        
         <div class="modal-overlay" id="modal-overlay"></div>
         <div class="modal-container" id="modal-container"></div>
+
+        <footer class="site-footer">Developed By Los Idos</footer>
+
         <script src="/js/products.js"></script>
         <script src="/js/index.js"></script>
         <script src="/js/cart.js"></script>
