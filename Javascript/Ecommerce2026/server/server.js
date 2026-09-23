@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
 const cors = require("cors");
 const mercadopago = require("mercadopago");
@@ -6,9 +7,8 @@ const path = require("path");
 
 const publicUrl = process.env.PUBLIC_URL?.trim().replace(/\/$/, "");
 
-// REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
 mercadopago.configure({
-	access_token: "APP_USR-4090639492587179-091301-63bab37d5cbfff6dfd7a6cd1de232910-3683185689",
+	access_token: process.env.MP_ACCESS_TOKEN,
 });
 
 
