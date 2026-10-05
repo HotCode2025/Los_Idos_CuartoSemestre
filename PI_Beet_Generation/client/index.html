@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!--SDK MERCADOPAGO-->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <title>*Beet Generation*</title>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <a href="/" class="brand">BEET GENERATION</a>
+      
+      <nav class="main-nav">
+        <a href="#styles">Styles</a>
+        <a href="#marketplace">Shop</a>
+      </nav>
+
+      <button class="cart-btn" id="cart-btn" aria-label="Abrir carrito">
+        🛒
+        <span class="cart-counter" id="cart-counter">0</span>
+      </button>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-content">
+          <span class="hero-kicker">WELCOME TO THE WEIRD SIDE</span>
+
+          <h1>
+            DRESS<br />
+            <span>UNNORMAL.</span>
+          </h1>
+
+          <p>
+            Ropa para gente que nunca entendió por qué había que vestirse
+            normal.
+          </p>
+
+          <a href="#marketplace" class="hero-cta"> EXPLORAR DROP → </a>
+        </div>
+
+        <div class="hero-decoration" aria-hidden="true">
+          <span>★</span>
+          <span>BEET</span>
+          <span>2000</span>
+        </div>
+      </section>
+
+      <!-- Styles / identidad -->
+      <section class="style-section" id="styles">
+        <span class="section-kicker">FIND YOUR VIBE</span>
+
+        <h2>
+          ¿QUÉ TAN<br />
+          <span>RANDOM</span> SOS?
+        </h2>
+
+        <div class="style-tags">
+          <span>Y2K</span>
+          <span>STREET</span>
+          <span>RETRO</span>
+          <span>OVERSIZE</span>
+        </div>
+      </section>
+
+      <!-- Marketplace -->
+      <section class="marketplace-section" id="marketplace">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">THE DROP</span>
+            <h2>SHOP THE WEIRD STUFF</h2>
+          </div>
+
+          <span class="product-count" id="product-count"></span>
+        </div>
+
+        <!-- Existing product renderer -->
+        <div class="card-product-container">
+          <div class="card-products" id="shopContent"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-container" id="modal-container"></div>
+
+    <script src="/js/products.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/cart.js"></script>
+  </body>
+</html>
