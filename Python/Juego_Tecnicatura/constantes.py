@@ -1,14 +1,13 @@
 import os
 
-# Dimension de la pantalla, el alto y el ancho de la pantalla
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+# Define el tamaño de la ventana donde se dibuja el juego.
+SCREEN_WIDTH = 1700
+SCREEN_HEIGHT = 1000
 
-# Especificamos los colores de la pantalla
+# Guarda un color azul que puede reutilizarse en los elementos del juego.
+COLOR_LASER = (0, 0, 255)  # Azul
 
-COLOR_LASER = (0, 0, 255) #AZUL
-
-
-
-# Ruta a la carpeta assets
-ASSETS_PATH = os.path.join(os.path.dirname(__file__), 'assets')
+# Construye las rutas a las carpetas de imágenes y sonidos junto a este archivo.
+ASSETS_PATH = os.path.join(os.path.dirname(__file__), 'assets_1')
+IMAGES_PATH = os.path.join(ASSETS_PATH, 'imagenes')
+SOUNDS_PATH = os.path.join(ASSETS_PATH, 'sonidos')
