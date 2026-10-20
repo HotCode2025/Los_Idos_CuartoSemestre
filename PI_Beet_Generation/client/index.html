@@ -60,11 +60,12 @@
           <span>RANDOM</span> SOS?
         </h2>
 
-        <div class="style-tags">
-          <span>Y2K</span>
-          <span>STREET</span>
-          <span>RETRO</span>
-          <span>OVERSIZE</span>
+        <div class="style-tags" role="group" aria-label="Filtrar productos por estilo">
+          <button type="button" data-style="ALL" aria-pressed="true">TODOS</button>
+          <button type="button" data-style="Y2K" aria-pressed="false">Y2K</button>
+          <button type="button" data-style="STREET" aria-pressed="false">STREET</button>
+          <button type="button" data-style="RETRO" aria-pressed="false">RETRO</button>
+          <button type="button" data-style="OVERSIZE" aria-pressed="false">OVERSIZE</button>
         </div>
       </section>
 
@@ -76,7 +77,7 @@
             <h2>SHOP THE WEIRD STUFF</h2>
           </div>
 
-          <span class="product-count" id="product-count"></span>
+          <span class="product-count" id="product-count" role="status" aria-live="polite"></span>
         </div>
 
         <!-- Existing product renderer -->
@@ -85,6 +86,25 @@
         </div>
       </section>
     </main>
+
+    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" aria-atomic="true">
+      <span id="cart-toast-message"></span>
+      <button type="button" id="cart-toast-close" aria-label="Cerrar aviso">&times;</button>
+    </div>
+
+    <dialog id="product-dialog" class="product-dialog" aria-labelledby="detail-title" aria-describedby="detail-description">
+      <button type="button" id="detail-close" class="detail-close" aria-label="Cerrar detalle" autofocus>&times;</button>
+      <div class="product-detail-layout">
+        <img id="detail-image" class="detail-image" alt="" />
+        <div class="detail-info">
+          <span class="section-kicker">BEET GENERATION / THE DROP</span>
+          <h2 id="detail-title"></h2>
+          <p id="detail-description"></p>
+          <p id="detail-price" class="detail-price"></p>
+          <button type="button" id="detail-add" class="btn-primary">Agregar al carrito</button>
+        </div>
+      </div>
+    </dialog>
 
     <!-- Cart Modal -->
     <div class="modal-overlay" id="modal-overlay"></div>
