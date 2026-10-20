@@ -3,8 +3,29 @@ const app = express();
 const cors = require("cors");
 const path = require("path")
 
-// Prefer server/.env; also support the .env at the project root.
-require("dotenv").config({ path: [path.join(__dirname, ".env"), path.join(__dirname, "../.env")], quiet: true });
+require('./config');
+const { pool, getProducts, getProductsByIds } = require('./db');
+const { parseCart, buildPaymentItems } = require('./checkout');
+const port = Number(process.env.PORT || 8080);
+const appUrl = (process.env.APP_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : `http://localhost:${port}`)).replace(/\/$/, '');
+
+app.get('/api/products', async (req, res) => {
+    try { res.json(await getProducts()); }
+    catch (error) {
+        console.error('Error de catalogo PostgreSQL:', error.code || error.name);
+        res.status(503).json({ error: 'No se pudo cargar el catalogo. Revisa PostgreSQL y ejecuta pnpm db:setup.' });
+    }
+});
+app.get('/api/health', async (req, res) => {
+    try {
+        await pool.query('SELECT id FROM products LIMIT 1');
+        res.json({ status: 'ok', database: 'connected' });
+    } catch {
+        res.status(503).json({ status: 'error', database: 'unavailable' });
+    }
+});
+
 app.get("/payment-config", (req, res) => {
  if (!process.env.MERCADOPAGO_PUBLIC_KEY) {
   return res.status(503).json({ error: "Falta MERCADOPAGO_PUBLIC_KEY en el .env. Reinicia el servidor tras configurarla." });
@@ -26,25 +47,23 @@ app.post("/create_preference", async (req, res) => {
  if (!process.env.MERCADOPAGO_ACCESS_TOKEN) {
   return res.status(503).json({ error: "Falta MERCADOPAGO_ACCESS_TOKEN en el .env. Reinicia el servidor tras configurarlo." });
  }
- if (!Number.isFinite(Number(req.body.price)) || Number(req.body.price) <= 0 || !Number.isInteger(Number(req.body.quantity)) || Number(req.body.quantity) <= 0) {
-  return res.status(400).json({ error: "El precio y la cantidad deben ser positivos y validos." });
- }
+    let quantities;
+    try { quantities = parseCart(req.body?.items); }
+    catch (error) { return res.status(400).json({ error: error.message }); }
 
-
-	let preference = {
-		items: [
-			{
-				title: req.body.description,
-				unit_price: Number(req.body.price),
-                    currency_id: "ARS",
-				quantity: Number(req.body.quantity),
-			}
-		],
-		back_urls: {
-			"success": "http://localhost:8080",
-			"failure": "http://localhost:8080",
-		},
-	};
+    let products;
+    try { products = await getProductsByIds([...quantities.keys()]); }
+    catch (error) {
+        console.error('Error PostgreSQL al pagar:', error.code || error.name);
+        return res.status(503).json({ error: 'No se pudieron consultar los precios en PostgreSQL.' });
+    }
+    let items;
+    try { items = buildPaymentItems(quantities, products); }
+    catch (error) { return res.status(400).json({ error: error.message }); }
+    const preference = {
+        items,
+        back_urls: { success: appUrl, failure: appUrl, pending: appUrl },
+    };
 
     try {
         const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
@@ -79,6 +98,7 @@ app.get('/feedback', function (req, res) {
 	});
 });
 
-app.listen(8080, () => {
-	console.log("The server is now running on Port 8080");
-});
+if (require.main === module && !process.env.VERCEL) {
+    app.listen(port, () => console.log(`Tienda disponible en http://localhost:${port}`));
+}
+module.exports = app;

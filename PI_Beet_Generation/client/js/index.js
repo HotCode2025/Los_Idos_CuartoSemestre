@@ -55,7 +55,8 @@ detailAdd.addEventListener("click", () => {
     productDialog.close();
 });
 
-const renderProducts = (style = "ALL") => {
+let selectedStyle = "ALL";
+const renderProducts = (style = selectedStyle) => {
     const filteredProducts = style === "ALL" ? productos : productos.filter((product) => product.styles?.includes(style));
     shopContent.replaceChildren();
     document.getElementById("product-count").textContent = `${filteredProducts.length} ${filteredProducts.length === 1 ? "producto" : "productos"}${style === "ALL" ? "" : ` / ${style}`}`;
@@ -71,11 +72,15 @@ const renderProducts = (style = "ALL") => {
     detailButton.type = "button";
     detailButton.className = "product-details-trigger";
     detailButton.setAttribute("aria-label", `Ver detalles de ${product.productName}`);
-    detailButton.innerHTML = `
-        <img src="${product.img}" alt="${product.productName}">
-        <h3>${product.productName}</h3>
-        <span class="product-details-label">Ver detalles</span>
-    `;
+    const image = document.createElement("img");
+    image.src = product.img;
+    image.alt = product.productName;
+    const title = document.createElement("h3");
+    title.textContent = product.productName;
+    const label = document.createElement("span");
+    label.className = "product-details-label";
+    label.textContent = "Ver detalles";
+    detailButton.append(image, title, label);
     detailButton.addEventListener("click", () => showProduct(product));
     const price = document.createElement("p");
     price.textContent = formatPrice(product.price);
@@ -93,8 +98,28 @@ const styleButtons = document.querySelectorAll(".style-tags button[data-style]")
 styleButtons.forEach((button) => {
     button.addEventListener("click", () => {
         styleButtons.forEach((option) => option.setAttribute("aria-pressed", String(option === button)));
-        renderProducts(button.dataset.style);
+        selectedStyle = button.dataset.style;
+        renderProducts();
         document.getElementById("marketplace").scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
     });
 });
-renderProducts();
+async function loadProducts() {
+    document.getElementById("product-count").textContent = "Cargando catalogo...";
+    try {
+        const response = await fetch("/api/products");
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "No se pudo cargar el catalogo.");
+        productos = data;
+        renderProducts();
+    } catch (error) {
+        document.getElementById("product-count").textContent = "Catalogo no disponible";
+        const message = document.createElement("p");
+        message.textContent = error.message;
+        const retry = document.createElement("button");
+        retry.type = "button";
+        retry.textContent = "Reintentar";
+        retry.addEventListener("click", loadProducts);
+        shopContent.replaceChildren(message, retry);
+    }
+}
+loadProducts();
