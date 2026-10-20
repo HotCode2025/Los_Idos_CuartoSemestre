@@ -7,14 +7,22 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "node --test",
+    "db:setup": "node scripts/setup-db.js",
+    "build": "node scripts/build-static.js",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
+    "@vercel/functions": "^3.10.1",
     "cors": "^2.8.6",
     "dotenv": "^18.0.8",
     "express": "^5.2.1",
     "mercadopago": "^1.5.17",
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "pg": "^8.23.1"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }

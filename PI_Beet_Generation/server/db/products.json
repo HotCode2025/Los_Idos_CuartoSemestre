@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "styles": [
+      "STREET",
+      "OVERSIZE"
+    ],
+    "productName": "Buzo gris",
+    "description": "Un buzo gris para combinar con jeans o pantalones y armar un look relajado.",
+    "price": 30,
+    "quanty": 1,
+    "img": "/assets/images/products/buzo_gris.png"
+  },
+  {
+    "id": 2,
+    "styles": [
+      "STREET",
+      "OVERSIZE"
+    ],
+    "productName": "Buzo negro",
+    "description": "Un buzo negro para sumar a tus looks de todos los dias. Combinalo con prendas claras o un conjunto oscuro.",
+    "price": 30,
+    "quanty": 1,
+    "img": "/assets/images/products/buzo_negro.png"
+  },
+  {
+    "id": 3,
+    "styles": [
+      "RETRO"
+    ],
+    "productName": "Cartera de cuero marron",
+    "description": "Una cartera marron para completar tus conjuntos con un toque de contraste.",
+    "price": 50,
+    "quanty": 1,
+    "img": "/assets/images/products/cartera_de_cuero_marron.png"
+  },
+  {
+    "id": 4,
+    "styles": [
+      "Y2K",
+      "RETRO"
+    ],
+    "productName": "Cartera de cuero negra",
+    "description": "Una cartera negra para acompanar tus looks y combinar con el resto de tus accesorios.",
+    "price": 50,
+    "quanty": 1,
+    "img": "/assets/images/products/cartera_de_cuero_negra.png"
+  },
+  {
+    "id": 5,
+    "styles": [
+      "Y2K"
+    ],
+    "productName": "Falda de cuero negra",
+    "description": "Una falda negra para combinar con un buzo o una remera y crear tu propio estilo.",
+    "price": 30,
+    "quanty": 1,
+    "img": "/assets/images/products/falda_de_cuero_negra.png"
+  },
+  {
+    "id": 6,
+    "styles": [
+      "STREET"
+    ],
+    "productName": "Pantalon corto de hombre",
+    "description": "Un pantalon corto para combinar con remeras y buzos en tus conjuntos informales.",
+    "price": 20,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_corto_de_hombre.png"
+  },
+  {
+    "id": 7,
+    "styles": [
+      "STREET"
+    ],
+    "productName": "Pantalon corto hombre",
+    "description": "Otra opcion de pantalon corto para sumar variedad a tus looks cotidianos.",
+    "price": 20,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_corto_hombre.png"
+  },
+  {
+    "id": 8,
+    "styles": [
+      "Y2K",
+      "RETRO"
+    ],
+    "productName": "Pantalon de jean claro",
+    "description": "Un jean claro para combinar con tonos oscuros o sumar a un conjunto de colores suaves.",
+    "price": 30,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_de_jean_claro.png"
+  },
+  {
+    "id": 9,
+    "styles": [
+      "STREET",
+      "RETRO"
+    ],
+    "productName": "Pantalon de jean oscuro",
+    "description": "Un jean oscuro para combinar con remeras, buzos y camperas.",
+    "price": 30,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_de_jean_oscuro.png"
+  },
+  {
+    "id": 10,
+    "styles": [
+      "Y2K",
+      "RETRO"
+    ],
+    "productName": "Pantalon Oxford mujer",
+    "description": "Un pantalon Oxford para darle protagonismo a la silueta de tu conjunto.",
+    "price": 35,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_oxford_mujer.png"
+  },
+  {
+    "id": 11,
+    "styles": [
+      "STREET",
+      "OVERSIZE"
+    ],
+    "productName": "Parka naranja",
+    "description": "Una parka naranja para sumar color y convertir el abrigo en el centro de tu look.",
+    "price": 70,
+    "quanty": 1,
+    "img": "/assets/images/products/parka_naranja.png"
+  },
+  {
+    "id": 12,
+    "styles": [
+      "Y2K",
+      "RETRO"
+    ],
+    "productName": "Vestido negro mujer",
+    "description": "Un vestido negro para combinar con tus accesorios favoritos y darle tu propio estilo.",
+    "price": 30,
+    "quanty": 1,
+    "img": "/assets/images/products/vestido_negro_mujer.png"
+  }
+]

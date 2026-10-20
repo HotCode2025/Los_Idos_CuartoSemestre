@@ -28,3 +28,6 @@ desktop.ini
 .idea/
 *.swp
 *.swo
+settings
+server/public/
+.vercel/

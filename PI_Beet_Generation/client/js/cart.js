@@ -34,9 +34,9 @@ const displayCart = () => {
       modalBody.className = "modal-body";
       modalBody.innerHTML = `
             <div class="product">
-                <img class="product-img" src="${product.img}" />
+                <img class="product-img" src="${escapeHtml(product.img)}" />
                 <div class="product-info">
-                    <h4>${product.productName}</h4>
+                    <h4>${escapeHtml(product.productName)}</h4>
                 </div>
                 <div class="quantity">
                     <span class="quantity-btn-decrease">-</span>
@@ -86,9 +86,7 @@ const displayCart = () => {
       checkoutButton.disabled = true;
 
       const orderData = {
-        quantity: 1,
-        description: "Compra en ESTILO IDO",
-        price: total,
+        items: cart.map((product) => ({ id: product.id, quantity: product.quanty })),
       };
 
       fetch("/create_preference", {
