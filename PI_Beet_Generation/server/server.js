@@ -1,14 +1,16 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const mercadopago = require("mercadopago");
 const path = require("path")
 
-// REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
-mercadopago.configure({
-	access_token: "APP_USR-4090639492587179-091301-63bab37d5cbfff6dfd7a6cd1de232910-3683185689",
+// Prefer server/.env; also support the .env at the project root.
+require("dotenv").config({ path: [path.join(__dirname, ".env"), path.join(__dirname, "../.env")], quiet: true });
+app.get("/payment-config", (req, res) => {
+ if (!process.env.MERCADOPAGO_PUBLIC_KEY) {
+  return res.status(503).json({ error: "Falta MERCADOPAGO_PUBLIC_KEY en el .env. Reinicia el servidor tras configurarla." });
+ }
+ res.json({ publicKey: process.env.MERCADOPAGO_PUBLIC_KEY });
 });
-
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -20,13 +22,21 @@ app.get("/", function (req, res) {
 	res.sendFile(path.resolve(__dirname, "..", "client", "index.html"));
 });
 
-app.post("/create_preference", (req, res) => {
+app.post("/create_preference", async (req, res) => {
+ if (!process.env.MERCADOPAGO_ACCESS_TOKEN) {
+  return res.status(503).json({ error: "Falta MERCADOPAGO_ACCESS_TOKEN en el .env. Reinicia el servidor tras configurarlo." });
+ }
+ if (!Number.isFinite(Number(req.body.price)) || Number(req.body.price) <= 0 || !Number.isInteger(Number(req.body.quantity)) || Number(req.body.quantity) <= 0) {
+  return res.status(400).json({ error: "El precio y la cantidad deben ser positivos y validos." });
+ }
+
 
 	let preference = {
 		items: [
 			{
 				title: req.body.description,
 				unit_price: Number(req.body.price),
+                    currency_id: "ARS",
 				quantity: Number(req.body.quantity),
 			}
 		],
@@ -36,18 +46,29 @@ app.post("/create_preference", (req, res) => {
 		},
 	};
 
-	mercadopago.preferences.create(preference)
-		.then(function (response) {
-			res.json({
-				id: response.body.id
-			});
-		}).catch(function (error) {
-			console.log(error);
-			res.status(500).json({
-				error: "No se pudo crear la preferencia de pago",
-				detail: error.message,
-			});
-		});
+    try {
+        const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${process.env.MERCADOPAGO_ACCESS_TOKEN}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(preference),
+            signal: AbortSignal.timeout(15000),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            const detail = String(data.message || data.error || "Solicitud rechazada")
+                .split(process.env.MERCADOPAGO_ACCESS_TOKEN).join("[REDACTADO]").slice(0, 500);
+            console.error("Mercado Pago rechazo la preferencia:", response.status, detail);
+            return res.status(502).json({ error: `Mercado Pago (${response.status}): ${detail}` });
+        }
+        if (!data.id) throw new Error("Respuesta sin identificador de preferencia");
+        res.json({ id: data.id });
+    } catch (error) {
+        console.error("No se pudo conectar con Mercado Pago:", error.cause?.code || error.name);
+        res.status(502).json({ error: "No se pudo conectar con Mercado Pago. Revisa la conexion a Internet del servidor e intenta nuevamente." });
+    }
 });
 
 app.get('/feedback', function (req, res) {

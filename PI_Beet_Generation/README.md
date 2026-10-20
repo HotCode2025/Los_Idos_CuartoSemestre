@@ -36,9 +36,16 @@ Abre [http://localhost:8080](http://localhost:8080). Nodemon reinicia el servido
 
 La tienda y el carrito se pueden explorar localmente sin completar una compra. Al continuar al pago, el cliente envía una solicitud a `POST /create_preference` y necesita acceso a Mercado Pago.
 
-**No uses el checkout para pagos reales en este estado.** El código actual contiene un access token de Mercado Pago directamente en `server/server.js` y no carga configuración desde `.env` ni desde variables de entorno. Como esa credencial está expuesta en el código, debe revocarse o rotarse antes de cualquier uso. No copies credenciales reales a archivos versionados ni las compartas.
+Crea un archivo `.env` en la raiz del proyecto o en `server/` (este ultimo tiene prioridad):
 
-Para probar pagos, primero configura el backend para leer un access token de prueba desde una variable de entorno y utiliza las credenciales de prueba de tu propia cuenta de Mercado Pago. La implementación actual no permite configurar el token de esa manera todavía. La public key usada por el SDK del cliente es visible en el navegador; utiliza también una clave de prueba para pruebas locales.
+```env
+MERCADOPAGO_ACCESS_TOKEN=tu_access_token
+MERCADOPAGO_PUBLIC_KEY=tu_public_key
+```
+
+Usa credenciales de prueba de la misma aplicacion y cuenta vendedora de Mercado Pago. El servidor carga el archivo al arrancar: reinicialo despues de cambiar las variables. Solo la Public Key se entrega al navegador; el Access Token queda en el servidor. El `.env` esta excluido de Git. Rota el token que anteriormente estaba escrito en el codigo.
+
+No necesitas base de datos ni otro servidor para abrir el checkout; necesitas conexion a Internet y credenciales validas.
 
 El SDK web de Mercado Pago se carga desde un CDN, por lo que el navegador necesita conexión a Internet para inicializar el checkout.
 

@@ -43,7 +43,7 @@ const displayCart = () => {
                     <span class="quantity-input">${product.quanty}</span>
                     <span class="quantity-btn-increase">+</span>
                 </div>
-                <div class="price">${product.price * product.quanty} $</div>
+                <div class="price">${formatPrice(product.price * product.quanty)}</div>
                 <div class="delete-product">❌</div>
             </div>
             `;
@@ -75,23 +75,15 @@ const displayCart = () => {
     const total = cart.reduce((acc, el) => acc + el.price * el.quanty, 0);
     const modalFooter = document.createElement("div");
     modalFooter.className = "modal-footer";
-    modalFooter.innerHTML = `<div class="total-price">Total: ${total}</div>
+    modalFooter.innerHTML = `<div class="total-price">Total: ${formatPrice(total)}</div>
             <button class="btn-primary" id="checkout-btn"> Continuar al Pago</button>
             <div id="button-checkout"></div>
             `;
     modalContainer.append(modalFooter);
-    //mp;
-    const mercadopago = new MercadoPago(
-      "APP_USR-925e9248-9ff6-4c2b-88a0-c12d056a60b1",
-      {
-        locale: "es-AR", //Los más comunes: 'pt-BR', 'es-AR', y 'en-US'
-      },
-    );
-
     const checkoutButton = modalFooter.querySelector("#checkout-btn");
 
     checkoutButton.addEventListener("click", function () {
-      checkoutButton.remove();
+      checkoutButton.disabled = true;
 
       const orderData = {
         quantity: 1,
@@ -99,29 +91,34 @@ const displayCart = () => {
         price: total,
       };
 
-      fetch("http://localhost:8080/create_preference", {
+      fetch("/create_preference", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(orderData),
       })
-        .then(function (response) {
-          if (!response.ok) {
-            throw new Error(`Error ${response.status} al crear la preferencia`);
-          }
-          return response.json();
+        .then(async function (response) {
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || `Error ${response.status} al crear la preferencia`);
+          return data;
         })
         .then(function (preference) {
-          createCheckoutButton(preference.id);
+          return createCheckoutButton(preference.id);
         })
         .catch(function (error) {
           console.error(error);
-          alert("No se pudo iniciar el pago. Revisa la consola del servidor.");
+          checkoutButton.disabled = false;
+          alert(error.message || "No se pudo iniciar el pago.");
         });
     });
 
-    function createCheckoutButton(preferenceId) {
+    async function createCheckoutButton(preferenceId) {
+      const response = await fetch("/payment-config");
+      const config = await response.json();
+      if (!response.ok) throw new Error(config.error);
+      if (typeof MercadoPago === "undefined") throw new Error("No se pudo cargar Mercado Pago. Revisa tu conexion a Internet y los bloqueadores del navegador.");
+      const mercadopago = new MercadoPago(config.publicKey, { locale: "es-AR" });
       //Initialize the checkout
       const bricksBuilder = mercadopago.bricks();
 
@@ -134,7 +131,7 @@ const displayCart = () => {
           {
             initialization: {
               preferenceId: preferenceId,
-              redirectMode: 'self',
+              redirectMode: 'blank',
             },
             callbacks: {
               onError: (error) => console.error(error),
@@ -143,7 +140,8 @@ const displayCart = () => {
           },
         );
       };
-      window.checkoutButton = renderComponent(bricksBuilder);
+      await renderComponent(bricksBuilder);
+      checkoutButton.remove();
     }
   } else {
     const modalText = document.createElement("h2");
