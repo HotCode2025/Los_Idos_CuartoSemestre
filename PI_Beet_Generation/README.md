@@ -57,6 +57,27 @@ pnpm dev
 
 Abrir [http://localhost:8080](http://localhost:8080).
 
+### Recuperar contraseña (correo con Gmail)
+
+El enlace para crear una contraseña nueva se envía desde la cuenta de Gmail de la tienda. En esa cuenta activar la verificación en dos pasos, crear una **contraseña de aplicación** en [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) y completar en el `.env`:
+
+```env
+GMAIL_USER=correo_de_la_tienda@gmail.com
+GMAIL_APP_PASSWORD=la_contrasena_de_aplicacion
+```
+
+Sin estos datos el correo no se envía: el enlace aparece en la terminal del servidor (útil para probar). El enlace vence a los 30 minutos y sirve una sola vez.
+
+### Probar pagos (https local)
+
+Mercado Pago solo vuelve a la tienda después de pagar si la dirección usa `https`. Para eso, una sola vez desde `server/`:
+
+```powershell
+pnpm cert
+```
+
+Con `HTTPS_PORT=8443` y `APP_URL=https://localhost:8443` en el `.env`, reiniciar el servidor y abrir [https://localhost:8443](https://localhost:8443). La primera vez el navegador avisa que el certificado no es de confianza (es local): elegir **Configuración avanzada → Continuar a localhost**.
+
 Para los siguientes inicios, desde `server/` basta con `pnpm dev`. Usar `pnpm start` si no se necesitan reinicios automáticos. Detener el servidor con **Ctrl+C** y reiniciarlo después de cambiar el `.env`.
 
 ## Verificación
@@ -65,4 +86,4 @@ Para los siguientes inicios, desde `server/` basta con `pnpm dev`. Usar `pnpm st
 - [Catálogo](http://localhost:8080/api/products).
 - Pruebas: `pnpm test` desde `server/`.
 
-Si falla la conexión, revisar el servicio PostgreSQL, el puerto y las credenciales. Si faltan tablas, ejecutar `pnpm db:setup`. Si el puerto 8080 está ocupado, detener la instancia anterior.
+Si falla la conexión, revisar el servicio PostgreSQL, el puerto y las credenciales. Si faltan tablas, ejecutar `pnpm db:setup`. Si la tienda muestra productos viejos o sin imagen, ejecutar `pnpm db:setup -- --update-catalog` para reemplazar el catálogo con `server/db/products.json`. Si el puerto 8080 está ocupado, detener la instancia anterior.

@@ -18,6 +18,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* Leaves room for the sticky header when jumping to #styles / #marketplace */
+    scroll-padding-top: 104px;
 }
 
 body {
@@ -39,6 +41,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    column-gap: 16px;
 
     background: var(--color-black);
     color: var(--color-white);
@@ -61,10 +64,16 @@ body {
     gap: 24px;
 }
 
+/* Same lettering as the brand (.brand) */
 .main-nav a {
     color: var(--color-white);
     text-decoration: none;
-    font-weight: 700;
+
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
 .main-nav a:hover {
@@ -235,10 +244,22 @@ body {
     .site-header {
         min-height: 64px;
         padding: 12px 18px;
+        flex-wrap: wrap;
+        row-gap: 10px;
     }
 
+    /* The menu moves to a second, centered row instead of disappearing */
     .main-nav {
-        display: none;
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 32px;
+        padding-top: 10px;
+        border-top: 1px solid rgb(255 255 255 / 20%);
+    }
+
+    .main-nav a {
+        font-size: 0.9rem;
     }
 
     .hero {
@@ -322,12 +343,13 @@ body {
 @media (max-width: 360px) {
 
     .site-header {
-        padding-left: 14px;
-        padding-right: 14px;
+        padding-left: 10px;
+        padding-right: 10px;
+        column-gap: 8px;
     }
 
     .brand {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         letter-spacing: 0.02em;
     }
 }
@@ -616,11 +638,14 @@ body {
 
 .card img {
     width: 100%;
+    height: auto;
+    margin: 0;
     aspect-ratio: 1 / 1;
 
     display: block;
 
     object-fit: cover;
+    object-position: center;
 
     border-radius: 0;
     border-bottom: 3px solid var(--color-black);
@@ -642,6 +667,7 @@ body {
 }
 
 .card button {
+    width: auto;
     margin: auto 18px 18px;
 
     padding: 12px 16px;
@@ -889,6 +915,7 @@ body {
 .card .product-details-trigger:active {
     display: block;
     width: 100%;
+    margin: 0;
     padding: 0;
     background: transparent;
     color: inherit;
@@ -899,7 +926,8 @@ body {
     transform: none;
     cursor: pointer;
 }
-.product-details-label { font-size: 12px; text-decoration: underline; }
+.product-details-label { display: block; margin: 0 18px 10px; font-size: 12px; text-decoration: underline; }
+@media (max-width: 700px) { .product-details-label { margin: 0 12px 8px; } }
 .product-details-trigger:focus-visible { outline: 3px solid var(--color-pink); outline-offset: 4px; }
 .product-dialog {
     width: min(850px, calc(100% - 32px));
@@ -930,3 +958,42 @@ body:has(.product-dialog[open]) { overflow: hidden; }
 .style-tags button:hover { background: var(--color-pink); }
 .style-tags button[aria-pressed="true"] { background: var(--color-pink); border-color: var(--color-white); }
 .style-tags button:focus-visible { outline: 3px solid var(--color-white); outline-offset: 4px; }
+
+/* LOGIN */
+.header-actions { display: flex; align-items: center; gap: 12px; }
+.auth-greeting { font-size: 14px; font-weight: 700; white-space: nowrap; }
+.auth-btn {
+    height: 44px;
+    padding: 0 16px;
+    border: 2px solid var(--color-white);
+    border-radius: 22px;
+    background: var(--color-black);
+    color: var(--color-white);
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.auth-btn:hover { background: var(--color-lime); color: var(--color-black); }
+.auth-dialog { width: min(420px, calc(100% - 32px)); }
+.auth-dialog h2 { font-family: var(--font-display); font-size: 36px; margin: 12px 0 20px; }
+#auth-form { display: grid; gap: 14px; }
+#auth-form label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; }
+#auth-form label[hidden] { display: none; }
+#auth-form input { padding: 10px 12px; border: 2px solid var(--color-black); border-radius: 8px; font-size: 16px; }
+#auth-form input:focus-visible { outline: 3px solid var(--color-pink); outline-offset: 2px; }
+.auth-error { min-height: 1.2em; margin: 0; color: var(--color-error); font-size: 14px; }
+.auth-switch { margin: 20px 0 0; font-size: 14px; }
+.auth-switch button { border: 0; background: none; padding: 0; font-weight: 700; text-decoration: underline; cursor: pointer; }
+@media (max-width: 600px) {
+    .auth-greeting { display: none; }
+    .auth-btn { padding: 0 12px; font-size: 12px; }
+}
+@media (max-width: 360px) {
+    .header-actions { gap: 8px; }
+    .auth-btn { height: 38px; padding: 0 10px; font-size: 11px; }
+    .cart-btn { width: 38px; height: 38px; font-size: 1rem; }
+}
+#auth-form label[hidden], .auth-forgot[hidden] { display: none; }
+.auth-forgot { justify-self: start; margin-top: -6px; padding: 0; border: 0; background: none; font-size: 13px; text-decoration: underline; cursor: pointer; }
+.auth-info { margin: 0; color: var(--color-green); font-size: 14px; font-weight: 700; }
+.auth-info:empty, .auth-error:empty { display: none; }
