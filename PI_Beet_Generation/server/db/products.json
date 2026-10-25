@@ -5,138 +5,144 @@
       "STREET",
       "OVERSIZE"
     ],
-    "productName": "Buzo gris",
-    "description": "Un buzo gris para combinar con jeans o pantalones y armar un look relajado.",
-    "price": 30,
+    "productName": "Hoodie Bluffington",
+    "description": "Buzo con capucha gris de lavado vintage, bolsillo canguro y costuras a la vista. Calce amplio para usar todos los dias.",
+    "price": 45000,
     "quanty": 1,
-    "img": "/assets/images/products/buzo_gris.png"
+    "img": "/assets/images/products/Hoodie%20Bluffington.webp"
   },
   {
     "id": 2,
     "styles": [
       "STREET",
-      "OVERSIZE"
+      "OVERSIZE",
+      "Y2K"
     ],
-    "productName": "Buzo negro",
-    "description": "Un buzo negro para sumar a tus looks de todos los dias. Combinalo con prendas claras o un conjunto oscuro.",
-    "price": 30,
+    "productName": "Baggy Funnie",
+    "description": "Jean negro desgastado de pierna extra ancha con corte a la altura de la rodilla. Puro espiritu dosmilero.",
+    "price": 52000,
     "quanty": 1,
-    "img": "/assets/images/products/buzo_negro.png"
+    "img": "/assets/images/products/Baggy%20Funnie%20editado.webp.jpg"
   },
   {
     "id": 3,
     "styles": [
-      "RETRO"
+      "STREET",
+      "Y2K"
     ],
-    "productName": "Cartera de cuero marron",
-    "description": "Una cartera marron para completar tus conjuntos con un toque de contraste.",
-    "price": 50,
+    "productName": "Baggy Short Patti",
+    "description": "Bermuda de jean negra, amplia y por debajo de la rodilla. Ideal con medias altas y zapatillas skate.",
+    "price": 32000,
     "quanty": 1,
-    "img": "/assets/images/products/cartera_de_cuero_marron.png"
+    "img": "/assets/images/products/Baggy%20Short%20Patti%20Frente.webp"
   },
   {
     "id": 4,
     "styles": [
-      "Y2K",
-      "RETRO"
+      "RETRO",
+      "OVERSIZE"
     ],
-    "productName": "Cartera de cuero negra",
-    "description": "Una cartera negra para acompanar tus looks y combinar con el resto de tus accesorios.",
-    "price": 50,
+    "productName": "Baggy Trousers",
+    "description": "Pantalon sastrero marron con pinzas y pierna recta y ancha. Elegante, pero sin tomarse tan en serio.",
+    "price": 48000,
     "quanty": 1,
-    "img": "/assets/images/products/cartera_de_cuero_negra.png"
+    "img": "/assets/images/products/Baggy%20Trousers.jpeg"
   },
   {
     "id": 5,
     "styles": [
+      "STREET",
       "Y2K"
     ],
-    "productName": "Falda de cuero negra",
-    "description": "Una falda negra para combinar con un buzo o una remera y crear tu propio estilo.",
-    "price": 30,
+    "productName": "Boonie Hat Skeeter",
+    "description": "Gorro boonie negro con ala ancha y cordon ajustable. Para el sol, la lluvia o simplemente para la foto.",
+    "price": 22000,
     "quanty": 1,
-    "img": "/assets/images/products/falda_de_cuero_negra.png"
+    "img": "/assets/images/products/Boonie%20Hat%20Skeeter.jpeg"
   },
   {
     "id": 6,
     "styles": [
-      "STREET"
+      "RETRO",
+      "OVERSIZE"
     ],
-    "productName": "Pantalon corto de hombre",
-    "description": "Un pantalon corto para combinar con remeras y buzos en tus conjuntos informales.",
-    "price": 20,
+    "productName": "Boxy Shirt Killer Tofu",
+    "description": "Camisa de jean gris lavado, manga corta y corte boxy. Se usa abierta o cerrada, siempre suelta.",
+    "price": 38000,
     "quanty": 1,
-    "img": "/assets/images/products/pantalon_corto_de_hombre.png"
+    "img": "/assets/images/products/Boxy%20Shirt%20Killer%20Tofu.webp"
   },
   {
     "id": 7,
     "styles": [
+      "Y2K",
       "STREET"
     ],
-    "productName": "Pantalon corto hombre",
-    "description": "Otra opcion de pantalon corto para sumar variedad a tus looks cotidianos.",
-    "price": 20,
+    "productName": "Cutoff Tee Honker Burger",
+    "description": "Musculosa gris de lavado acido con estampa cromada en la espalda. Sisa amplia y onda noventosa.",
+    "price": 26000,
     "quanty": 1,
-    "img": "/assets/images/products/pantalon_corto_hombre.png"
+    "img": "/assets/images/products/Cutoff%20Tee%20Honker%20Burger.webp"
   },
   {
     "id": 8,
     "styles": [
       "Y2K",
-      "RETRO"
+      "STREET"
     ],
-    "productName": "Pantalon de jean claro",
-    "description": "Un jean claro para combinar con tonos oscuros o sumar a un conjunto de colores suaves.",
-    "price": 30,
+    "productName": "Cutoff Tee Quailman",
+    "description": "Musculosa verde oliva lavada con logo al frente. Liviana, comoda y con actitud de superheroe casero.",
+    "price": 26000,
     "quanty": 1,
-    "img": "/assets/images/products/pantalon_de_jean_claro.png"
+    "img": "/assets/images/products/Cutoff%20Tee%20Quailman%20Frente.webp"
   },
   {
     "id": 9,
     "styles": [
-      "STREET",
-      "RETRO"
+      "RETRO",
+      "OVERSIZE"
     ],
-    "productName": "Pantalon de jean oscuro",
-    "description": "Un jean oscuro para combinar con remeras, buzos y camperas.",
-    "price": 30,
+    "productName": "Overshirt Beebe Bluff",
+    "description": "Sobrecamisa marron de gabardina pesada con dos bolsillos con tapa. Funciona como camisa o como abrigo liviano.",
+    "price": 46000,
     "quanty": 1,
-    "img": "/assets/images/products/pantalon_de_jean_oscuro.png"
+    "img": "/assets/images/products/Overshirt%20Beebe%20Bluff.webp"
   },
   {
     "id": 10,
     "styles": [
-      "Y2K",
-      "RETRO"
+      "RETRO",
+      "OVERSIZE"
     ],
-    "productName": "Pantalon Oxford mujer",
-    "description": "Un pantalon Oxford para darle protagonismo a la silueta de tu conjunto.",
-    "price": 35,
+    "productName": "Overshirt Sloppy Copy Jr",
+    "description": "Sobrecamisa negra de gabardina con bolsillos al pecho. La version oscura para combinar con todo.",
+    "price": 46000,
     "quanty": 1,
-    "img": "/assets/images/products/pantalon_oxford_mujer.png"
+    "img": "/assets/images/products/Overshirt%20Sloppy%20Copy%20Jr.webp"
   },
   {
     "id": 11,
     "styles": [
-      "STREET",
+      "Y2K",
       "OVERSIZE"
     ],
-    "productName": "Parka naranja",
-    "description": "Una parka naranja para sumar color y convertir el abrigo en el centro de tu look.",
-    "price": 70,
+    "productName": "T-shirt Boxy Porkchop",
+    "description": "Camiseta estilo jersey deportivo negra y gris con cuello polo y estampa de telarana. Corte boxy.",
+    "price": 34000,
     "quanty": 1,
-    "img": "/assets/images/products/parka_naranja.png"
+    "img": "/assets/images/products/T-shirt%20Boxy%20Porkchop%20Frente.webp"
   },
   {
     "id": 12,
     "styles": [
       "Y2K",
-      "RETRO"
+      "STREET",
+      "OVERSIZE"
     ],
-    "productName": "Vestido negro mujer",
-    "description": "Un vestido negro para combinar con tus accesorios favoritos y darle tu propio estilo.",
-    "price": 30,
+    "productName": "T-shirt Mayonnaise",
+    "description": "Remera negra oversize con estampa de angelitos al frente. Algodon pesado y calce relajado.",
+    "price": 30000,
     "quanty": 1,
-    "img": "/assets/images/products/vestido_negro_mujer.png"
+    "img": "/assets/images/products/T-shirt%20Mayonnaise.jpeg"
   }
 ]

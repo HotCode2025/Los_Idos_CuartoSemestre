@@ -19,6 +19,22 @@ const showCartToast = (productName) => {
 
 document.getElementById("cart-toast-close").addEventListener("click", hideCartToast);
 
+// Back from Mercado Pago: it appends the payment result to the home URL.
+const paymentParams = new URLSearchParams(location.search);
+if (paymentParams.has("collection_status") || paymentParams.has("payment_id")) {
+    const paymentMessages = {
+        approved: "¡Pago aprobado! Gracias por tu compra.",
+        pending: "Tu pago quedó pendiente. Se acreditará en breve.",
+        in_process: "Tu pago está en proceso. Se acreditará en breve.",
+        rejected: "El pago fue rechazado. Probá con otro medio de pago.",
+    };
+    const status = paymentParams.get("collection_status") || paymentParams.get("status");
+    cartToastMessage.textContent = paymentMessages[status] || "No se completó el pago. Podés intentarlo de nuevo.";
+    cartToast.classList.add("is-visible");
+    cartToastTimer = setTimeout(hideCartToast, 8000);
+    history.replaceState(null, "", "/");
+}
+
 const addToCart = (product) => {
     const existing = cart.find((item) => item.id === product.id);
     if (existing) existing.quanty++;
