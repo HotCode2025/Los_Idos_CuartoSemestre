@@ -31,3 +31,6 @@ desktop.ini
 settings
 server/public/
 .vercel/
+
+# Local https certificate (pnpm cert)
+server/certs/

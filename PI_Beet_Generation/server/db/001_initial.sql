@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS products (
     active boolean NOT NULL DEFAULT true
 );
 
--- Prepared for the next stage: registration/login and authenticated carts.
--- No public user or cart endpoints are exposed until authentication exists.
+-- Registration/login (see server/auth.js). Authenticated carts are the next stage.
+-- No public cart endpoints are exposed yet.
 CREATE TABLE IF NOT EXISTS users (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name text NOT NULL,
@@ -26,3 +26,23 @@ CREATE TABLE IF NOT EXISTS cart_items (
     updated_at timestamptz NOT NULL DEFAULT now(),
     PRIMARY KEY (user_id, product_id)
 );
+
+-- Login sessions: the browser keeps only a random token in an httpOnly cookie;
+-- the database stores its SHA-256 hash, so a leaked table cannot be replayed.
+CREATE TABLE IF NOT EXISTS sessions (
+    token_hash text PRIMARY KEY,
+    user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    expires_at timestamptz NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS sessions_user_id ON sessions (user_id);
+
+-- Password recovery: single-use links that expire after 30 minutes.
+-- Like sessions, only the SHA-256 hash of the emailed token is stored.
+CREATE TABLE IF NOT EXISTS password_resets (
+    token_hash text PRIMARY KEY,
+    user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    expires_at timestamptz NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS password_resets_user_id ON password_resets (user_id);

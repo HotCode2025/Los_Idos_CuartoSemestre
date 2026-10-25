@@ -19,10 +19,15 @@
         <a href="#marketplace">Shop</a>
       </nav>
 
+      <div class="header-actions">
+      <span class="auth-greeting" id="auth-greeting" hidden></span>
+      <button type="button" class="auth-btn" id="auth-btn">Ingresar</button>
+
       <button class="cart-btn" id="cart-btn" aria-label="Abrir carrito">
         🛒
         <span class="cart-counter" id="cart-counter">0</span>
       </button>
+      </div>
     </header>
 
     <main>
@@ -106,6 +111,31 @@
       </div>
     </dialog>
 
+    <dialog id="auth-dialog" class="product-dialog auth-dialog" aria-labelledby="auth-title">
+      <button type="button" id="auth-close" class="detail-close" aria-label="Cerrar">&times;</button>
+      <span class="section-kicker">BEET GENERATION</span>
+      <h2 id="auth-title">INGRESAR</h2>
+      <form id="auth-form" novalidate>
+        <label id="auth-name-field" hidden>Nombre
+          <input type="text" name="name" autocomplete="name" maxlength="80" />
+        </label>
+        <label id="auth-email-field">Email
+          <input type="email" name="email" autocomplete="email" required maxlength="254" />
+        </label>
+        <label id="auth-password-field"><span id="auth-password-label">Contraseña</span>
+          <input type="password" name="password" autocomplete="current-password" required maxlength="128" />
+        </label>
+        <button type="button" class="auth-forgot" id="auth-forgot">¿Olvidaste tu contraseña?</button>
+        <p class="auth-error" id="auth-error" role="alert"></p>
+        <p class="auth-info" id="auth-info" role="status"></p>
+        <button type="submit" class="btn-primary" id="auth-submit">Ingresar</button>
+      </form>
+      <p class="auth-switch">
+        <span id="auth-switch-text">¿No tenés cuenta?</span>
+        <button type="button" id="auth-switch">Crear cuenta</button>
+      </p>
+    </dialog>
+
     <!-- Cart Modal -->
     <div class="modal-overlay" id="modal-overlay"></div>
     <div class="modal-container" id="modal-container"></div>
@@ -113,5 +143,6 @@
     <script src="/js/products.js"></script>
     <script src="/js/index.js"></script>
     <script src="/js/cart.js"></script>
+    <script src="/js/auth.js"></script>
   </body>
 </html>
