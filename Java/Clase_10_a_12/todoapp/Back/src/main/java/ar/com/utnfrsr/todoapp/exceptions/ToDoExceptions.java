@@ -1,0 +1,16 @@
+package ar.com.utnfrsr.todoapp.exceptions;
+
+import lombok.Data;
+import org.springframework.http.HttpStatus;
+
+@Data
+public class ToDoExceptions extends RuntimeException {
+    private String message;
+    private HttpStatus httpStatus; //Para obtener el estado Http
+
+    public ToDoExceptions(String message, HttpStatus httpStatus){
+        super(message);
+        this.message = message;
+        this.httpStatus = httpStatus;
+    }
+}
