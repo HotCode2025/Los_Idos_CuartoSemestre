@@ -12,7 +12,7 @@ if (process.env.VERCEL) require('@vercel/functions').attachDatabasePool(pool);
 pool.on('error', (error) => console.error('Conexion PostgreSQL interrumpida:', error.code));
 
 const productColumns = `id, name AS "productName", description,
-    price::float8 AS price, image_url AS img, styles, 1 AS quanty`;
+    price::float8 AS price, image_url AS img, styles, category, department, subcategory, 1 AS quanty`;
 
 async function getProducts() {
     return (await pool.query(`SELECT ${productColumns} FROM products WHERE active ORDER BY id`)).rows;

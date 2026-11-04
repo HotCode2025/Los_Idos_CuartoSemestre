@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmar compra | Beet Generation</title>
+  <link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/css/checkout.css">
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/">BEET GENERATION</a><a class="checkout-store-link" href="/#marketplace">Seguir comprando</a></header>
+  <main class="checkout-main">
+    <p class="checkout-kicker">TU COMPRA</p><h1>Un paso mas cerca.</h1>
+    <ol class="checkout-steps" aria-label="Pasos de la compra">
+      <li id="step-label-1" aria-current="step"><span>1</span> Confirmar productos</li>
+      <li id="step-label-2"><span>2</span> Direccion</li>
+      <li id="step-label-3"><span>3</span> Pago</li>
+    </ol>
+    <p id="checkout-status" role="status" aria-live="polite">Cargando tu carrito...</p>
+    <button id="checkout-reload" type="button" hidden>Reintentar</button>
+    <section id="checkout-step-1" class="checkout-panel" aria-labelledby="cart-heading">
+      <h2 id="cart-heading" tabindex="-1">1. Confirma tus productos</h2>
+      <div id="checkout-items"></div>
+      <p id="checkout-empty" hidden>Tu carrito esta vacio. <a href="/#marketplace">Explora la tienda</a> para agregar productos.</p>
+      <div class="checkout-total">Total de productos: <strong id="checkout-cart-total">-</strong></div>
+      <button id="confirm-cart" class="checkout-primary" type="button" disabled>Confirmar y completar direccion</button>
+    </section>
+    <section id="checkout-step-2" class="checkout-panel" aria-labelledby="address-heading" hidden>
+      <h2 id="address-heading" tabindex="-1">2. Donde recibis tu pedido</h2>
+      <p>Completa los datos de entrega en Argentina. Todos los campos son obligatorios excepto piso y departamento.</p>
+      <form id="checkout-address">
+        <fieldset id="address-fields" class="checkout-form-grid">
+          <label>Nombre y apellido<input name="name" autocomplete="shipping name" maxlength="100" required></label>
+          <label>Email de contacto<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+          <label>Telefono<input name="phone" type="tel" autocomplete="tel" maxlength="30" minlength="8" required></label>
+          <label>Provincia<input name="province" autocomplete="shipping address-level1" maxlength="100" required></label>
+          <label>Localidad<input name="city" autocomplete="shipping address-level2" maxlength="100" required></label>
+          <label>Codigo postal<input name="postalCode" autocomplete="shipping postal-code" minlength="3" maxlength="12" required></label>
+          <label>Calle<input name="street" autocomplete="shipping address-line1" maxlength="150" required></label>
+          <label>Altura<input name="number" inputmode="numeric" pattern="[0-9]{1,8}" maxlength="8" required></label>
+          <label>Piso (opcional)<input name="floor" maxlength="20"></label>
+          <label>Departamento (opcional)<input name="apartment" maxlength="20"></label>
+        </fieldset>
+        <div class="checkout-actions"><button type="button" data-back="1">Volver a productos</button><button type="submit" class="checkout-primary">Confirmar direccion</button></div>
+      </form>
+    </section>
+    <section id="checkout-step-3" class="checkout-panel" aria-labelledby="payment-heading" hidden>
+      <h2 id="payment-heading" tabindex="-1">3. Revisa y paga</h2>
+      <h3>Productos confirmados</h3><ul id="checkout-payment-items"></ul>
+      <h3>Datos de entrega</h3><p id="checkout-delivery" class="checkout-delivery"></p>
+      <div class="checkout-total">Total de productos: <strong id="checkout-payment-total">-</strong></div>
+      <p>Vas a continuar en Mercado Pago para elegir el medio de pago y completar tu compra.</p>
+      <div class="checkout-actions"><button type="button" data-back="2">Editar direccion</button><button type="button" data-back="1">Editar productos</button><button type="button" id="pay-order" class="checkout-primary">Pagar con Mercado Pago</button></div>
+    </section>
+  </main>
+  <script src="/js/products.js"></script><script src="/js/checkout-state.js"></script>
+  <script src="/js/cart-store.js"></script><script src="/js/checkout.js"></script>
+</body></html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administraci?n ? Beet Generation</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <script src="/js/catalog-taxonomy.js" defer></script>
+  <script src="/js/admin.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand">BEET GENERATION</a>
+    <a href="/" class="admin-back">Volver a la tienda</a>
+  </header>
+  <main class="admin-main">
+    <p class="admin-kicker">ADMINISTRACIÓN</p>
+    <h1>Tu tienda, bajo control.</h1>
+    <p id="admin-greeting">Verificando acceso?</p>
+    <p id="admin-status" role="status" aria-live="polite"></p>
+    <button type="button" id="admin-retry" hidden>Reintentar</button>
+    <div id="admin-content" hidden>
+      <section class="admin-stats" aria-label="Resumen de la tienda">
+        <article><span>Usuarios registrados</span><strong id="users-count">?</strong></article>
+        <article><span>Administradores</span><strong id="admins-count">?</strong></article>
+        <article><span>Productos activos</span><strong id="products-count">?</strong></article>
+      </section>
+      <section class="admin-users admin-products" aria-labelledby="products-title">
+        <div class="product-section-heading"><h2 id="products-title">Productos</h2><button type="button" id="product-new">Nuevo producto</button></div>
+        <p>Gestiona tu catalogo. Desactivar un producto lo retira de la tienda sin borrar sus referencias en los carritos.</p>
+        <p id="product-status" role="status" aria-live="polite"></p>
+        <form id="product-form" hidden>
+          <h3 id="product-form-title">Nuevo producto</h3>
+          <fieldset id="product-fields">
+            <div class="product-form-grid">
+              <label>Nombre<input name="name" required maxlength="150"></label>
+              <label>Precio (ARS)<input name="price" type="number" min="0.01" max="9999999999.99" step="0.01" required></label>
+              <label>Familia<select name="department" id="product-department" required></select></label>
+              <label>Subcategoria<select name="subcategory" id="product-subcategory"></select></label>
+              <label>Publico<select name="category" required>
+                <option value="sin-categoria">Sin categoria</option>
+                <option value="mujer">Mujer</option><option value="hombre">Hombre</option>
+                <option value="unisex">Unisex</option>
+              </select></label>
+              <label class="product-form-wide">Descripcion<textarea name="description" maxlength="5000" rows="3"></textarea></label>
+              <label class="product-form-wide">Imagen: URL HTTPS o ruta del archivo<input name="img" required maxlength="2000" placeholder="/assets/images/products/buzo_gris.png"></label>
+            </div>
+            <fieldset class="product-style-options"><legend>Estilos</legend>
+              <label><input type="checkbox" name="styles" value="Y2K"> Y2K</label>
+              <label><input type="checkbox" name="styles" value="STREET"> STREET</label>
+              <label><input type="checkbox" name="styles" value="RETRO"> RETRO</label>
+              <label><input type="checkbox" name="styles" value="OVERSIZE"> OVERSIZE</label>
+            </fieldset>
+            <label class="product-check"><input name="active" type="checkbox" checked> Activo en la tienda</label>
+            <div class="product-actions"><button type="submit">Guardar producto</button><button type="button" id="product-cancel">Cancelar</button></div>
+          </fieldset>
+        </form>
+        <label for="product-search">Buscar por nombre o ID</label>
+        <input id="product-search" type="search" placeholder="Buscar un producto...">
+        <label for="product-filter">Estado</label>
+        <select id="product-filter"><option value="all">Todos</option><option value="active">Activos</option><option value="inactive">Inactivos</option></select>
+        <div class="admin-table-wrap"><table>
+          <thead><tr><th scope="col">Producto</th><th scope="col">Precio</th><th scope="col">Estilos</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead>
+          <tbody id="admin-products"></tbody>
+        </table></div>
+        <p id="product-empty" hidden>No hay productos para mostrar.</p>
+      </section>
+      <section class="admin-users" aria-labelledby="users-title">
+        <h2 id="users-title">Acceso al panel</h2>
+        <p>Las cuentas registradas pueden comprar. Solo las cuentas aprobadas pueden ingresar a administración y gestionar estos permisos.</p>
+        <label for="user-search">Buscar por nombre o email</label>
+        <input id="user-search" type="search" placeholder="Buscar una cuenta?" autocomplete="off">
+        <div class="admin-table-wrap">
+          <table>
+            <thead><tr><th scope="col">Usuario</th><th scope="col">Email</th><th scope="col">Acceso</th><th scope="col">Acción</th></tr></thead>
+            <tbody id="admin-users"></tbody>
+          </table>
+        </div>
+        <p id="admin-empty" hidden>No se encontraron cuentas con esa búsqueda.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

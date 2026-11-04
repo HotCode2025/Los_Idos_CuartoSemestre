@@ -144,5 +144,113 @@
     "price": 30000,
     "quanty": 1,
     "img": "/assets/images/products/T-shirt%20Mayonnaise.jpeg"
+  },
+  {
+    "id": 13,
+    "styles": ["STREET", "OVERSIZE"],
+    "productName": "Buzo gris con capucha",
+    "description": "Buzo gris de calce amplio con capucha, cordones y bolsillo canguro.",
+    "price": 42000,
+    "quanty": 1,
+    "img": "/assets/images/products/buzo_gris.png"
+  },
+  {
+    "id": 14,
+    "styles": ["STREET", "OVERSIZE"],
+    "productName": "Buzo negro con capucha",
+    "description": "Buzo negro de calce amplio con capucha y bolsillo frontal.",
+    "price": 42000,
+    "quanty": 1,
+    "img": "/assets/images/products/buzo_negro.png"
+  },
+  {
+    "id": 15,
+    "styles": ["RETRO", "Y2K"],
+    "productName": "Cartera tipo cuero marrón",
+    "description": "Cartera amplia color marrón con asas dobles y detalles laterales.",
+    "price": 38000,
+    "quanty": 1,
+    "img": "/assets/images/products/cartera_de_cuero_marron.png"
+  },
+  {
+    "id": 16,
+    "styles": ["RETRO", "Y2K"],
+    "productName": "Cartera tipo cuero negra",
+    "description": "Cartera negra estructurada con asas y correa larga desmontable.",
+    "price": 38000,
+    "quanty": 1,
+    "img": "/assets/images/products/cartera_de_cuero_negra.png"
+  },
+  {
+    "id": 17,
+    "styles": ["STREET", "Y2K"],
+    "productName": "Mini falda tipo cuero negra",
+    "description": "Mini falda negra de acabado tipo cuero y silueta recta.",
+    "price": 34000,
+    "quanty": 1,
+    "img": "/assets/images/products/falda_de_cuero_negra.png"
+  },
+  {
+    "id": 18,
+    "styles": ["STREET", "OVERSIZE"],
+    "productName": "Bermuda cargo beige",
+    "description": "Bermuda beige de estilo cargo con bolsillos amplios a los costados.",
+    "price": 32000,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_corto_de_hombre.png"
+  },
+  {
+    "id": 19,
+    "styles": ["STREET"],
+    "productName": "Short deportivo azul marino",
+    "description": "Short liviano azul marino con cintura elastizada para un look deportivo.",
+    "price": 26000,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_corto_hombre.png"
+  },
+  {
+    "id": 20,
+    "styles": ["STREET", "OVERSIZE"],
+    "productName": "Jean claro",
+    "description": "Jean celeste de corte recto con lavado claro y detalles desgastados.",
+    "price": 48000,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_de_jean_claro.png"
+  },
+  {
+    "id": 21,
+    "styles": ["STREET", "OVERSIZE"],
+    "productName": "Jean oscuro",
+    "description": "Jean azul oscuro de corte recto y estilo clasico para todos los dias.",
+    "price": 48000,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_de_jean_oscuro.png"
+  },
+  {
+    "id": 22,
+    "styles": ["RETRO", "Y2K"],
+    "productName": "Pantalón oxford naranja",
+    "description": "Pantalon naranja de tiro alto con piernas acampanadas y estilo retro.",
+    "price": 44000,
+    "quanty": 1,
+    "img": "/assets/images/products/pantalon_oxford_mujer.png"
+  },
+  {
+    "id": 23,
+    "styles": ["RETRO", "OVERSIZE"],
+    "productName": "Parka mostaza",
+    "description": "Parka mostaza con capucha, cierre frontal y bolsillos laterales.",
+    "price": 55000,
+    "quanty": 1,
+    "img": "/assets/images/products/parka_naranja.png"
+  },
+  {
+    "id": 24,
+    "styles": ["RETRO", "Y2K"],
+    "productName": "Vestido negro corto",
+    "description": "Vestido corto negro sin mangas con falda plisada y detalle de lazo.",
+    "price": 42000,
+    "quanty": 1,
+    "img": "/assets/images/products/vestido_negro_mujer.png"
   }
 ]

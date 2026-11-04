@@ -3,7 +3,15 @@ const modalOverlay = document.getElementById("modal-overlay");
 const cartBtn = document.getElementById("cart-btn");
 const cartCounter = document.getElementById("cart-counter");
 
+let walletController;
+let cartRevision = 0;
+
 const displayCart = () => {
+    const revision = ++cartRevision;
+    if (walletController) {
+        walletController.unmount();
+        walletController = null;
+    }
     modalContainer.innerHTML = "";
     modalContainer.style.display = "block";
     modalOverlay.style.display = "block";
@@ -81,67 +89,55 @@ const displayCart = () => {
             <div id="button-checkout"></div>
             `;
         modalContainer.append(modalFooter);       
-        //mp;
-        const mercadopago = new MercadoPago("APP_USR-856009d6-b3bf-45d0-9301-b0bcd3cf5199", {
-            locale: "es-AR", //Los más comunes: 'pt-BR', 'es-AR', y 'en-US'
-        });
-
         const checkoutButton = modalFooter.querySelector("#checkout-btn");
+        const checkoutMessage = document.createElement("p");
+        checkoutMessage.setAttribute("role", "status");
+        modalFooter.append(checkoutMessage);
 
-        checkoutButton.addEventListener("click", function(){
-            checkoutButton.remove();
-
-            const orderData = {
-                quantity: 1,
-                description: "compra de ecommerce",
-                price: total,
-            };
-
-            fetch("/create_preference",{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(orderData),
-            })
-            .then(function(response){
-                if (!response.ok) {
-                    throw new Error(`Error ${response.status} al crear la preferencia`);
+        checkoutButton.addEventListener("click", async () => {
+            if (walletController) {
+                walletController.unmount();
+                walletController = null;
+            }
+            checkoutButton.disabled = true;
+            checkoutMessage.innerText = "Preparando el pago...";
+            try {
+                const configResponse = await fetch("/config");
+                if (!configResponse.ok) throw new Error("No se pudo cargar la configuracion de pago.");
+                const config = await configResponse.json();
+                if (!config.publicKey) throw new Error("Falta configurar MP_PUBLIC_KEY en server/.env.");
+                if (typeof MercadoPago === "undefined") {
+                    throw new Error("No se pudo cargar Mercado Pago. Revisa tu conexion y reintenta.");
                 }
-                return response.json();
-            })
-            .then(function(preference){
-                createCheckoutButton(preference.id);
-            })
-            .catch(function(error){
-                console.error(error);
-                alert("No se pudo iniciar el pago. Revisa la consola del servidor.");
-            })
-        });
-
-        function createCheckoutButton(preferenceId){
-            //Initialize the checkout
-            const bricksBuilder = mercadopago.bricks();
-
-            const renderComponent = async (bricksBuilder) => {
-                //if (window.checkoutButton) checkoutButton.unmount();
-
-                await bricksBuilder.create(
-                    "wallet",
-                    "button-checkout", // Class/id where the payment button will be displayed
-                    {
-                        initialization: {
-                            preferenceId: preferenceId,                        
+                const response = await fetch("/create_preference", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ quantity: 1, description: "Compra de ecommerce", price: total }),
+                });
+                const preference = await response.json();
+                if (!response.ok) throw new Error(preference.error || "No se pudo iniciar el pago.");
+                if (revision !== cartRevision) return;
+                const mercadopago = new MercadoPago(config.publicKey, { locale: "es-AR" });
+                const controller = await mercadopago.bricks().create("wallet", "button-checkout", {
+                    initialization: { preferenceId: preference.id },
+                    callbacks: {
+                        onError: () => {
+                            checkoutMessage.innerText = "Mercado Pago no pudo cargar el pago. Reintenta.";
+                            checkoutButton.disabled = false;
+                            checkoutButton.style.display = "";
                         },
-                        callbacks: {
-                            onError: (error) => console.error(error),
-                            onReady: () => {},
-                        }
-                    }
-                );
-            };
-            window.checkoutButton = renderComponent(bricksBuilder);
-        }    
+                        onReady: () => { checkoutMessage.innerText = ""; },
+                    },
+                });
+                if (revision !== cartRevision) { controller.unmount(); return; }
+                walletController = controller;
+                checkoutButton.style.display = "none";
+            } catch (error) {
+                if (revision !== cartRevision) return;
+                checkoutMessage.innerText = error.message;
+                checkoutButton.disabled = false;
+            }
+        });
     } else {
         const modalText = document.createElement("h2");
         modalText.className= "modal-body";

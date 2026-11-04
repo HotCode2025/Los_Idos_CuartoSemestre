@@ -1,0 +1,388 @@
+[
+  {
+    "sourceIndex": 1,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGEOeZOMmNjk_7SK6P7dRCerNIvOrjta8CxMlMX9EVng&s=10",
+    "hash": "b0ba66b8980af763ce363379c77883bec8a2d5ac822a2d04909245be07763107",
+    "name": "Remera Old School Arcade",
+    "description": "Remera negra de manga corta con estampa frontal verde de una maquina arcade y detalles graficos de inspiracion retro.",
+    "img": "/assets/images/products/import-b0ba66b8980af763.jpg",
+    "price": 25000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "remeras",
+    "styles": [
+      "RETRO",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 2,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8QZPlpO0cUYobIBAL_BE9MjkfJUt7FRHHR6ZVEPBNzg&s=10",
+    "hash": "a3660013e9d67d74a2281a360f7e45ca67d8267297289670a2656df1ac9cfa83",
+    "name": "Remera negra con estampa de personajes",
+    "description": "Remera negra de manga corta y silueta entallada, con estampa frontal de personajes y letras en rojo.",
+    "img": "/assets/images/products/import-a3660013e9d67d74.jpg",
+    "price": 46000,
+    "category": "mujer",
+    "department": "indumentaria",
+    "subcategory": "remeras",
+    "styles": [
+      "RETRO"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 3,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzh6WSllaySTk9c5YSOXnqDXGGY52VhqrGJtz03SEK4w&s=10",
+    "hash": "0fc822e44774de83b0c9468686fb2ef24943c147a59d925086be600c59d016a0",
+    "name": "Remera roja de doble manga",
+    "description": "Remera roja con efecto de mangas superpuestas en gris oscuro y estampa frontal de inspiracion comic.",
+    "img": "/assets/images/products/import-0fc822e44774de83.jpg",
+    "price": 41000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "remeras",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 4,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs6yQMcFJedG2mq_I7hEy6dBOSZZvx9FyMzgcWmjicUw&s=10",
+    "hash": "fc0a851da0f4a24f4cb105cd76fdefea908b26b934f5e8c0c6d2c8339e8ebe08",
+    "name": "Remera gris con estampa ornamental",
+    "description": "Remera gris de manga corta con efecto de lavado y estampa negra de trazos ornamentales en el frente.",
+    "img": "/assets/images/products/import-fc0a851da0f4a24f.jpg",
+    "price": 42000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "remeras",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 5,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOZOUj9Zd5YOaKgZeAnK8X2WPrspANVnTI5MaOEkK_Jg&s=10",
+    "hash": "62dffbbaf1f3c050e48d777acde254ebd4adebd6bde90c8a56c78bc40b688523",
+    "name": "Remera gris Buffy",
+    "description": "Remera gris oscura de corte amplio y manga corta, con estampa frontal de Buffy en tonos rojos y blancos.",
+    "img": "/assets/images/products/import-62dffbbaf1f3c050.jpg",
+    "price": 31000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "remeras",
+    "styles": [
+      "RETRO",
+      "OVERSIZE"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 6,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrtVBp2L5Eydc4Vd8d6O3oPCoM2wf0oA6xT8e7iQDTVQ&s=10",
+    "hash": "14e74ebf8d294795391482aa8964c5b1129fc8d10005acc82f3af46bd07ef8e3",
+    "name": "Remera Gorillaz efecto lavado",
+    "description": "Remera gris oscura de silueta amplia, con efecto de lavado y logo Gorillaz en blanco al frente.",
+    "img": "/assets/images/products/import-14e74ebf8d294795.jpg",
+    "price": 56000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "remeras",
+    "styles": [
+      "STREET",
+      "OVERSIZE"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 7,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxuJmAuegbkzqvsfkfTkASMWITleSqR4hu-lABYO5o9g&s=10",
+    "hash": "ca7ca5999aeb3f6258015871c23f9d4aa723099213a5ea7d8f8538545860b06e",
+    "name": "Remera negra con grafica roja",
+    "description": "Remera negra de manga corta y corte amplio, con ilustracion roja central y detalles graficos en blanco.",
+    "img": "/assets/images/products/import-ca7ca5999aeb3f62.jpg",
+    "price": 55000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "remeras",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 8,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3PZjHQltI5Tr6GBbx9C1qd7xpi_zb4_VjxhVwLyzHbA&s=10",
+    "hash": "0237ca81214a7c247ee32e27f01a80d801bad246e7c86e3bdacb5b06ffe742ea",
+    "name": "Buzo negro con capucha y estampa gotica",
+    "description": "Buzo negro con capucha y bolsillo frontal, con una estampa central en blanco de inspiracion gotica.",
+    "img": "/assets/images/products/import-0237ca81214a7c24.jpg",
+    "price": 38000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "buzos",
+    "styles": [
+      "STREET",
+      "OVERSIZE"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 9,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSbeZ3NXMiMeWHmQE23qdsxvti8Q20V2KLNg0yjlPM0A&s=10",
+    "hash": "b81e926445f614b25e81d606d04b7bd218ccdedefac36761ce529cdf0012f823",
+    "name": "Buzo con cierre y estampa ornamental",
+    "description": "Buzo oscuro con capucha y cierre frontal, decorado con motivos ornamentales claros en el frente y las mangas.",
+    "img": "/assets/images/products/import-b81e926445f614b2.jpg",
+    "price": 30000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "buzos",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 10,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJMFH93PQqLrkWt3E1qF2LTAljsD7_KolwpLGH3tDV2Q&s=10",
+    "hash": "1c7032410791e070e26600f7cb8253b965f4530d6c4d996616e8c12aadb101fa",
+    "name": "Bermuda de jean oscuro corte amplio",
+    "description": "Bermuda de jean de lavado oscuro y largo bajo la rodilla, con pierna ancha y bolsillos visibles. Los accesorios de la foto no se incluyen.",
+    "img": "/assets/images/products/import-1c7032410791e070.jpg",
+    "price": 46000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "shorts",
+    "styles": [
+      "Y2K",
+      "OVERSIZE"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 11,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFK2KnZ1jlFGzLYgIRYYactlAqH3EWoj9KmLvqv9TZkg&s=10",
+    "hash": "cf61b35d08b11d90f90669a5decda56791c8d7d91e295eba49b40d8c6c37b73d",
+    "name": "Short de jean azul desflecado",
+    "description": "Short de jean azul con terminaciones desflecadas y bolsillos traseros. Diseno corto para combinar con prendas amplias.",
+    "img": "/assets/images/products/import-cf61b35d08b11d90.jpg",
+    "price": 58000,
+    "category": "mujer",
+    "department": "indumentaria",
+    "subcategory": "shorts",
+    "styles": [
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 12,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCxAnIyvLsDVGW2uVcRTgcLLJf3sF2ZbWk9eKO6xgdZg&s=10",
+    "hash": "cf64db0746286600a1698b898aa139eb4950b4cc078758f17990b2e466042b70",
+    "name": "Short de jean claro desgastado",
+    "description": "Short de jean celeste con detalles desgastados y ruedo desflecado. Silueta corta con bolsillos delanteros.",
+    "img": "/assets/images/products/import-cf64db0746286600.jpg",
+    "price": 39000,
+    "category": "mujer",
+    "department": "indumentaria",
+    "subcategory": "shorts",
+    "styles": [
+      "STREET",
+      "Y2K"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 13,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdxXXGbRhuB5Lw4OVECEtMygfwUnTwVGSyN238ftOeAA&s=10",
+    "hash": "b33de7389e483561d87b51401896e0902d476661561e786531a3a05220f6ec8c",
+    "name": "Bermuda de jean con cruces rojas",
+    "description": "Bermuda de jean azul con grandes motivos de cruces en rojo y dibujos de inspiracion tribal. Corte amplio.",
+    "img": "/assets/images/products/import-b33de7389e483561.jpg",
+    "price": 60000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "shorts",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 14,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpiU7qfyiBHpNP7Nh_rFQw6knUEteSWuCI738DQpSztg&s=10",
+    "hash": "3cc151c844c095e0349454e0e069d8c27b9423802c9f89b71170324951a17a33",
+    "name": "Bermuda de jean con grafica tribal",
+    "description": "Bermuda de jean azul con dibujos contrastantes de inspiracion tribal, una figura tipo mascara y detalles en rojo y blanco.",
+    "img": "/assets/images/products/import-3cc151c844c095e0.jpg",
+    "price": 40000,
+    "category": "unisex",
+    "department": "indumentaria",
+    "subcategory": "shorts",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 15,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc2kvzm7mTebJBPyyTQmK1eaSHUWmnnIXN_k2WNtnRBg&s=10",
+    "hash": "bdc4ce4463de90f27c99efe573acead50be0c1f0d84bb8bb7dd7885e8746af93",
+    "name": "Borcegos negros con cordones",
+    "description": "Borcegos negros de cana corta con cordones y suela contrastante en tono caramelo. Diseno urbano de punta redondeada.",
+    "img": "/assets/images/products/import-bdc4ce4463de90f2.jpg",
+    "price": 51000,
+    "category": "unisex",
+    "department": "calzado",
+    "subcategory": "botas",
+    "styles": [
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 16,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBMTlyThw8LRXizzM8_NShM1DOoSNa5S3PkxrUhGQj1A&s=10",
+    "hash": "0dd5137e9cf2327330feb5c0757de70b839637d4a4f2a0a591c0c935abbe6c9d",
+    "name": "Borcegos color arena",
+    "description": "Borcegos color arena de cana corta, con cordones al tono, punta redondeada y suela de perfil marcado.",
+    "img": "/assets/images/products/import-0dd5137e9cf23273.jpg",
+    "price": 58000,
+    "category": "unisex",
+    "department": "calzado",
+    "subcategory": "botas",
+    "styles": [
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 17,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGwg0SmMHSawhF0QHgj44POb7uLwYhdnXen-ie-a83Q&s=10",
+    "hash": "3d724f6c5f9f2f9886e9b5ff125584110a32241d0feddda3acb337642a00d015",
+    "name": "Borcegos marrones con cordones amarillos",
+    "description": "Borcegos marrones de cana media, con cordones amarillos y suela oscura. Diseno de apariencia rustica.",
+    "img": "/assets/images/products/import-3d724f6c5f9f2f98.jpg",
+    "price": 43000,
+    "category": "unisex",
+    "department": "calzado",
+    "subcategory": "botas",
+    "styles": [
+      "RETRO",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 18,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFV3WL5bhsyCmVoKIBVNfgbDa67qZatOTt5c4DNM0C7Q&s=10",
+    "hash": "6aea0435d5a5c8c2cb492aa2b59a42b4a77ade5250b432c5575ae87f3f7f948e",
+    "name": "Ojotas slide negras",
+    "description": "Ojotas tipo slide negras con banda ancha sobre el empeine y suela de perfil voluminoso. Diseno liso y abierto.",
+    "img": "/assets/images/products/import-6aea0435d5a5c8c2.jpg",
+    "price": 44000,
+    "category": "unisex",
+    "department": "calzado",
+    "subcategory": "ojotas",
+    "styles": [
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 19,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_NsyIr_8LAbv5Bq7W5fxOB27FdgKk6txTgkN7W-QO_Q&s=10",
+    "hash": "2901bc1f093cb9f7b6a5f1aed3f6741572637325cabb1551658eb4cebff3c213",
+    "name": "Zapatillas azules de estilo retro",
+    "description": "Zapatillas azules de cana baja con cordones blancos, franjas laterales claras y suela en tono caramelo.",
+    "img": "/assets/images/products/import-2901bc1f093cb9f7.jpg",
+    "price": 54000,
+    "category": "unisex",
+    "department": "calzado",
+    "subcategory": "zapatillas",
+    "styles": [
+      "RETRO",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 20,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTDrXvAozimUcwCziAlUo6Qu2jGfd-qIKegO3wSiYU6g&s=10",
+    "hash": "863944b5762fbbe618611dddd750c73d6169746ad1d7a2e5667dfc1622c8d5d6",
+    "name": "Zapatillas urbanas negras y grises",
+    "description": "Zapatillas de cana baja con paneles negros y grises, cordones claros y suela de volumen marcado.",
+    "img": "/assets/images/products/import-863944b5762fbbe6.jpg",
+    "price": 52000,
+    "category": "unisex",
+    "department": "calzado",
+    "subcategory": "zapatillas",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 21,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTUGk0_In42LuafcZR4fd2_QF6FVeF_fy868dxWQatUw&s=10",
+    "hash": "634282f961d9312adf0b633c82ec728082d935820c8255bb5ce6c202b7e71c50",
+    "name": "Zapatillas blancas con detalles verdes",
+    "description": "Zapatillas blancas de perfil voluminoso, con paneles superpuestos y detalles en verde oscuro. Cierre con cordones.",
+    "img": "/assets/images/products/import-634282f961d9312a.jpg",
+    "price": 55000,
+    "category": "unisex",
+    "department": "calzado",
+    "subcategory": "zapatillas",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 22,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBoSyQdEHCSp5upLoQ9lWtqp60TjhF2ZbnNWEaTZwyJg&s=10",
+    "hash": "79b23111d711b7d5989da05c8c5b8b4a6386c8f942001d53621ddf65b1757faa",
+    "name": "Zapatillas grises con paneles blancos",
+    "description": "Zapatillas de cana baja en tonos gris y blanco, con capas superpuestas, cordones y suela clara de volumen marcado.",
+    "img": "/assets/images/products/import-79b23111d711b7d5.jpg",
+    "price": 29000,
+    "category": "unisex",
+    "department": "calzado",
+    "subcategory": "zapatillas",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 23,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSarl-aS_5p8AqrHMxcjNsd6t-eX1qqNOwOhNy0lL_L1w&s=10",
+    "hash": "8336d3feeac72b8634bfc630669f696d966aafe066bbed8ee6a6ce48e2c99ac8",
+    "name": "Zapatillas gris oliva con detalles azules",
+    "description": "Zapatillas de perfil deportivo en tonos gris y oliva, con detalles azules, cordones y suela de apariencia robusta.",
+    "img": "/assets/images/products/import-8336d3feeac72b86.jpg",
+    "price": 57000,
+    "category": "unisex",
+    "department": "calzado",
+    "subcategory": "zapatillas",
+    "styles": [
+      "STREET",
+      "RETRO"
+    ],
+    "active": true
+  }
+]
