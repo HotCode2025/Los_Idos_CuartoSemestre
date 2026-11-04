@@ -1,4 +1,5 @@
 const crypto = require('node:crypto');
+const { publicUser } = require('./permissions');
 const { promisify } = require('node:util');
 const express = require('express');
 const { waitUntil } = require('@vercel/functions');
@@ -104,9 +105,9 @@ function createAuthRouter(pool, { appUrl }) {
         try {
             const passwordHash = await hashPassword(credentials.password);
             const { rows } = await pool.query(`INSERT INTO users (name, email, password_hash)
-                VALUES ($1, $2, $3) RETURNING id, name, email`, [credentials.name, credentials.email, passwordHash]);
+                VALUES ($1, $2, $3) RETURNING id, name, email, approved_admin`, [credentials.name, credentials.email, passwordHash]);
             await startSession(req, res, rows[0].id);
-            res.status(201).json({ user: rows[0] });
+            res.status(201).json({ user: publicUser(rows[0]) });
         } catch (error) {
             if (error.code === '23505') return res.status(409).json({ error: 'Ya existe una cuenta con ese email.' });
             console.error('Error PostgreSQL al registrar:', error.code || error.name);
@@ -122,7 +123,7 @@ function createAuthRouter(pool, { appUrl }) {
             return res.status(429).json({ error: 'Demasiados intentos. Espera 15 minutos e intenta de nuevo.' });
         }
         try {
-            const { rows } = await pool.query('SELECT id, name, email, password_hash FROM users WHERE lower(email) = $1', [credentials.email]);
+            const { rows } = await pool.query('SELECT id, name, email, password_hash, approved_admin FROM users WHERE lower(email) = $1', [credentials.email]);
             const user = rows[0];
             const valid = await verifyPassword(credentials.password, user ? user.password_hash : await dummyHash);
             if (!user || !valid) {
@@ -131,7 +132,7 @@ function createAuthRouter(pool, { appUrl }) {
             }
             failedLogins.delete(credentials.email);
             await startSession(req, res, user.id);
-            res.json({ user: { id: user.id, name: user.name, email: user.email } });
+            res.json({ user: publicUser(user) });
         } catch (error) {
             console.error('Error PostgreSQL al iniciar sesion:', error.code || error.name);
             res.status(503).json({ error: 'No se pudo iniciar sesion. Revisa PostgreSQL.' });
@@ -153,9 +154,9 @@ function createAuthRouter(pool, { appUrl }) {
         const token = readSessionToken(req);
         if (!token) return res.json({ user: null });
         try {
-            const { rows } = await pool.query(`SELECT u.id, u.name, u.email FROM sessions s
+            const { rows } = await pool.query(`SELECT u.id, u.name, u.email, u.approved_admin FROM sessions s
                 JOIN users u ON u.id = s.user_id WHERE s.token_hash = $1 AND s.expires_at > now()`, [tokenHash(token)]);
-            res.json({ user: rows[0] || null });
+            res.json({ user: rows[0] ? publicUser(rows[0]) : null });
         } catch (error) {
             console.error('Error PostgreSQL al leer la sesion:', error.code || error.name);
             res.status(503).json({ error: 'No se pudo verificar la sesion.' });
@@ -206,14 +207,14 @@ function createAuthRouter(pool, { appUrl }) {
             }
             const userId = rows[0].user_id;
             const { rows: users } = await client.query(`UPDATE users SET password_hash = $1 WHERE id = $2
-                RETURNING id, name, email`, [await hashPassword(password), userId]);
+                RETURNING id, name, email, approved_admin`, [await hashPassword(password), userId]);
             // Close every open session and pending link: whoever knew the old password is logged out.
             await client.query('DELETE FROM sessions WHERE user_id = $1', [userId]);
             await client.query('DELETE FROM password_resets WHERE user_id = $1', [userId]);
             await client.query('COMMIT');
             failedLogins.delete(users[0].email.toLowerCase());
             await startSession(req, res, userId);
-            res.json({ user: users[0] });
+            res.json({ user: publicUser(users[0]) });
         } catch (error) {
             await client?.query('ROLLBACK').catch(() => {});
             console.error('Error PostgreSQL al cambiar la contraseña:', error.code || error.name);

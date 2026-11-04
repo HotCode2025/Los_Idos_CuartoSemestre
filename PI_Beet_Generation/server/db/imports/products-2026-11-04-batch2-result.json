@@ -1,0 +1,77 @@
+{
+  "created": [
+    {
+      "id": 50,
+      "name": "Mochila negra con tachas y corazon",
+      "price": 38000,
+      "img": "/assets/images/products/import-0635d24f2374845d.jpg"
+    },
+    {
+      "id": 51,
+      "name": "Mochila gris con estrellas",
+      "price": 45000,
+      "img": "/assets/images/products/import-7bb6aa6b16a452ce.jpg"
+    },
+    {
+      "id": 52,
+      "name": "Mochila gris con calavera y cadena",
+      "price": 43000,
+      "img": "/assets/images/products/import-2629b9eaba31211a.jpg"
+    },
+    {
+      "id": 53,
+      "name": "Mochila bicolor BAY",
+      "price": 25000,
+      "img": "/assets/images/products/import-26f3dd0478f67caf.jpg"
+    },
+    {
+      "id": 54,
+      "name": "Mochila negra con ilustraciones",
+      "price": 54000,
+      "img": "/assets/images/products/import-b5cebdf12089828b.jpg"
+    },
+    {
+      "id": 55,
+      "name": "Gorra negra con grafica tribal",
+      "price": 30000,
+      "img": "/assets/images/products/import-a53472c00fa1468f.jpg"
+    },
+    {
+      "id": 56,
+      "name": "Gorra gris con estrellas y costuras claras",
+      "price": 57000,
+      "img": "/assets/images/products/import-636496992aa5be53.jpg"
+    },
+    {
+      "id": 57,
+      "name": "Gorra bordo con estampa blanca",
+      "price": 37000,
+      "img": "/assets/images/products/import-448db172d70dd1e2.jpg"
+    },
+    {
+      "id": 58,
+      "name": "Cinturon negro con hebilla doble",
+      "price": 29000,
+      "img": "/assets/images/products/import-3feb78d7120ce1a2.jpg"
+    },
+    {
+      "id": 59,
+      "name": "Cinturon negro con tachas piramidales",
+      "price": 60000,
+      "img": "/assets/images/products/import-049bc204908c3c9e.jpg"
+    },
+    {
+      "id": 60,
+      "name": "Cinturon negro con hebilla de llamas",
+      "price": 52000,
+      "img": "/assets/images/products/import-44dc2d63e6b4318f.jpg"
+    },
+    {
+      "id": 61,
+      "name": "Cinturon marron con hebilla doble",
+      "price": 52000,
+      "img": "/assets/images/products/import-825f93cad7aa41f7.jpg"
+    }
+  ],
+  "skipped": []
+}

@@ -13,6 +13,24 @@ const authInfo = document.getElementById("auth-info");
 const authSubmit = document.getElementById("auth-submit");
 const authSwitch = document.getElementById("auth-switch");
 const authSwitchText = document.getElementById("auth-switch-text");
+const authToast = document.getElementById("auth-toast");
+const authToastMessage = document.getElementById("auth-toast-message");
+let authToastTimer;
+
+const hideAuthToast = () => {
+    clearTimeout(authToastTimer);
+    authToast.classList.remove("is-visible");
+};
+
+const showAuthToast = (message) => {
+    clearTimeout(authToastTimer);
+    authToastMessage.textContent = message;
+    authToast.classList.add("is-visible");
+    authToastTimer = setTimeout(hideAuthToast, 5000);
+};
+
+document.getElementById("auth-toast-close").addEventListener("click", hideAuthToast);
+
 let authMode = "login";
 let currentUser = null;
 let resetToken = null;
@@ -26,6 +44,7 @@ const authModes = {
 };
 
 const renderAuthState = () => {
+    document.getElementById("admin-link").hidden = !currentUser?.isAdmin;
     authGreeting.hidden = !currentUser;
     authGreeting.textContent = currentUser ? `Hola, ${currentUser.name}` : "";
     authBtn.textContent = currentUser ? "Salir" : "Ingresar";
@@ -67,9 +86,14 @@ const openAuthDialog = (mode) => {
 
 authBtn.addEventListener("click", async () => {
     if (currentUser) {
-        await postAuth("logout").catch(console.error);
-        currentUser = null;
-        renderAuthState();
+        authBtn.disabled = true;
+        try {
+            await CartStore.authenticate(() => postAuth("logout"));
+            currentUser = null;
+            renderAuthState();
+            showAuthToast("Cerraste sesión correctamente.");
+        } catch (error) { alert(error.message); }
+        finally { authBtn.disabled = false; }
         return;
     }
     openAuthDialog("login");
@@ -92,7 +116,9 @@ authForm.addEventListener("submit", async (event) => {
     authError.textContent = "";
     authInfo.textContent = "";
     try {
-        const data = await postAuth(authMode, bodies[authMode]);
+        const data = authMode === "forgot"
+            ? await postAuth(authMode, bodies[authMode])
+            : await CartStore.authenticate(() => postAuth(authMode, bodies[authMode]));
         if (authMode === "forgot") {
             authInfo.textContent = data.message;
             return;
@@ -101,6 +127,12 @@ authForm.addEventListener("submit", async (event) => {
         currentUser = data.user;
         renderAuthState();
         authDialog.close();
+        const message = authMode === "register"
+            ? `Cuenta creada. ¡Bienvenida/o, ${currentUser.name}!`
+            : authMode === "reset"
+                ? "Contraseña actualizada. Ya iniciaste sesión."
+                : `¡Hola, ${currentUser.name}! Iniciaste sesión correctamente.`;
+        showAuthToast(message);
     } catch (error) {
         authError.textContent = error.message;
     } finally {
@@ -116,10 +148,14 @@ if (resetParam) {
     openAuthDialog("reset");
 }
 
-fetch("/api/auth/me")
-    .then((response) => response.json())
-    .then((data) => {
-        currentUser = data.user || null;
+CartStore.ready
+    .then((user) => {
+        currentUser = user;
         renderAuthState();
     })
     .catch(console.error);
+
+if (new URLSearchParams(location.search).get("login") === "1") {
+    history.replaceState(null, "", "/");
+    openAuthDialog("login");
+}

@@ -8,8 +8,12 @@ CREATE TABLE IF NOT EXISTS products (
     active boolean NOT NULL DEFAULT true
 );
 
--- Registration/login (see server/auth.js). Authenticated carts are the next stage.
--- No public cart endpoints are exposed yet.
+CREATE TABLE IF NOT EXISTS catalog_seed_state (
+    id text PRIMARY KEY,
+    completed_at timestamptz NOT NULL DEFAULT now()
+);
+
+-- Registration/login and carts scoped to the authenticated account.
 CREATE TABLE IF NOT EXISTS users (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name text NOT NULL,
@@ -46,3 +50,34 @@ CREATE TABLE IF NOT EXISTS password_resets (
     created_at timestamptz NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS password_resets_user_id ON password_resets (user_id);
+
+-- An anonymous cart can be merged again after a lost response without duplicating units.
+CREATE TABLE IF NOT EXISTS cart_merges (
+    user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    merge_id uuid NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT now(),
+    PRIMARY KEY (user_id, merge_id)
+);
+
+-- Access is granted only by an administrator; registration cannot set this field.
+ALTER TABLE users ADD COLUMN IF NOT EXISTS approved_admin boolean NOT NULL DEFAULT false;
+
+-- Existing products remain unclassified until an administrator assigns a category.
+ALTER TABLE products ADD COLUMN IF NOT EXISTS category text NOT NULL DEFAULT 'sin-categoria'
+    CHECK (category IN ('mujer', 'hombre', 'unisex', 'sin-categoria'));
+
+-- Product families are independent of the existing audience/gender field.
+ALTER TABLE products ADD COLUMN IF NOT EXISTS department text NOT NULL DEFAULT 'sin-clasificar'
+    CHECK (department IN ('calzado', 'indumentaria', 'accesorios', 'sin-clasificar'));
+ALTER TABLE products ADD COLUMN IF NOT EXISTS subcategory text NOT NULL DEFAULT '';
+
+-- Accessories are a product family, not an audience. Migrate the legacy audience once.
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conrelid = 'products'::regclass
+        AND conname = 'products_public_category_check') THEN
+        UPDATE products SET category = 'unisex' WHERE category = 'accesorios';
+        ALTER TABLE products ADD CONSTRAINT products_public_category_check
+            CHECK (category IN ('mujer', 'hombre', 'unisex', 'sin-categoria'));
+    END IF;
+END $$;

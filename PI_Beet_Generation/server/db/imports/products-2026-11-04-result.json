@@ -1,0 +1,143 @@
+{
+  "created": [
+    {
+      "id": 27,
+      "name": "Remera Old School Arcade",
+      "price": 25000,
+      "img": "/assets/images/products/import-b0ba66b8980af763.jpg"
+    },
+    {
+      "id": 28,
+      "name": "Remera negra con estampa de personajes",
+      "price": 46000,
+      "img": "/assets/images/products/import-a3660013e9d67d74.jpg"
+    },
+    {
+      "id": 29,
+      "name": "Remera roja de doble manga",
+      "price": 41000,
+      "img": "/assets/images/products/import-0fc822e44774de83.jpg"
+    },
+    {
+      "id": 30,
+      "name": "Remera gris con estampa ornamental",
+      "price": 42000,
+      "img": "/assets/images/products/import-fc0a851da0f4a24f.jpg"
+    },
+    {
+      "id": 31,
+      "name": "Remera gris Buffy",
+      "price": 31000,
+      "img": "/assets/images/products/import-62dffbbaf1f3c050.jpg"
+    },
+    {
+      "id": 32,
+      "name": "Remera Gorillaz efecto lavado",
+      "price": 56000,
+      "img": "/assets/images/products/import-14e74ebf8d294795.jpg"
+    },
+    {
+      "id": 33,
+      "name": "Remera negra con grafica roja",
+      "price": 55000,
+      "img": "/assets/images/products/import-ca7ca5999aeb3f62.jpg"
+    },
+    {
+      "id": 34,
+      "name": "Buzo negro con capucha y estampa gotica",
+      "price": 38000,
+      "img": "/assets/images/products/import-0237ca81214a7c24.jpg"
+    },
+    {
+      "id": 35,
+      "name": "Buzo con cierre y estampa ornamental",
+      "price": 30000,
+      "img": "/assets/images/products/import-b81e926445f614b2.jpg"
+    },
+    {
+      "id": 36,
+      "name": "Bermuda de jean oscuro corte amplio",
+      "price": 46000,
+      "img": "/assets/images/products/import-1c7032410791e070.jpg"
+    },
+    {
+      "id": 37,
+      "name": "Short de jean azul desflecado",
+      "price": 58000,
+      "img": "/assets/images/products/import-cf61b35d08b11d90.jpg"
+    },
+    {
+      "id": 38,
+      "name": "Short de jean claro desgastado",
+      "price": 39000,
+      "img": "/assets/images/products/import-cf64db0746286600.jpg"
+    },
+    {
+      "id": 39,
+      "name": "Bermuda de jean con cruces rojas",
+      "price": 60000,
+      "img": "/assets/images/products/import-b33de7389e483561.jpg"
+    },
+    {
+      "id": 40,
+      "name": "Bermuda de jean con grafica tribal",
+      "price": 40000,
+      "img": "/assets/images/products/import-3cc151c844c095e0.jpg"
+    },
+    {
+      "id": 41,
+      "name": "Borcegos negros con cordones",
+      "price": 51000,
+      "img": "/assets/images/products/import-bdc4ce4463de90f2.jpg"
+    },
+    {
+      "id": 42,
+      "name": "Borcegos color arena",
+      "price": 58000,
+      "img": "/assets/images/products/import-0dd5137e9cf23273.jpg"
+    },
+    {
+      "id": 43,
+      "name": "Borcegos marrones con cordones amarillos",
+      "price": 43000,
+      "img": "/assets/images/products/import-3d724f6c5f9f2f98.jpg"
+    },
+    {
+      "id": 44,
+      "name": "Ojotas slide negras",
+      "price": 44000,
+      "img": "/assets/images/products/import-6aea0435d5a5c8c2.jpg"
+    },
+    {
+      "id": 45,
+      "name": "Zapatillas azules de estilo retro",
+      "price": 54000,
+      "img": "/assets/images/products/import-2901bc1f093cb9f7.jpg"
+    },
+    {
+      "id": 46,
+      "name": "Zapatillas urbanas negras y grises",
+      "price": 52000,
+      "img": "/assets/images/products/import-863944b5762fbbe6.jpg"
+    },
+    {
+      "id": 47,
+      "name": "Zapatillas blancas con detalles verdes",
+      "price": 55000,
+      "img": "/assets/images/products/import-634282f961d9312a.jpg"
+    },
+    {
+      "id": 48,
+      "name": "Zapatillas grises con paneles blancos",
+      "price": 29000,
+      "img": "/assets/images/products/import-79b23111d711b7d5.jpg"
+    },
+    {
+      "id": 49,
+      "name": "Zapatillas gris oliva con detalles azules",
+      "price": 57000,
+      "img": "/assets/images/products/import-8336d3feeac72b86.jpg"
+    }
+  ],
+  "skipped": []
+}
