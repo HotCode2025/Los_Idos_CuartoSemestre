@@ -17,9 +17,15 @@
       <nav class="main-nav">
         <a href="#styles">Styles</a>
         <a href="#marketplace">Shop</a>
+
+        <form class="nav-search" id="product-search-form" role="search">
+          <input id="catalog-search" type="search" aria-label="Buscar productos" placeholder="Buscar productos..." autocomplete="off">
+          <button type="submit">Buscar</button>
+        </form>
       </nav>
 
       <div class="header-actions">
+      <a href="/admin" id="admin-link" class="auth-btn" hidden>Administración</a>
       <span class="auth-greeting" id="auth-greeting" hidden></span>
       <button type="button" class="auth-btn" id="auth-btn">Ingresar</button>
 
@@ -29,6 +35,10 @@
       </button>
       </div>
     </header>
+
+    <nav class="shop-subnav" aria-label="Categorias de productos">
+      <div class="shop-subnav-inner" id="shop-subnav"></div>
+    </nav>
 
     <main>
       <!-- Hero -->
@@ -85,12 +95,39 @@
           <span class="product-count" id="product-count" role="status" aria-live="polite"></span>
         </div>
 
+        <div class="catalog-toolbar">
+          <div class="catalog-family-summary" id="catalog-family-summary" hidden>
+            <span id="catalog-family-text" role="status"></span>
+            <button type="button" id="catalog-family-clear" aria-label="Quitar categoria seleccionada">&times;</button>
+          </div>
+          <div class="catalog-search-summary" id="catalog-search-summary" hidden>
+            <span id="catalog-search-summary-text" role="status" aria-live="polite"></span>
+            <button type="button" id="catalog-search-clear" aria-label="Quitar filtro de busqueda">&times;</button>
+          </div>
+        <select id="catalog-category" class="nav-category" aria-label="Filtrar por publico">
+          <option value="all">Todos los publicos</option>
+          <option value="mujer">Mujer</option><option value="hombre">Hombre</option>
+          <option value="unisex">Unisex</option>
+        </select>
+          <label for="catalog-price-order">Ordenar por precio</label>
+          <select id="catalog-price-order">
+            <option value="default">Orden original</option>
+            <option value="asc">De menor a mayor</option>
+            <option value="desc">De mayor a menor</option>
+          </select>
+        </div>
+
         <!-- Existing product renderer -->
         <div class="card-product-container">
           <div class="card-products" id="shopContent"></div>
         </div>
       </section>
     </main>
+
+    <div class="cart-toast auth-toast" id="auth-toast" role="status" aria-live="polite" aria-atomic="true">
+      <span id="auth-toast-message"></span>
+      <button type="button" id="auth-toast-close" aria-label="Cerrar aviso de sesi&#243;n">&times;</button>
+    </div>
 
     <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" aria-atomic="true">
       <span id="cart-toast-message"></span>
@@ -140,9 +177,12 @@
     <div class="modal-overlay" id="modal-overlay"></div>
     <div class="modal-container" id="modal-container"></div>
 
+    <script src="/js/catalog-taxonomy.js"></script>
+    <script src="/js/catalog-navigation.js"></script>
     <script src="/js/products.js"></script>
     <script src="/js/index.js"></script>
     <script src="/js/cart.js"></script>
+    <script src="/js/cart-store.js"></script>
     <script src="/js/auth.js"></script>
   </body>
 </html>

@@ -51,18 +51,12 @@ const displayCart = () => {
 
       const decrease = modalBody.querySelector(".quantity-btn-decrease");
       decrease.addEventListener("click", () => {
-        if (product.quanty !== 1) {
-          product.quanty--;
-          displayCart();
-          displayCartCounter();
-        }
+        CartStore.change(product, -1).catch(() => {});
       });
 
       const increase = modalBody.querySelector(".quantity-btn-increase");
       increase.addEventListener("click", () => {
-        product.quanty++;
-        displayCart();
-        displayCartCounter();
+        CartStore.change(product, 1).catch(() => {});
       });
 
       const deleteProduct = modalBody.querySelector(".delete-product");
@@ -82,65 +76,16 @@ const displayCart = () => {
     modalContainer.append(modalFooter);
     const checkoutButton = modalFooter.querySelector("#checkout-btn");
 
-    checkoutButton.addEventListener("click", function () {
+    checkoutButton.addEventListener("click", async () => {
       checkoutButton.disabled = true;
-
-      const orderData = {
-        items: cart.map((product) => ({ id: product.id, quantity: product.quanty })),
-      };
-
-      fetch("/create_preference", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      })
-        .then(async function (response) {
-          const data = await response.json();
-          if (!response.ok) throw new Error(data.error || `Error ${response.status} al crear la preferencia`);
-          return data;
-        })
-        .then(function (preference) {
-          return createCheckoutButton(preference.id);
-        })
-        .catch(function (error) {
-          console.error(error);
-          checkoutButton.disabled = false;
-          alert(error.message || "No se pudo iniciar el pago.");
-        });
+      try {
+        await CartStore.flush();
+        location.assign("/checkout");
+      } catch (error) {
+        checkoutButton.disabled = false;
+        alert(error.message || "No se pudo abrir el checkout.");
+      }
     });
-
-    async function createCheckoutButton(preferenceId) {
-      const response = await fetch("/payment-config");
-      const config = await response.json();
-      if (!response.ok) throw new Error(config.error);
-      if (typeof MercadoPago === "undefined") throw new Error("No se pudo cargar Mercado Pago. Revisa tu conexion a Internet y los bloqueadores del navegador.");
-      const mercadopago = new MercadoPago(config.publicKey, { locale: "es-AR" });
-      //Initialize the checkout
-      const bricksBuilder = mercadopago.bricks();
-
-      const renderComponent = async (bricksBuilder) => {
-        //if (window.checkoutButton) checkoutButton.unmount();
-
-        await bricksBuilder.create(
-          "wallet",
-          "button-checkout", // Class/id where the payment button will be displayed
-          {
-            initialization: {
-              preferenceId: preferenceId,
-              redirectMode: 'blank',
-            },
-            callbacks: {
-              onError: (error) => console.error(error),
-              onReady: () => {},
-            },
-          },
-        );
-      };
-      await renderComponent(bricksBuilder);
-      checkoutButton.remove();
-    }
   } else {
     const modalText = document.createElement("h2");
     modalText.className = "modal-body";
@@ -151,10 +96,8 @@ const displayCart = () => {
 
 cartBtn.addEventListener("click", displayCart);
 const deleteCartProduct = (id) => {
-  const foundId = cart.findIndex((element) => element.id === id);
-  cart.splice(foundId, 1);
-  displayCart();
-  displayCartCounter();
+  const product = cart.find((item) => item.id === id);
+  if (product) CartStore.change(product, null).catch(() => {});
 };
 
 const displayCartCounter = () => {

@@ -23,4 +23,39 @@ function buildPaymentItems(quantities, products) {
         return { id: String(id), title: product.productName, unit_price: Number(product.price), quantity, currency_id: 'ARS' };
     });
 }
-module.exports = { parseCart, buildPaymentItems };
+function parseShipping(input) {
+    const text = (key, label, max = 100, optional = false) => {
+        const value = typeof input?.[key] === 'string' ? input[key].trim() : '';
+        if ((!optional && !value) || value.length > max) throw new Error(`Revisa ${label}.`);
+        return value;
+    };
+    const shipping = {
+        name: text('name', 'el nombre del destinatario'), email: text('email', 'el email', 254),
+        phone: text('phone', 'el telefono', 30), street: text('street', 'la calle', 150),
+        number: text('number', 'la altura', 8), city: text('city', 'la localidad'),
+        province: text('province', 'la provincia'), postalCode: text('postalCode', 'el codigo postal', 12),
+        floor: text('floor', 'el piso', 20, true), apartment: text('apartment', 'el departamento', 20, true),
+    };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(shipping.email)) throw new Error('Ingresa un email valido.');
+    if (shipping.phone.replace(/\D/g, '').length < 8 || !/^[+\d\s()-]+$/.test(shipping.phone)) throw new Error('Ingresa un telefono valido.');
+    if (!/^\d{1,8}$/.test(shipping.number) || Number(shipping.number) < 1) throw new Error('Ingresa una altura numerica valida.');
+    if (!/^[a-zA-Z0-9 -]{3,12}$/.test(shipping.postalCode)) throw new Error('Ingresa un codigo postal valido.');
+    return shipping;
+}
+function shippingPreference(shipping) {
+    return {
+        payer: { name: shipping.name, email: shipping.email, phone: { number: shipping.phone } },
+        shipments: { receiver_address: {
+            zip_code: shipping.postalCode, street_name: shipping.street, street_number: Number(shipping.number),
+            city_name: shipping.city, state_name: shipping.province, country_name: 'Argentina', floor: shipping.floor, apartment: shipping.apartment,
+        } },
+    };
+}
+async function reviewCart(input, loadProducts) {
+    const quantities = parseCart(input);
+    const products = await loadProducts([...quantities.keys()]);
+    const paymentItems = buildPaymentItems(quantities, products);
+    const total = paymentItems.reduce((sum, item) => sum + Math.round(item.unit_price * 100) * item.quantity, 0) / 100;
+    return { items: [...quantities].map(([id, quanty]) => ({ ...products.find(p => p.id === id), quanty })), total };
+}
+module.exports = { parseCart, buildPaymentItems, parseShipping, shippingPreference, reviewCart };

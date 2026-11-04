@@ -1,0 +1,203 @@
+[
+  {
+    "sourceIndex": 1,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_M-_pGjj25eRyJfXicOS3z2BH5coTwoTzP1qJDU9x6A&s=10",
+    "hash": "0635d24f2374845df90fd14c926e25bd6a961eea5e7068481cf7067f79bfd66f",
+    "name": "Mochila negra con tachas y corazon",
+    "description": "Mochila negra con solapa frontal, correas, detalles de tachas y un aplique de corazon rojo. Diseno de inspiracion gotica.",
+    "img": "/assets/images/products/import-0635d24f2374845d.jpg",
+    "price": 38000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "mochilas",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 2,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDdYsg0Vgdigr4x95UkuZUwTShwl6xr7MHYs1F8sBBbg&s=10",
+    "hash": "7bb6aa6b16a452ce29ca48bf27231c16d57933889787613193683e060e0c1cf4",
+    "name": "Mochila gris con estrellas",
+    "description": "Mochila gris oscura con apliques de estrellas negras y detalles graficos de etiquetas en el frente. Bolsillo frontal con cierre.",
+    "img": "/assets/images/products/import-7bb6aa6b16a452ce.jpg",
+    "price": 45000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "mochilas",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 3,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT2wMzwiaVQQka6hSE6iYV-OHRZo70l7AcR3wqe9gECw&s=10",
+    "hash": "2629b9eaba31211a8d51a809a4d25e1b1508e171881f0cc8e77e44028f2b32f2",
+    "name": "Mochila gris con calavera y cadena",
+    "description": "Mochila gris de efecto lavado, con estampa de calavera, cadena decorativa y detalles metalizados sobre el bolsillo frontal.",
+    "img": "/assets/images/products/import-2629b9eaba31211a.jpg",
+    "price": 43000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "mochilas",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 4,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfyOISuG7Awnjlq0aX2heNNRpDTV80f0GV9CDDchmm-g&s=10",
+    "hash": "26f3dd0478f67cafb730749e3cb15e89c5cfe382442a3d78aa9982062d21d53d",
+    "name": "Mochila bicolor BAY",
+    "description": "Mochila de frente claro y bolsillo negro, con letras BAY en el sector superior y bolsillos laterales oscuros.",
+    "img": "/assets/images/products/import-26f3dd0478f67caf.jpg",
+    "price": 25000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "mochilas",
+    "styles": [
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 5,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdGqy-5YTMjHGumnkZcYkdbcZNT3FMD-3-Bw9EZ1SrNw&s=10",
+    "hash": "b5cebdf12089828b3e59ed549fe09931d59a211596cf5330c619beebc2d9b5a5",
+    "name": "Mochila negra con ilustraciones",
+    "description": "Mochila negra con una composicion de dibujos y letras contrastantes en el frente y el bolsillo exterior.",
+    "img": "/assets/images/products/import-b5cebdf12089828b.jpg",
+    "price": 54000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "mochilas",
+    "styles": [
+      "STREET",
+      "Y2K"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 6,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIYgUGeu0gvBqqfjTRERaH6C1-SVZKr0gCnH3VL-DbXA&s=10",
+    "hash": "a53472c00fa1468f64905588b6cafee33ac427df7c25b21969e934651c221d83",
+    "name": "Gorra negra con grafica tribal",
+    "description": "Gorra negra con visera curva, motivos blancos de inspiracion tribal y letras contrastantes en el frente.",
+    "img": "/assets/images/products/import-a53472c00fa1468f.jpg",
+    "price": 30000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "gorras",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 7,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrDXXLQtm9km6EgkBjQu6tc22L3iRfBek4zU1L_-LrXA&s=10",
+    "hash": "636496992aa5be532674de83481f879e54e906c6aa2621834b27e02477e6abb5",
+    "name": "Gorra gris con estrellas y costuras claras",
+    "description": "Gorra gris oscura de efecto lavado, con estrellas delineadas y costuras claras sobre la copa y la visera curva.",
+    "img": "/assets/images/products/import-636496992aa5be53.jpg",
+    "price": 57000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "gorras",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 8,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtb31nah8cHOz1GjISiGXVw6fZ9URpLYUeQSKya6B5ng&s=10",
+    "hash": "448db172d70dd1e2f54ad0ab72ed4e2c28a1d00fd03a1249eb5ff8dcb599ceab",
+    "name": "Gorra bordo con estampa blanca",
+    "description": "Gorra de color bordo con visera curva y una estampa blanca de trazos ornamentales en el frente.",
+    "img": "/assets/images/products/import-448db172d70dd1e2.jpg",
+    "price": 37000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "gorras",
+    "styles": [
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 9,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1FKibYmGmC1aKm-5OEIVuxeCFPkfkGvLtLdBQYccueQ&s=10",
+    "hash": "3feb78d7120ce1a2cdaa89e0b575ce8541697fde47d484f931c83a7d314b5bbe",
+    "name": "Cinturon negro con hebilla doble",
+    "description": "Cinturon negro de acabado liso, con hebilla metalizada formada por dos figuras curvas entrelazadas.",
+    "img": "/assets/images/products/import-3feb78d7120ce1a2.jpg",
+    "price": 29000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "cinturones",
+    "styles": [
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 10,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2FWlaO_D6jnmAiLzUpxSJx16-86F_cXIcilrMQ5D0dA&s=10",
+    "hash": "049bc204908c3c9e7ff9820cf3815537e9562b4a61b6c8e5d5c0bf717b6a13e7",
+    "name": "Cinturon negro con tachas piramidales",
+    "description": "Cinturon negro con varias filas de tachas piramidales metalizadas, ojales y hebilla rectangular.",
+    "img": "/assets/images/products/import-049bc204908c3c9e.jpg",
+    "price": 60000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "cinturones",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 11,
+    "source": "https://down-ar.img.susercontent.com/file/sg-11134301-820n6-mny40j0n63uu29",
+    "hash": "44dc2d63e6b4318f162dd13f639a6f98b9b221677c5e95ccf59e0d8ece0c3197",
+    "name": "Cinturon negro con hebilla de llamas",
+    "description": "Cinturon negro liso con una hebilla metalizada de formas curvas de inspiracion tribal y detalles de llamas.",
+    "img": "/assets/images/products/import-44dc2d63e6b4318f.jpg",
+    "price": 52000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "cinturones",
+    "styles": [
+      "Y2K",
+      "STREET"
+    ],
+    "active": true
+  },
+  {
+    "sourceIndex": 12,
+    "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdEF9oMReVHkIRGovd43Z2CemQ767S0gBxbIu0KKEoeA&s=10",
+    "hash": "825f93cad7aa41f7ae39950ec5958b1caf122299c277d7ae3af6284010a3b591",
+    "name": "Cinturon marron con hebilla doble",
+    "description": "Cinturon marron de acabado liso, con hebilla de tono dorado y diseno de figuras curvas entrelazadas.",
+    "img": "/assets/images/products/import-825f93cad7aa41f7.jpg",
+    "price": 52000,
+    "category": "unisex",
+    "department": "accesorios",
+    "subcategory": "cinturones",
+    "styles": [
+      "RETRO",
+      "STREET"
+    ],
+    "active": true
+  }
+]

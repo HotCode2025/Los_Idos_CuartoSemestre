@@ -6,7 +6,8 @@ const source = path.resolve(__dirname, '../../client');
 const destination = path.resolve(__dirname, '../public');
 const products = require('../db/products.json');
 for (const product of products) {
-    const image = path.resolve(source, '.' + product.img);
+    const imagePath = decodeURIComponent(product.img);
+    const image = path.resolve(source, '.' + imagePath);
     if (!image.startsWith(source + path.sep) || !fs.existsSync(image)) {
         throw new Error(`Falta la imagen inicial del producto ${product.id}: ${product.img}`);
     }

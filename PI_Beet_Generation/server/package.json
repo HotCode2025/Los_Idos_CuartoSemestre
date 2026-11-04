@@ -10,6 +10,7 @@
     "start": "node server.js",
     "test": "node --test",
     "db:setup": "node scripts/setup-db.js",
+    "products:classify": "node scripts/classify-products.js",
     "cert": "node scripts/create-cert.js",
     "build": "node scripts/build-static.js",
     "dev": "nodemon server.js"

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 :root {
+    --catalog-anchor-offset: 104px;
     --color-black: #000000;
     --color-white: #FFFFFF;
     --color-pink: #FF39CC;
@@ -18,8 +19,6 @@
 
 html {
     scroll-behavior: smooth;
-    /* Leaves room for the sticky header when jumping to #styles / #marketplace */
-    scroll-padding-top: 104px;
 }
 
 body {
@@ -997,3 +996,73 @@ body:has(.product-dialog[open]) { overflow: hidden; }
 .auth-forgot { justify-self: start; margin-top: -6px; padding: 0; border: 0; background: none; font-size: 13px; text-decoration: underline; cursor: pointer; }
 .auth-info { margin: 0; color: var(--color-green); font-size: 14px; font-weight: 700; }
 .auth-info:empty, .auth-error:empty { display: none; }
+
+/* Session confirmations remain separate from cart and connection notices. */
+.auth-toast {
+    top: 90px;
+    bottom: auto;
+}
+
+#admin-link { display: inline-flex; align-items: center; text-decoration: none; box-sizing: border-box; }
+#admin-link[hidden] { display: none; }
+
+/* Catalog search and price order */
+.main-nav { align-items: center; flex-wrap: wrap; }
+.nav-search { display: flex; gap: 6px; align-items: center; min-width: 0; }
+.nav-search input { width: 180px; min-width: 0; padding: 10px 12px; border: 2px solid var(--color-white); border-radius: 8px; background: var(--color-white); color: var(--color-black); font: inherit; }
+.nav-search button { padding: 10px 12px; border: 2px solid var(--color-lime); border-radius: 8px; background: var(--color-lime); color: var(--color-black); font: inherit; font-weight: 700; cursor: pointer; }
+.nav-search input:focus-visible, .nav-search button:focus-visible, .catalog-toolbar select:focus-visible { outline: 3px solid var(--color-pink); outline-offset: 3px; }
+.catalog-toolbar { display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+.catalog-toolbar label { font-weight: 700; }
+.catalog-toolbar select { max-width: 100%; padding: 12px; border: 2px solid var(--color-black); border-radius: 8px; background: var(--color-white); color: var(--color-black); font: inherit; cursor: pointer; }
+@media(max-width: 1200px) {
+    .site-header { flex-wrap: wrap; gap: 16px; }
+    .main-nav { order: 3; width: 100%; justify-content: center; }
+    :root { --catalog-anchor-offset: 170px; }
+}
+@media(max-width: 600px) {
+    .nav-search { flex-basis: 100%; }
+    .nav-search input { flex: 1; width: 0; }
+    .main-nav { row-gap: 12px; }
+    .catalog-toolbar { justify-content: flex-start; }
+    :root { --catalog-anchor-offset: 210px; }
+}
+
+.catalog-search-summary { display: flex; align-items: center; gap: 10px; margin-right: auto; max-width: 100%; padding: 8px 12px; border: 2px solid var(--color-black); border-radius: 8px; background: var(--color-lime); font-weight: 700; }
+.catalog-search-summary[hidden] { display: none; }
+.catalog-search-summary span { overflow-wrap: anywhere; min-width: 0; }
+.catalog-search-summary button { flex-shrink: 0; width: 32px; height: 32px; border: 0; background: transparent; color: inherit; font-size: 26px; cursor: pointer; }
+.catalog-search-summary button:focus-visible { outline: 3px solid var(--color-pink); outline-offset: 2px; }
+
+/* Offset section navigation without making the sticky search input fall outside
+   the browser's focus-visible scroll area on every keystroke. */
+#styles, #marketplace { scroll-margin-top: var(--catalog-anchor-offset); }
+.site-header { overflow-anchor: none; }
+
+.nav-category { max-width: 100%; padding: 10px 12px; border: 2px solid var(--color-white); border-radius: 8px; background: var(--color-black); color: var(--color-white); font: inherit; cursor: pointer; }
+.nav-category:focus-visible { outline: 3px solid var(--color-pink); outline-offset: 3px; }
+@media(max-width: 600px) { :root { --catalog-anchor-offset: 255px; } }
+
+/* Simple family navigation, independently selectable from audience and styles. */
+.shop-subnav { position: sticky; top: var(--store-header-height, 104px); z-index: 900; background: var(--color-lime); border-bottom: 2px solid var(--color-black); }
+.shop-subnav-inner { display: flex; align-items: stretch; justify-content: center; gap: 8px; max-width: 1200px; padding: 0 20px; margin: auto; }
+.shop-subnav details { position: relative; }
+.shop-subnav summary, .shop-subnav button { padding: 16px 20px; border: 0; background: transparent; color: var(--color-black); font: inherit; font-weight: 800; cursor: pointer; text-align: left; }
+.shop-subnav summary { list-style: none; white-space: nowrap; }
+.shop-subnav summary::-webkit-details-marker { display: none; }
+.shop-subnav summary::after { content: ' +'; }
+.shop-subnav details[open] summary::after { content: ' -'; }
+.shop-subnav summary:hover, .shop-subnav button:hover, .shop-subnav details[open] summary { background: var(--color-black); color: var(--color-lime); }
+.shop-subnav button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 5px; }
+.shop-subnav summary:focus-visible, .shop-subnav button:focus-visible { outline: 3px solid var(--color-pink); outline-offset: -3px; }
+.shop-submenu { position: absolute; top: 100%; left: 0; min-width: 230px; max-width: calc(100vw - 32px); display: grid; padding: 8px; border: 2px solid var(--color-black); border-top: 0; background: white; box-shadow: 4px 4px 0 var(--color-black); }
+.shop-submenu button { padding: 12px; font-weight: 600; }
+.catalog-family-summary { display: flex; align-items: center; gap: 10px; border: 2px solid var(--color-black); border-radius: 8px; padding: 8px 12px; font-weight: 700; }
+.catalog-family-summary[hidden] { display: none; }
+.catalog-family-summary button { background: transparent; border: 0; font-size: 24px; cursor: pointer; }
+@media(max-width: 600px) {
+    .shop-subnav-inner { display: grid; grid-template-columns: 1fr 1fr; padding: 8px; gap: 0; }
+    .shop-subnav summary, .shop-subnav-inner > button { padding: 14px 10px; font-size: 14px; }
+    .shop-submenu { min-width: 160px; }
+    .shop-subnav details:last-child .shop-submenu { left: auto; right: 0; }
+}
