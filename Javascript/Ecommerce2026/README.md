@@ -11,10 +11,10 @@ Aplicacion de ecommerce con frontend estatico, servidor Express y checkout de Me
 
 ## 1. Instalar dependencias
 
-Abrir PowerShell en la carpeta del servidor:
+Abrir PowerShell en la raiz de este proyecto y entrar a la carpeta del servidor:
 
 ```powershell
-cd "C:\Users\gigli\Desktop\Los_Idos_CuartoSemestre\Javascript\Ecommerce2026\server"
+cd server
 pnpm install
 ```
 
@@ -28,10 +28,11 @@ Las dependencias del proyecto son:
 
 ## 2. Configurar las credenciales
 
-Crear `server/.env` con este formato:
+Crear `server/.env` usando `server/.env.example` como referencia (sin sobrescribir credenciales existentes):
 
 ```env
-MP_ACCESS_TOKEN=APP_USR-<ACCESS_TOKEN_PRIVADO_DE_MERCADO_PAGO>
+MP_ACCESS_TOKEN=<ACCESS_TOKEN_PRIVADO_DE_MERCADO_PAGO>
+MP_PUBLIC_KEY=<CLAVE_PUBLICA_DE_MERCADO_PAGO>
 PUBLIC_URL=https://<URL_DE_NGROK>
 ```
 
@@ -54,7 +55,7 @@ El token nunca debe:
 
 El archivo `.gitignore` ya excluye `.env`. Si el token se expone, revocarlo y generar uno nuevo desde Mercado Pago.
 
-La clave publica usada por el SDK del navegador esta en `client/js/cart.js`. Es normal que sea visible en el frontend, pero debe pertenecer a la misma cuenta y entorno que el `MP_ACCESS_TOKEN` del servidor.
+La clave publica `MP_PUBLIC_KEY` se configura en `server/.env`. El navegador la obtiene desde `GET /config`. Es normal que sea visible en el frontend, pero debe pertenecer a la misma cuenta y entorno que `MP_ACCESS_TOKEN`. El token privado nunca se devuelve en esa ruta.
 
 ## 3. Iniciar el servidor
 
@@ -63,6 +64,8 @@ Desde `server`:
 ```powershell
 pnpm start
 ```
+
+`pnpm start` ejecuta Node directamente. Para reinicio automatico durante el desarrollo, usar `pnpm dev`. Si PowerShell bloquea los scripts `.ps1`, usar `pnpm.cmd start` (o `pnpm.cmd install`). Tambien se puede usar `npm.cmd start`.
 
 El servidor queda disponible localmente en:
 
@@ -129,7 +132,7 @@ También se puede abrir `http://localhost:8080/media/` para revisar la tienda lo
 
 ### Error `401 Unauthorized` en `/bricks/preferences`
 
-Verificar que la clave publica de `client/js/cart.js` y el `MP_ACCESS_TOKEN` de `server/.env` pertenezcan a la misma cuenta y entorno de Mercado Pago. Luego recargar la pagina sin cache.
+Verificar que `MP_PUBLIC_KEY` y `MP_ACCESS_TOKEN` de `server/.env` pertenezcan a la misma cuenta y entorno de Mercado Pago. Luego recargar la pagina sin cache.
 
 ### Error `PUBLIC_URL no esta configurada`
 
@@ -153,3 +156,9 @@ En cada terminal presionar `Ctrl+C`:
 
 1. Primero en la terminal de ngrok.
 2. Luego en la terminal del servidor.
+
+## Verificar la instalacion
+
+Desde `server`, ejecutar `pnpm test` (o `npm.cmd test`). Las pruebas comprueban la tienda, sus imagenes y scripts, la configuracion publica, los datos del checkout, los errores del proveedor y el retorno del pago. Simulan Mercado Pago y no realizan cobros.
+
+Para una prueba completa, ngrok debe seguir activo y ambas credenciales deben ser validas y del mismo entorno. Una preferencia creada no equivale a un pago aprobado. Este ejemplo no incluye confirmacion de pagos por webhook ni validacion de precios contra un catalogo del servidor; eso es necesario antes de usarlo para ventas reales.
