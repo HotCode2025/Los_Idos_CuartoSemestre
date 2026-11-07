@@ -103,7 +103,9 @@ function fillProductSubcategories(selected = '') {
 fillProductDepartments();
 fillProductSubcategories();
 productForm.elements.department.addEventListener('change', () => fillProductSubcategories());
-const productPrice = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' });
+const productPrice = new Intl.NumberFormat('es-AR', {
+    style: 'currency', currency: 'ARS', minimumFractionDigits: 0, maximumFractionDigits: 0,
+});
 function renderProducts() {
     const body = document.getElementById('admin-products');
     body.replaceChildren();

@@ -43,3 +43,22 @@
 @media(max-width: 680px) { .product-form-grid { grid-template-columns: 1fr; } }
 
 .product-form-grid select { display: block; width: 100%; margin-top: 8px; padding: 12px; border: 2px solid #111; border-radius: 6px; background: white; font: inherit; }
+
+/* Keep short table labels, amounts and button text intact. */
+.admin-users th { white-space: nowrap; overflow-wrap: normal; }
+.admin-users table button { white-space: nowrap; overflow-wrap: normal; }
+#admin-products td:nth-child(2),
+#admin-products td:nth-child(4) { white-space: nowrap; overflow-wrap: normal; width: 1%; }
+#admin-products td:nth-child(2) { font-variant-numeric: tabular-nums; }
+#admin-products td:nth-child(3) { overflow-wrap: normal; word-break: normal; }
+#admin-products td:last-child { width: 1%; }
+#admin-products td:last-child button { display: block; width: 100%; margin: 4px 0; box-sizing: border-box; }
+@media(max-width: 680px) {
+    .admin-products table { font-size: clamp(11px, 2.8vw, 14px); }
+    .admin-products th, .admin-products td { padding: 10px 4px; }
+    #admin-products button { padding: 8px 6px; font-size: inherit; line-height: 1.2; }
+}
+@media(max-width: 400px) {
+    .admin-main { padding-left: 10px; padding-right: 10px; }
+    .admin-products { padding-left: 8px; padding-right: 8px; }
+}
