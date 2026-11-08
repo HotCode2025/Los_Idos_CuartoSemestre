@@ -1047,6 +1047,7 @@ body:has(.product-dialog[open]) { overflow: hidden; }
 .shop-subnav { position: sticky; top: var(--store-header-height, 104px); z-index: 900; background: var(--color-lime); border-bottom: 2px solid var(--color-black); }
 .shop-subnav-inner { display: flex; align-items: stretch; justify-content: center; gap: 8px; max-width: 1200px; padding: 0 20px; margin: auto; }
 .shop-subnav details { position: relative; }
+.shop-subnav details[open] { z-index: 2; }
 .shop-subnav summary, .shop-subnav button { padding: 16px 20px; border: 0; background: transparent; color: var(--color-black); font: inherit; font-weight: 800; cursor: pointer; text-align: left; }
 .shop-subnav summary { list-style: none; white-space: nowrap; }
 .shop-subnav summary::-webkit-details-marker { display: none; }
