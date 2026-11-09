@@ -1,5 +1,5 @@
-// Creates a self-signed certificate so the store can run on https://localhost.
-// Mercado Pago only returns to https URLs, so this is needed to test checkout locally.
+// Crea un certificado autofirmado para que la tienda pueda correr en https://localhost.
+// Mercado Pago solo vuelve a direcciones https, así que esto hace falta para probar el pago en la computadora.
 const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');

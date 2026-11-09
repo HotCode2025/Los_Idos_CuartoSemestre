@@ -53,7 +53,7 @@ function createProductAdminRouter(pool) {
     }
     router.post('/', (req, res) => save(req, res, false));
     router.put('/:id', (req, res) => save(req, res, true));
-    // Preserve references in saved carts; inactive products are excluded from catalog and checkout.
+    // Se conservan las referencias en los carritos guardados; los productos inactivos no aparecen en el catálogo ni en el checkout.
     router.delete('/:id', async (req, res) => {
         try {
             const { rows } = await pool.query(`UPDATE products SET active=false WHERE id=$1 RETURNING ${columns}`, [req.productId]);

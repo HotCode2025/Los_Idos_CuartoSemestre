@@ -57,7 +57,7 @@ test('PostgreSQL admin routes enforce login, approval, revocation and principal 
         assert.equal((await call('/api/admin', member.cookie)).status, 403);
         assert.equal((await call('/admin', member.cookie)).status, 403);
         assert.equal((await call(`/api/admin/users/${users[0].id}`, member.cookie, 'PATCH', { approved: true })).status, 403);
-        // Product CRUD uses the same admin authorization as permission management.
+        // El CRUD de productos usa la misma autorización de administrador que la gestión de permisos.
         const productBody = { name: 'Buzo de prueba', description: 'Algodon', price: 5500.25,
             img: '/assets/images/products/buzo_gris.png', styles: ['STREET'], active: true, category: 'unisex', department: 'indumentaria', subcategory: 'buzos' };
         assert.equal((await call('/api/admin/products')).status, 401);

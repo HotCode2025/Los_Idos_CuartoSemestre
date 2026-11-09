@@ -99,8 +99,8 @@ app.post("/create_preference", async (req, res) => {
         ...shippingPreference(shipping),
         back_urls: { success: `${appUrl}/`, failure: `${appUrl}/`, pending: `${appUrl}/` },
     };
-    // Mercado Pago only redirects automatically to https URLs; on http (localhost)
-    // the buyer returns with the "Volver al sitio" button instead.
+    // Mercado Pago solo redirige automáticamente a direcciones https; en http (localhost)
+    // el comprador vuelve con el botón "Volver al sitio".
     if (appUrl.startsWith('https://')) preference.auto_return = 'all';
 
     try {
@@ -144,7 +144,7 @@ if (require.main === module && !process.env.VERCEL) {
     setupDatabase(pool)
         .then(() => {
             app.listen(port, () => console.log(`Tienda disponible en http://localhost:${port}`));
-            // Local https (pnpm cert) so Mercado Pago can return to the store after paying.
+            // https local (pnpm cert) para que Mercado Pago pueda volver a la tienda después de pagar.
             const httpsPort = Number(process.env.HTTPS_PORT);
             const certDir = path.join(__dirname, 'certs');
             if (httpsPort && fs.existsSync(path.join(certDir, 'localhost-cert.pem'))) {

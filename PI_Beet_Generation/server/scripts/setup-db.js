@@ -1,5 +1,5 @@
 require('../config');
-// Use the direct cloud connection for administration, if provided.
+// Si está configurada, usa la conexión directa a la base en la nube para administrarla.
 if (process.env.DATABASE_URL_DIRECT) process.env.DATABASE_URL = process.env.DATABASE_URL_DIRECT;
 const { pool } = require('../db');
 const { setupDatabase } = require('../db/setup');

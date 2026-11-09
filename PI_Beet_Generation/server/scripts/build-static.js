@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-// Vercel serves public/ through its CDN; express.static is for local development.
+// Vercel sirve public/ desde su CDN; express.static es para el desarrollo local.
 const source = path.resolve(__dirname, '../../client');
 const destination = path.resolve(__dirname, '../public');
 const products = require('../db/products.json');

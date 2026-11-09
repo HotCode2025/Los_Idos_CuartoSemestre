@@ -57,10 +57,10 @@ function readSessionToken(req) {
     return null;
 }
 
-// Hash used when the email does not exist, so both failure paths take the same time.
+// Hash que se usa cuando el email no existe, para que los dos casos de error tarden lo mismo.
 const dummyHash = hashPassword(crypto.randomBytes(16).toString('hex'));
 
-// Small in-memory limiter: 5 failed logins per email every 15 minutes.
+// Límite simple en memoria: 5 intentos fallidos por email cada 15 minutos.
 const failedLogins = new Map();
 const LOGIN_WINDOW_MS = 15 * 60 * 1000;
 function isLoginBlocked(email) {
@@ -77,7 +77,7 @@ function recordFailedLogin(email) {
 function createAuthRouter(pool, { appUrl }) {
     const router = express.Router();
 
-    // Secure flag when the request arrived over https (directly or through a proxy such as Vercel).
+    // Marca Secure cuando el pedido llegó por https (directo o a través de un proxy como Vercel).
     const setSessionCookie = (req, res, token, maxAgeSeconds) => {
         const secure = req.secure || req.get('x-forwarded-proto') === 'https';
         res.setHeader('Set-Cookie', `${SESSION_COOKIE}=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAgeSeconds}${secure ? '; Secure' : ''}`);
@@ -90,7 +90,7 @@ function createAuthRouter(pool, { appUrl }) {
         setSessionCookie(req, res, token, SESSION_DAYS * 24 * 60 * 60);
     }
 
-    // Only JSON bodies are accepted: together with SameSite=Lax this blocks cross-site form posts.
+    // Solo se aceptan cuerpos JSON: junto con SameSite=Lax, esto bloquea formularios enviados desde otros sitios.
     router.use((req, res, next) => {
         if (req.method === 'POST' && !req.is('application/json')) {
             return res.status(415).json({ error: 'Se esperaba JSON.' });
@@ -163,12 +163,12 @@ function createAuthRouter(pool, { appUrl }) {
         }
     });
 
-    // Always answers the same, so the form does not reveal which emails have an account.
+    // Siempre responde lo mismo, para que el formulario no revele qué emails tienen cuenta.
     router.post('/forgot', async (req, res) => {
         const email = typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase() : '';
         if (!EMAIL_PATTERN.test(email) || email.length > 254) return res.status(400).json({ error: 'Ingresa un email valido.' });
         try {
-            // At most one link per minute for each account.
+            // Como máximo un enlace por minuto para cada cuenta.
             const { rows } = await pool.query(`SELECT id, name, email FROM users WHERE lower(email) = $1
                 AND NOT EXISTS (SELECT 1 FROM password_resets r WHERE r.user_id = users.id
                     AND r.created_at > now() - interval '1 minute')`, [email]);
@@ -177,7 +177,7 @@ function createAuthRouter(pool, { appUrl }) {
                 const token = crypto.randomBytes(32).toString('base64url');
                 await pool.query(`INSERT INTO password_resets (token_hash, user_id, expires_at)
                     VALUES ($1, $2, now() + make_interval(mins => $3))`, [tokenHash(token), user.id, RESET_MINUTES]);
-                // Sent after answering, so the response time does not reveal whether the account exists.
+                // Se envía después de responder, para que el tiempo de respuesta no revele si la cuenta existe.
                 waitUntil(sendPasswordResetEmail(user.email, user.name, `${appUrl}/?reset=${token}`)
                     .catch((error) => console.error('No se pudo enviar el correo de recuperacion:', error.code || error.message)));
             }
@@ -198,7 +198,7 @@ function createAuthRouter(pool, { appUrl }) {
         try {
             client = await pool.connect();
             await client.query('BEGIN');
-            // Deleting the token makes the link single-use even with simultaneous requests.
+            // Borrar el token hace que el enlace sirva una sola vez, incluso con pedidos simultáneos.
             const { rows } = await client.query(`DELETE FROM password_resets WHERE token_hash = $1
                 RETURNING user_id, expires_at > now() AS valid`, [tokenHash(token)]);
             if (!rows[0]?.valid) {
@@ -208,7 +208,7 @@ function createAuthRouter(pool, { appUrl }) {
             const userId = rows[0].user_id;
             const { rows: users } = await client.query(`UPDATE users SET password_hash = $1 WHERE id = $2
                 RETURNING id, name, email, approved_admin`, [await hashPassword(password), userId]);
-            // Close every open session and pending link: whoever knew the old password is logged out.
+            // Cierra todas las sesiones abiertas y los enlaces pendientes: quien conocía la contraseña vieja queda afuera.
             await client.query('DELETE FROM sessions WHERE user_id = $1', [userId]);
             await client.query('DELETE FROM password_resets WHERE user_id = $1', [userId]);
             await client.query('COMMIT');

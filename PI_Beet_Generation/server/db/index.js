@@ -2,7 +2,7 @@ require('../config');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    // Supports DATABASE_URL or the standard PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE.
+    // Acepta DATABASE_URL o las variables estándar PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE.
     connectionString: process.env.DATABASE_URL || undefined,
     connectionTimeoutMillis: 10000,
     idleTimeoutMillis: 5000,

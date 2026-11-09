@@ -14,7 +14,7 @@
 }
 
 /* =========================================
-   BEET GENERATION — LANDING STRUCTURE
+   BEET GENERATION — ESTRUCTURA DE LA PÁGINA PRINCIPAL
    ========================================= */
 
 html {
@@ -28,7 +28,7 @@ body {
 }
 
 
-/* HEADER */
+/* ENCABEZADO */
 
 .site-header {
     position: sticky;
@@ -63,7 +63,7 @@ body {
     gap: 24px;
 }
 
-/* Same lettering as the brand (.brand) */
+/* Misma tipografía que la marca (.brand) */
 .main-nav a {
     color: var(--color-white);
     text-decoration: none;
@@ -80,7 +80,7 @@ body {
 }
 
 
-/* HERO */
+/* PORTADA */
 
 .hero {
     min-height: 70vh;
@@ -167,7 +167,7 @@ body {
 }
 
 
-/* STYLE SECTION */
+/* SECCIÓN DE ESTILOS */
 
 .style-section {
     padding: 100px 32px;
@@ -208,7 +208,7 @@ body {
 }
 
 
-/* MARKETPLACE */
+/* TIENDA */
 
 .marketplace-section {
     padding: 80px 32px;
@@ -236,7 +236,7 @@ body {
 }
 
 
-/* MOBILE */
+/* CELULARES */
 
 @media (max-width: 700px) {
 
@@ -247,7 +247,7 @@ body {
         row-gap: 10px;
     }
 
-    /* The menu moves to a second, centered row instead of disappearing */
+    /* El menú pasa a una segunda fila centrada en lugar de desaparecer */
     .main-nav {
         order: 3;
         width: 100%;
@@ -353,7 +353,7 @@ body {
     }
 }
 
-/*Products styles*/
+/*Estilos de productos*/
 .card-products-container {
     margin: 5vh auto;
 }
@@ -389,7 +389,7 @@ body {
     opacity: 1;
 }
 
-/*Cart Btn*/
+/*Botón del carrito*/
 .cart-btn {
     position: relative;
     flex-shrink: 0;
@@ -420,7 +420,7 @@ body {
     transform: translateY(-2px);
 }
 
-/*Cart Counter*/
+/*Contador del carrito*/
 .cart-counter {
     display: none;
     position: absolute;
@@ -442,7 +442,7 @@ body {
     line-height: 14px;
 }
     
-/*Modal*/
+/*Ventana modal*/
 .modal-overlay {
     display: none;
     background-color: rgba(0, 0, 0, 0.5);
@@ -487,7 +487,7 @@ body {
     text-align: center;
 }
 
-/*modal body - product display*/
+/*cuerpo del modal - vista de productos*/
 .modal-body {
     display: flex;
     gap: 15px;
@@ -569,7 +569,7 @@ body {
     padding: 5px;
 }
 
-/*Modal Footer*/
+/*Pie del modal*/
 .modal-footer {
     display: flex;
     align-items: center;
@@ -605,7 +605,7 @@ body {
 }
 
 /* =========================================
-   PRODUCT CARDS — BEET GENERATION
+   TARJETAS DE PRODUCTO — BEET GENERATION
    ========================================= */
 
 .card-products {
@@ -697,7 +697,7 @@ body {
 
 
 /* =========================================
-   PRODUCT GRID — RESPONSIVE
+   GRILLA DE PRODUCTOS — RESPONSIVE
    ========================================= */
 
 @media (max-width: 1000px) {
@@ -749,7 +749,7 @@ body {
 
 
 /* =========================================
-   CART — RESPONSIVE STABILIZATION
+   CARRITO — AJUSTES RESPONSIVE
    ========================================= */
 
 @media (max-width: 700px) {
@@ -863,7 +863,7 @@ body {
         font-size: 14px;
     }
 }
-/* Confirmation when adding a product, without interrupting shopping. */
+/* Confirmación al agregar un producto, sin interrumpir la compra. */
 .cart-toast {
     position: fixed;
     right: 20px;
@@ -908,7 +908,7 @@ body {
     .cart-toast { transition: none; }
 }
 
-/* Product details */
+/* Detalle del producto */
 .card .product-details-trigger,
 .card .product-details-trigger:hover,
 .card .product-details-trigger:active {
@@ -958,7 +958,7 @@ body:has(.product-dialog[open]) { overflow: hidden; }
 .style-tags button[aria-pressed="true"] { background: var(--color-pink); border-color: var(--color-white); }
 .style-tags button:focus-visible { outline: 3px solid var(--color-white); outline-offset: 4px; }
 
-/* LOGIN */
+/* INICIO DE SESIÓN */
 .header-actions { display: flex; align-items: center; gap: 12px; }
 .auth-greeting { font-size: 14px; font-weight: 700; white-space: nowrap; }
 .auth-btn {
@@ -997,7 +997,7 @@ body:has(.product-dialog[open]) { overflow: hidden; }
 .auth-info { margin: 0; color: var(--color-green); font-size: 14px; font-weight: 700; }
 .auth-info:empty, .auth-error:empty { display: none; }
 
-/* Session confirmations remain separate from cart and connection notices. */
+/* Las confirmaciones de sesión se muestran separadas de los avisos del carrito y de conexión. */
 .auth-toast {
     top: 90px;
     bottom: auto;
@@ -1006,7 +1006,7 @@ body:has(.product-dialog[open]) { overflow: hidden; }
 #admin-link { display: inline-flex; align-items: center; text-decoration: none; box-sizing: border-box; }
 #admin-link[hidden] { display: none; }
 
-/* Catalog search and price order */
+/* Búsqueda en el catálogo y orden por precio */
 .main-nav { align-items: center; flex-wrap: wrap; }
 .nav-search { display: flex; gap: 6px; align-items: center; min-width: 0; }
 .nav-search input { width: 180px; min-width: 0; padding: 10px 12px; border: 2px solid var(--color-white); border-radius: 8px; background: var(--color-white); color: var(--color-black); font: inherit; }
@@ -1034,8 +1034,8 @@ body:has(.product-dialog[open]) { overflow: hidden; }
 .catalog-search-summary button { flex-shrink: 0; width: 32px; height: 32px; border: 0; background: transparent; color: inherit; font-size: 26px; cursor: pointer; }
 .catalog-search-summary button:focus-visible { outline: 3px solid var(--color-pink); outline-offset: 2px; }
 
-/* Offset section navigation without making the sticky search input fall outside
-   the browser's focus-visible scroll area on every keystroke. */
+/* Compensa el salto a las secciones sin que el buscador fijo quede fuera
+   del área visible del navegador con cada tecla. */
 #styles, #marketplace { scroll-margin-top: var(--catalog-anchor-offset); }
 .site-header { overflow-anchor: none; }
 
@@ -1043,7 +1043,7 @@ body:has(.product-dialog[open]) { overflow: hidden; }
 .nav-category:focus-visible { outline: 3px solid var(--color-pink); outline-offset: 3px; }
 @media(max-width: 600px) { :root { --catalog-anchor-offset: 255px; } }
 
-/* Simple family navigation, independently selectable from audience and styles. */
+/* Navegación simple por familias, que se puede combinar con el público y los estilos. */
 .shop-subnav { position: sticky; top: var(--store-header-height, 104px); z-index: 900; background: var(--color-lime); border-bottom: 2px solid var(--color-black); }
 .shop-subnav-inner { display: flex; align-items: stretch; justify-content: center; gap: 8px; max-width: 1200px; padding: 0 20px; margin: auto; }
 .shop-subnav details { position: relative; }

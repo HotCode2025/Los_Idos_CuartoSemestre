@@ -1,4 +1,4 @@
-// The catalog is now loaded from PostgreSQL through /api/products.
+// El catálogo ahora se carga desde PostgreSQL a través de /api/products.
 let productos = [];
 const formatPrice = (amount) => "$" + new Intl.NumberFormat("es-AR", {
     minimumFractionDigits: 0,
