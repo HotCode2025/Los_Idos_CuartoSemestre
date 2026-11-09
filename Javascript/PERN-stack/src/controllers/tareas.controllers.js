@@ -7,13 +7,11 @@ export const listarTareas = async (req, res) => {
 };
 
 export const listarTarea = async (req, res) => {
-  const result = await pool.query("SELECT * FROM tareas WHERE id = $1", [req.params.id]);
-
-  if (result.rowCount === 0) {
+  const resultado = await pool.query("SELECT * FROM tareas WHERE id = $1", [req.params.id,]);
+  if (resultado.rowCount === 0) {
     return res.status(404).json({ message: "La tarea no existe" });
   }
-
-  return res.json(result.rows[0]);
+  return res.json(resultado.rows[0]);
 };
 
 export const crearTarea = async (req, res, next) => {
@@ -21,15 +19,16 @@ export const crearTarea = async (req, res, next) => {
 
   try {
     const result = await pool.query(
-      "INSERT INTO tareas (titulo, descripcion) VALUES ($1, $2) RETURNING *",
-      [titulo, descripcion]
+      "INSERT INTO tareas (titulo, descripcion, usuario_id) VALUES ($1, $2, $3) RETURNING *",
+      [titulo, descripcion, req.usuarioId],
     );
     res.json(result.rows[0]);
+    console.log(result.rows[0]);
   } catch (error) {
     if (error.code === "23505") {
-      return res.status(400).json({
-        message: "Ya existe una tarea con ese titulo",
-      });
+      return res
+        .status(409)
+        .json({ message: "Ya existe una tarea con ese titulo" });
     }
     console.log(error);
     next(error);
