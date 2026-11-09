@@ -40,7 +40,7 @@ function createCartRouter(pool) {
         try {
             db = await pool.connect();
             await db.query('BEGIN');
-            // Serialize writes for this account, including writes from another browser.
+            // Ordena los guardados de esta cuenta de a uno, incluidos los de otro navegador.
             await db.query('SELECT id FROM users WHERE id = $1 FOR UPDATE', [req.cartUserId]);
             let apply = true;
             if (merge) {

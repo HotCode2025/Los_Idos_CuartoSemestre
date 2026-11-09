@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 
-// Sends from the store's Gmail account using an app password (GMAIL_USER / GMAIL_APP_PASSWORD).
-// Without them (local development), the email is printed in the server console instead.
+// Envía desde la cuenta de Gmail de la tienda con una contraseña de aplicación (GMAIL_USER / GMAIL_APP_PASSWORD).
+// Sin esos datos (desarrollo local), el correo se muestra en la consola del servidor.
 const transporter = process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD
     ? nodemailer.createTransport({
         service: 'gmail',

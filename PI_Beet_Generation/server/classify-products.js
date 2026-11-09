@@ -21,7 +21,7 @@ const rules = [
     ['calzado', 'ojotas', /\b(ojotas?|flip-flops?)\b/],
 ];
 function suggestClassification(product) {
-    // The name takes priority; a short described as "ideal con zapatillas" is still a short.
+    // El nombre tiene prioridad: un short descrito como "ideal con zapatillas" sigue siendo un short.
     for (const text of [product.name || product.productName, product.description]) {
         const match = rules.find(([, , pattern]) => pattern.test(normalize(text)));
         if (match) return { department: match[0], subcategory: match[1] };

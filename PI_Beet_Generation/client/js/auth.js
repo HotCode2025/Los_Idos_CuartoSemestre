@@ -35,7 +35,7 @@ let authMode = "login";
 let currentUser = null;
 let resetToken = null;
 
-// What each form mode shows: login, create account, ask for a recovery link, set a new password.
+// Qué muestra cada modo del formulario: ingresar, crear cuenta, pedir un enlace de recuperación y elegir una contraseña nueva.
 const authModes = {
     login: { title: "INGRESAR", submit: "Ingresar", fields: ["email", "password"], switchText: "¿No tenés cuenta?", switchTo: "register", switchLabel: "Crear cuenta" },
     register: { title: "CREAR CUENTA", submit: "Crear cuenta", fields: ["name", "email", "password"], switchText: "¿Ya tenés cuenta?", switchTo: "login", switchLabel: "Ingresar" },
@@ -140,7 +140,7 @@ authForm.addEventListener("submit", async (event) => {
     }
 });
 
-// Opened from the recovery email: /?reset=<token>.
+// Se abre desde el correo de recuperación: /?reset=<token>.
 const resetParam = new URLSearchParams(location.search).get("reset");
 if (resetParam) {
     resetToken = resetParam;

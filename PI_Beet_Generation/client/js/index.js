@@ -19,7 +19,7 @@ const showCartToast = (productName) => {
 
 document.getElementById("cart-toast-close").addEventListener("click", hideCartToast);
 
-// Back from Mercado Pago: it appends the payment result to the home URL.
+// Al volver de Mercado Pago: agrega el resultado del pago a la dirección de la página principal.
 const paymentParams = new URLSearchParams(location.search);
 if (paymentParams.has("collection_status") || paymentParams.has("payment_id")) {
     const paymentMessages = {

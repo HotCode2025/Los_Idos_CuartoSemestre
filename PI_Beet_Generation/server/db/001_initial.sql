@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS catalog_seed_state (
     completed_at timestamptz NOT NULL DEFAULT now()
 );
 
--- Registration/login and carts scoped to the authenticated account.
+-- Registro, inicio de sesión y carritos asociados a la cuenta con sesión iniciada.
 CREATE TABLE IF NOT EXISTS users (
     id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name text NOT NULL,
@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS cart_items (
     PRIMARY KEY (user_id, product_id)
 );
 
--- Login sessions: the browser keeps only a random token in an httpOnly cookie;
--- the database stores its SHA-256 hash, so a leaked table cannot be replayed.
+-- Sesiones: el navegador guarda solo un token aleatorio en una cookie httpOnly;
+-- la base guarda su hash SHA-256, así una tabla filtrada no sirve para entrar.
 CREATE TABLE IF NOT EXISTS sessions (
     token_hash text PRIMARY KEY,
     user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS sessions (
 );
 CREATE INDEX IF NOT EXISTS sessions_user_id ON sessions (user_id);
 
--- Password recovery: single-use links that expire after 30 minutes.
--- Like sessions, only the SHA-256 hash of the emailed token is stored.
+-- Recuperación de contraseña: enlaces de un solo uso que vencen a los 30 minutos.
+-- Igual que en las sesiones, solo se guarda el hash SHA-256 del token enviado por correo.
 CREATE TABLE IF NOT EXISTS password_resets (
     token_hash text PRIMARY KEY,
     user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS password_resets (
 );
 CREATE INDEX IF NOT EXISTS password_resets_user_id ON password_resets (user_id);
 
--- An anonymous cart can be merged again after a lost response without duplicating units.
+-- Un carrito de invitado se puede volver a combinar tras una respuesta perdida sin duplicar unidades.
 CREATE TABLE IF NOT EXISTS cart_merges (
     user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     merge_id uuid NOT NULL,
@@ -59,19 +59,19 @@ CREATE TABLE IF NOT EXISTS cart_merges (
     PRIMARY KEY (user_id, merge_id)
 );
 
--- Access is granted only by an administrator; registration cannot set this field.
+-- El acceso solo lo otorga un administrador; el registro no puede completar este campo.
 ALTER TABLE users ADD COLUMN IF NOT EXISTS approved_admin boolean NOT NULL DEFAULT false;
 
--- Existing products remain unclassified until an administrator assigns a category.
+-- Los productos existentes quedan sin clasificar hasta que un administrador les asigne una categoría.
 ALTER TABLE products ADD COLUMN IF NOT EXISTS category text NOT NULL DEFAULT 'sin-categoria'
     CHECK (category IN ('mujer', 'hombre', 'unisex', 'sin-categoria'));
 
--- Product families are independent of the existing audience/gender field.
+-- Las familias de productos son independientes del campo de público/género.
 ALTER TABLE products ADD COLUMN IF NOT EXISTS department text NOT NULL DEFAULT 'sin-clasificar'
     CHECK (department IN ('calzado', 'indumentaria', 'accesorios', 'sin-clasificar'));
 ALTER TABLE products ADD COLUMN IF NOT EXISTS subcategory text NOT NULL DEFAULT '';
 
--- Accessories are a product family, not an audience. Migrate the legacy audience once.
+-- Accesorios es una familia de productos, no un público. Se migra una sola vez el público anterior.
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conrelid = 'products'::regclass

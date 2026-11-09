@@ -57,7 +57,7 @@ test('guest survives reload, login combines carts, logout separates accounts, lo
     await page.store.authenticate(() => api.login(1));
     assert.equal(page.cart[0].quanty, 3);
     assert.equal(storage.size, 0);
-    // Rapid edits run in order, followed by logout, then another account's login.
+    // Los cambios rápidos se ejecutan en orden, después se cierra sesión y luego entra otra cuenta.
     await Promise.all([page.store.change(products[0], 1), page.store.change(products[0], 1),
         page.store.authenticate(() => api.login(null)), page.store.authenticate(() => api.login(2))]);
     assert.equal(page.cart.length, 0);
@@ -90,7 +90,7 @@ test('minus removes the last unit, persists removal and tolerates repeated click
         await page.store.ready;
         if (!loggedIn) await page.store.change(products[0], 1);
         await page.store.change(products[1], 1);
-        // A second minus queued after removal must not recreate the item or delete another.
+        // Un segundo "menos" en cola después de eliminar no debe recrear el producto ni borrar otro.
         await Promise.all([page.store.change(products[1], -1), page.store.change(products[1], -1)]);
         assert.ok(!page.cart.some(item => item.id === products[1].id));
         assert.ok(page.cart.some(item => item.id === products[0].id));

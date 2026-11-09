@@ -46,7 +46,7 @@ test('three-step checkout retains the cart, validates address, allows back navig
     vm.runInContext(fs.readFileSync(path.join(__dirname, '../../client/js/checkout.js'), 'utf8'), context);
     await new Promise(setImmediate);
     assert.equal(get('confirm-cart').disabled, false);
-    // Edit the quantity using the actual rendered plus button.
+    // Cambia la cantidad usando el botón "más" que se dibuja en la página.
     const controls = get('checkout-items').children[0].children[2];
     const plus = controls.children.find(child => child.textContent === '+');
     await plus.listeners.click();

@@ -1,4 +1,4 @@
-// All cart edits and account changes share a queue: a late save cannot cross logout/login.
+// Todos los cambios del carrito y de la cuenta comparten una cola: un guardado tardío no puede cruzarse con un cierre o inicio de sesión.
 const CartStore = (() => {
     const guestKey = 'beet-guest-cart-v1';
     let user = null;
@@ -44,7 +44,7 @@ const CartStore = (() => {
         initialized = false;
         if (user) {
             const guest = readGuest();
-            // Prices, names and images always come from PostgreSQL for authenticated carts.
+            // En los carritos con sesión iniciada, los precios, nombres e imágenes siempre vienen de PostgreSQL.
             const data = guest.items.length
                 ? await request('/api/cart/merge', json('POST', guest))
                 : await request('/api/cart');
@@ -89,8 +89,8 @@ const CartStore = (() => {
         user = data.user || null;
         initialized = false;
         replace([]);
-        // Login may succeed while cart loading fails. Keep the account state accurate,
-        // show the error, and retry synchronization before accepting the next edit.
+        // El inicio de sesión puede funcionar aunque falle la carga del carrito. Se mantiene correcto el estado de la cuenta,
+        // se muestra el error y se reintenta la sincronización antes de aceptar el próximo cambio.
         try { await loadAccount(); } catch (error) { notify(error.message); }
         return data;
     });

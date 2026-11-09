@@ -20,7 +20,7 @@ test('cart endpoints require authentication before reading or writing', async ()
     } finally { await new Promise(resolve => server.close(resolve)); }
 });
 
-// Run explicitly against an isolated temporary schema; never changes application rows.
+// Se ejecuta a propósito sobre un esquema temporal aislado; nunca modifica datos de la aplicación.
 test('PostgreSQL persists isolated carts, merges once, validates and deletes',
     { skip: process.env.CART_DB_TEST !== '1' }, async () => {
     const { pool } = require('../db');

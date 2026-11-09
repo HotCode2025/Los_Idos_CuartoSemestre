@@ -7,7 +7,7 @@ const displayCart = () => {
   modalContainer.innerHTML = "";
   modalContainer.style.display = "block";
   modalOverlay.style.display = "block";
-  //Modal Header
+  //Encabezado del modal
   const modalHeader = document.createElement("div");
 
   const modalClose = document.createElement("div");
@@ -27,7 +27,7 @@ const displayCart = () => {
 
   modalContainer.append(modalHeader);
 
-  //Modal Body
+  //Cuerpo del modal
   if (cart.length > 0) {
     cart.forEach((product) => {
       const modalBody = document.createElement("div");
@@ -65,7 +65,7 @@ const displayCart = () => {
       });
     });
 
-    //Modal Footer
+    //Pie del modal
     const total = cart.reduce((acc, el) => acc + el.price * el.quanty, 0);
     const modalFooter = document.createElement("div");
     modalFooter.className = "modal-footer";
