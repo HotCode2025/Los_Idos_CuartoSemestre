@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LA LEYENDA DE AANG: AVATAR</title>
+    <link rel="stylesheet" href="./css/styles.css">
+  </head>
+  <body>
+    <h1>
+      <span class="titulo-texto">AVATAR: La Leyenda de Aang</span>
+      <!--<span class="titulo-iconos" aria-hidden="true">🔥💧🌱🌪️</span>-->
+    </h1>
+
+    <button id="boton-reglas">📜 Mostrar reglas</button>
+
+    <!-- Musica ambiente: boton flotante (arriba a la derecha) para activarla o apagarla -->
+    <button id="boton-musica" aria-pressed="false" title="Activar / desactivar música">🔇 Música</button>
+    <audio id="musica" loop preload="auto">
+      <source src="./audio/music_battle.ogg" type="audio/ogg">
+      <!-- Opcional: si tambien tienes una version .mp3, Safari la usara como respaldo -->
+      <!-- <source src="./audio/music_battle.mp3" type="audio/mpeg"> -->
+    </audio>
+
+    <section id="reglas">
+      <h2>Reglas del Juego</h2>
+      <p><strong>1.</strong> Selecciona un personaje y presiona "Seleccionar".</p>
+      <p><strong>2.</strong> Tanto el jugador como el enemigo comienzan con 3 vidas.</p>
+      <p><strong>3.</strong> Relación entre ataques:</p>
+      <ul>
+        <li>🦶🏼 Patada vence a ✊🏼 Puño</li>
+        <li>✊🏼 Puño vence a 🦵🏼 Barrida</li>
+        <li>🦵🏼 Barrida vence a 🦶🏼 Patada</li>
+        <li>Si ambos ataques son iguales, hay empate.</li>
+      </ul>
+    </section>
+
+    <section id="seleccionar-personaje">
+      <h2>Elige tu Personaje</h2>
+      <!-- Las tarjetas (input + label) se generan desde JavaScript con forEach() -->
+      <div class="opciones-personaje" id="contenedor-tarjetas"></div>
+
+      <button id="boton-personaje">Seleccionar</button>
+    </section>
+
+    <!-- NUEVO: mapa de encuentro. El canvas es el "lienzo" donde se dibuja al personaje.
+         Usamos h2 (y no h1) para que tome el estilo de las demas secciones. -->
+    <section id="ver-mapa">
+      <h2 class="titulo">Recorre el mapa con tu personaje</h2>
+      <canvas id="mapa" width="800" height="600"></canvas>
+
+      <!-- Botones de movimiento: mientras se mantienen presionados el personaje
+           avanza; al soltarlos se detiene (la logica esta en avatar.js) -->
+      <div class="controles-mapa">
+        <button id="boton-arriba" data-direccion="arriba">⬆️ Arriba</button>
+        <button id="boton-izquierda" data-direccion="izquierda">⬅️ Izquierda</button>
+        <button id="boton-abajo" data-direccion="abajo">⬇️ Abajo</button>
+        <button id="boton-derecha" data-direccion="derecha">➡️ Derecha</button>
+      </div>
+
+      <p class="ayuda-mapa">Muévete con los botones o con las flechas del teclado y alcanza al enemigo para iniciar el combate.</p>
+    </section>
+
+    <section id="seleccionar-ataque">
+      <h2>Elige tu ataque</h2>
+      <p>Tu personaje <span id="personaje-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
+      <p>El personaje <span id="personaje-enemigo"></span> del enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
+      <p>
+        <!-- Botones de ataque solo con icono. aria-label y title conservan el nombre
+             para lectores de pantalla y para el cartelito al pasar el mouse. -->
+        <button id="boton-punio" class="boton-ataque" data-ataque="Punio" aria-label="Puño" title="Puño">
+          <img src="./img/punio.jpeg" alt="">
+        </button>
+        <button id="boton-patada" class="boton-ataque" data-ataque="Patada" aria-label="Patada" title="Patada">
+          <img src="./img/patada.jpeg" alt="">
+        </button>
+        <button id="boton-barrida" class="boton-ataque" data-ataque="Barrida" aria-label="Barrida" title="Barrida">
+          <img src="./img/barrida.jpeg" alt="">
+        </button>
+      </p>
+    </section>
+
+    <section id="mensajes">
+      <!-- Aquí se agregan los párrafos dinámicos del combate -->
+    </section>
+
+    <section id="reiniciar">
+      <button id="boton-reiniciar">Reiniciar</button>
+    </section>
+
+    <!-- El script va al final del body: el HTML ya existe cuando JavaScript lo procesa -->
+    <script src="./js/avatar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,400 @@
+/* =========================================================
+   AVATAR: LA LEYENDA DE AANG — Hoja de estilos del juego
+   Paleta base: 000024 / 01264A / 26014A (+ colores de nacion)
+   Todo el layout escalado un 20% respecto a la version anterior.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  /* Paleta base del sitio */
+  --color-fondo:   #000024; /* fondo general: azul mucho mas oscuro */
+  --color-tarjeta: #01264A; /* superficie de las secciones */
+  --color-acento:  #26014A; /* bordes, titulos, botones genericos */
+
+  /* Colores de cada nacion  */
+  --color-fuego:  #e1592c; /* Zuko */
+  --color-agua:   #2c6e91; /* Katara */
+  --color-tierra: #6b8e4e; /* Toph */
+  --color-aire:   #e8a93b; /* Aang */
+
+  
+  --color-texto:       #edeaf5;
+  --color-texto-suave: #c7c2d9;
+
+  /* Tipografias */
+  --fuente-titulo: 'Cinzel', serif;   
+  --fuente-cuerpo: 'Roboto', sans-serif;
+}
+
+/* ---------- Reset basico ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-fondo);
+  font-family: var(--fuente-cuerpo);
+  color: var(--color-texto);
+  line-height: 1.5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0 1.2rem 3.6rem;
+}
+
+/* ---------- Titulo principal ---------- */
+h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--color-texto);
+  background: var(--color-fondo); 
+  width: 100%;
+  margin: 0 0 2rem;              /* antes: 3rem  */
+  padding: 1.5rem 1rem 2rem; /* antes: 2.1rem 1.2rem 2.7rem */
+  box-shadow: 0 7.2px 21.6px rgba(1, 1, 74, 0.5);
+  position: relative;
+}
+
+/* Texto "AVATAR" */
+.titulo-texto {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2.4rem, 7.2vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-shadow: 0 2.4px 7.2px rgba(1, 1, 74, 0.6);
+}
+
+/* Iconos de las naciones, debajo del titulo */
+.titulo-iconos {
+  font-size: clamp(1.44rem, 3.6vw, 2.16rem);
+  letter-spacing: 0.35em;
+  margin-top: 0.6rem;
+}
+
+/* Barra de las 4 naciones */
+h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10px;
+  background: linear-gradient(
+    90deg,
+    var(--color-fuego) 0% 25%,
+    var(--color-agua) 25% 50%,
+    var(--color-tierra) 50% 75%,
+    var(--color-aire) 75% 100%
+  );
+}
+
+/* ---------- Tarjetas / secciones ---------- */
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: min(672px, 92vw);
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-acento);
+  border-radius: 19.2px;
+  box-shadow: 0 4.8px 16.8px rgba(1, 1, 74, 0.4);
+  padding: 1.8rem 2.1rem;
+  margin: 0 0 1.8rem;
+}
+
+h2 {
+  font-family: var(--fuente-cuerpo);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.26rem;
+  color: var(--color-texto);
+  margin: 0 0 0rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2.4px dashed var(--color-acento);
+}
+
+/* ---------- Boton y seccion de reglas ---------- */
+#boton-reglas {
+  align-self: flex-start;
+  background: var(--color-acento);
+}
+
+#reglas p {
+  margin: 0.25rem 0;
+  color: var(--color-texto);
+}
+
+#reglas ul {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#reglas li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-texto-suave);
+  border-radius: 9.6px;
+  padding: 0.6rem 0.9rem;
+  font-size: 1.1rem;
+}
+
+/* ---------- Seleccion de personaje ---------- */
+#seleccionar-personaje {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+#seleccionar-personaje h2 {
+  align-self: stretch;
+  text-align: center;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Fila de personajes */
+#seleccionar-personaje .opciones-personaje {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+
+#seleccionar-personaje input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+#seleccionar-personaje label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.48rem;
+  font-family: var(--fuente-titulo);
+  font-size: 1.32rem;
+  text-align: center;
+  min-width: 120px;
+  flex: 0 1 auto;
+  cursor: pointer;
+  padding: 0.72rem 0.9rem;
+  border-radius: 19.2px;
+  border: 2.4px solid var(--color-acento);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Retrato circular del personaje dentro del label */
+#seleccionar-personaje label img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3.6px solid var(--color-acento);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#seleccionar-personaje label:hover {
+  transform: translateY(-2px);
+}
+
+/* Color de cada insignia segun su nacion */
+label[for="zuko"] img   { border-color: var(--color-fuego); }
+label[for="katara"] img { border-color: var(--color-agua); }
+label[for="aang"] img   { border-color: var(--color-aire); }
+label[for="toph"] img   { border-color: var(--color-tierra); }
+
+
+#zuko:checked + label   { border-color: var(--color-fuego); }
+#katara:checked + label { border-color: var(--color-agua); }
+#aang:checked + label   { border-color: var(--color-aire); }
+#toph:checked + label   { border-color: var(--color-tierra); }
+
+#zuko:checked + label img   { box-shadow: 0 0 0 4.8px var(--color-fuego); }
+#katara:checked + label img { box-shadow: 0 0 0 4.8px var(--color-agua); }
+#aang:checked + label img   { box-shadow: 0 0 0 4.8px var(--color-aire); }
+#toph:checked + label img   { box-shadow: 0 0 0 4.8px var(--color-tierra); }
+
+
+#seleccionar-personaje input[type="radio"]:focus-visible + label {
+  outline: 3.6px solid var(--color-texto);
+  outline-offset: 2.4px;
+}
+
+#seleccionar-personaje button {
+  background: var(--color-acento);
+  align-self: center;
+  margin-top: 1.5rem auto 0;
+}
+
+/* ---------- Seleccion de ataque ---------- */
+#seleccionar-ataque h2 {
+  text-align: center;
+}
+
+#personaje-jugador,
+#personaje-enemigo {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+#vidas-jugador,
+#vidas-enemigo {
+  display: inline-block;
+  min-width: 1.68em;
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+#seleccionar-ataque p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  justify-content: center;
+  margin: 0.6rem 0 0;
+}
+
+
+#boton-punio   { background: var(--color-fuego); }
+#boton-patada  { background: var(--color-aire); color: #1f1400; }
+#boton-barrida { background: var(--color-tierra); }
+
+/* ---------- Botones (estilo general) ---------- */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.48rem;
+  font-family: var(--fuente-cuerpo);
+  font-weight: 700;
+  font-size: 1.14rem;
+  color: #fff;
+  background: var(--color-acento);
+  border: none;
+  border-radius: 12px;
+  padding: 0.78rem 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 3.6px 0 rgba(1, 1, 74, 0.6);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(1, 1, 74, 0.5);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1.2px 0 rgba(1, 1, 74, 0.5);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+button:focus-visible {
+  outline: 3.6px solid var(--color-texto);
+  outline-offset: 2.4px;
+}
+
+/* ---------- Mensajes del combate ---------- */
+#mensajes {
+  width: min(672px, 92vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0 0 1.8rem;
+}
+
+#mensajes p {
+  background: var(--color-tarjeta);
+  border-left: 4.8px solid var(--color-acento);
+  color: var(--color-texto);
+  border-radius: 9.6px;
+  padding: 0.72rem 1.2rem;
+  margin: 0;
+  font-size: 1.1rem;
+  box-shadow: 0 2.4px 9.6px rgba(1, 1, 74, 0.35);
+}
+
+/* ---------- Reiniciar ---------- */
+#reiniciar {
+  width: min(672px, 92vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 1.8rem;
+}
+
+#boton-reiniciar {
+  background: var(--color-fondo);
+  border: 1.2px solid var(--color-acento);
+  align-self: center;
+  margin-top: 1.5rem auto 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  h1 {
+    padding: 1.275rem 0.765rem 1.785rem; /* antes: 1.5rem 0.9rem 2.1rem → *0.85 */
+  }
+
+  section {
+    padding: 1.32rem 1.5rem;
+  }
+
+  #seleccionar-personaje label {
+    min-width: 96px;
+    font-size: 1.2rem;
+    padding: 0.6rem 0.72rem;
+  }
+
+  #seleccionar-personaje label img {
+    width: 77px;
+    height: 77px;
+  }
+
+  button {
+    font-size: 1.08rem;
+    padding: 0.66rem 1.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  #seleccionar-ataque p {
+    flex-direction: column;
+  }
+
+  #seleccionar-ataque button {
+    width: 100%;
+  }
+}
