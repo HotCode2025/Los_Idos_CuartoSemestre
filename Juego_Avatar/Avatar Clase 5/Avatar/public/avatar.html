@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LA LEYENDA DE AANG: AVATAR</title>
+        <link rel="stylesheet" href="./css/styles.css">
+    </head>
+    <body>
+        <h1>
+            <span class="titulo-texto">AVATAR</span>
+            <span class="titulo-iconos" aria-hidden="true">🔥💧🌱🌪️</span>
+        </h1>
+
+        <button id="boton-reglas">📜 Mostrar reglas</button>
+            <section id="reglas">
+                <h2>Reglas del Juego</h2>
+                <p><strong>1.</strong> Selecciona un personaje y presiona "Seleccionar".</p>
+                <p><strong>2.</strong> Tanto el jugador como el enemigo comienzan con 3 vidas.</p>
+                <p><strong>3.</strong> Relación entre ataques:</p>
+                <ul>
+                    <li>🦶🏼 Patada vence a ✊🏼 Puño</li>
+                    <li>✊🏼 Puño vence a 🦵🏼 Barrida</li>
+                    <li>🦵🏼 Barrida vence a 🦶🏼 Patada</li>
+                    <li>Si ambos ataques son iguales, hay empate.</li>
+                </ul>
+            </section>
+
+        <section id="seleccionar-personaje">
+            <h2>Elige tu Personaje</h2>
+            <div class="opciones-personaje">
+                <input type="radio" name="personaje" id="zuko">
+                <label for="zuko">
+                <img src="./img/zuko.webp.jfif" alt="Zuko">
+                <span>Zuko</span>
+            </label>
+
+                <input type="radio" name="personaje" id="katara">
+                <label for="katara">
+                <img src="./img/katara.webp.jfif" alt="Katara">
+                <span>Katara</span>
+            </label>
+
+                <input type="radio" name="personaje" id="aang">
+                <label for="aang">
+                <img src="./img/aang.webp.jfif" alt="Aang">
+                <span>Aang</span>
+            </label>
+
+                <input type="radio" name="personaje" id="toph">
+            <label for="toph">
+                <img src="./img/toph.webp.jfif" alt="Toph">
+                <span>Toph</span>
+            </label>
+
+                 <input type="radio" name="personaje" id="sokka">
+            <label for="sokka">
+                <img src="./img/sokka.webp.jfif" alt="Sokka">
+                <span>Sokka</span>
+            </label>
+
+             <input type="radio" name="personaje" id="azula">
+            <label for="azula">
+                <img src="./img/azula.webp.jfif" alt="Toph">
+                <span>Azula</span>
+            </label>
+
+    </div>
+
+            <button id="boton-personaje">Seleccionar</button>
+        </section>
+        <section id="seleccionar-ataque">
+            <h2>Elige tu ataque</h2>
+            <p>Tu personaje <span id="personaje-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
+            <p>El personaje <span id="personaje-enemigo"></span> del enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
+            <p>
+                <button id="boton-punio" data-ataque="Punio">Punio ✊🏼</button>
+                <button id="boton-patada" data-ataque="Patada">Patada 🦶🏼</button>
+                <button id="boton-barrida" data-ataque="Barrida">Barrida 🦵🏼</button>
+            </p>
+        </section>
+        <section id="mensajes"> 
+            <!--Sera un parrafo dinamico-->           
+        </section>
+        <section id="reiniciar">
+            <button id="boton-reiniciar">Reiniciar</button>
+        </section>
+        <script src="./js/avatar.js"></script>
+    </body>
+</html>
